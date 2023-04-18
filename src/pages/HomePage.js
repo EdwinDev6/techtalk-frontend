@@ -1,13 +1,20 @@
-import { usePosts} from "../context/postContext";
+import { useEffect } from "react";
+import { usePosts } from "../context/postContext";
 
 export function HomePage() {
-    const {setPosts} = usePosts()
+ 
+    const {getPosts,posts} = usePosts()
 
-    return (
-        <div> HomePage
-          
-            <button className="bg-red 100 " onClick={setPosts()}>Join</button>
-            </div>
-    )
+    useEffect(()=>{
+        getPosts()
+    }, [])
+  return (
+    <div className="text-white">
+     {posts.map(post => (
+        <div key={post._id}>
+            {post.title}
+        </div>
+     ))}
+    </div>
+  );
 }
-
