@@ -7,3 +7,5 @@ export const createPostRequest = async (post) => await axios.post('http://localh
 export const deletePostRequest = async id => await axios.delete("http://localhost:4000/api/posts/" + id)
 
 export const getPostRequest = async id => await axios.get("http://localhost:4000/api/posts/" + id)
+
+export const updatePostRequest = async (id, newFields) => await axios.put(`http://localhost:4000/api/posts/${id}`, newFields)
