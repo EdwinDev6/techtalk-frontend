@@ -1,5 +1,12 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { getPostsRequests, createPostsRequests } from "../api/posts";
+import {
+  getPostsRequest,
+  createPostRequest,
+  deletePostRequest,
+  getPostRequest,
+  updatePostRequest,
+} from "../api/posts";
+
 export const postContext = createContext();
 
 export const usePosts = () => {
@@ -10,30 +17,51 @@ export const usePosts = () => {
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      const res = await getPostsRequest();
+      setPosts(res.data);
+    })();
+  }, []);
 
-
-
-  const getPosts = async () => {
-    const res = await getPostsRequests();
-    setPosts(res.data)
+  const createPost = async (post) => {
+    try {
+      const res = await createPostRequest(post);
+    setPosts([...posts, res.data]);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
-    const createPost = async (post) =>{
-      const res = await createPostsRequests(post)
-      setPosts([...posts, res.data])
+  const deletePost = async (id) => {
+    await deletePostRequest(id);
+    setPosts(posts.filter((post) => post._id !== id));
+  };
+
+  const getPost = async (id) => {
+    try {
+      const res = await getPostRequest(id);
+      return res.data;
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-  useEffect(()=>{
-    getPosts()
-  }, [])
-
+  const updatePost = async (id, post) => {
+    
+    const res = await updatePostRequest(id, post);
+    setPosts(posts.map((post) => (post.id === id ? res.data : post)));
+    
+  };
 
   return (
     <postContext.Provider
       value={{
         posts,
-        getPosts,
-        createPost
+        createPost,
+        deletePost,
+        getPost,
+        updatePost,
       }}
     >
       {children}
