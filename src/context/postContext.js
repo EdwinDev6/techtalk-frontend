@@ -6,6 +6,7 @@ import {
   getPostRequest,
   updatePostRequest,
 } from "../api/posts";
+
 export const postContext = createContext();
 
 export const usePosts = () => {
@@ -24,8 +25,12 @@ export const PostProvider = ({ children }) => {
   }, []);
 
   const createPost = async (post) => {
-    const res = await createPostRequest(post);
+    try {
+      const res = await createPostRequest(post);
     setPosts([...posts, res.data]);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const deletePost = async (id) => {
@@ -43,8 +48,10 @@ export const PostProvider = ({ children }) => {
   };
 
   const updatePost = async (id, post) => {
+    
     const res = await updatePostRequest(id, post);
     setPosts(post.map((post) => (post.id === id ? res.data : post)));
+    
   };
 
   return (

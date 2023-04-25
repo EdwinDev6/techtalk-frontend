@@ -64,6 +64,7 @@ export function PostCard({ post }) {
           </button>
         </div>
         <p>{post.description}</p>
+        {post.image && <img src={post.image.url} alt="imagen proporcionada por el Moderador" />}
       </div>
     </div>
   );
