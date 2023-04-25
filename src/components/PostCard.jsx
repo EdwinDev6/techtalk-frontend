@@ -48,23 +48,26 @@ export function PostCard({ post }) {
         hover:cursor-pointer"
     >
       <div className="px-4 py-7">
-        <div className="flex justify-between">
-          <h3>{post.title}</h3>
-          <button
+      <button
             className="bg-sky-400 text-sm px-2 py-1 rounded-sm"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
             Edit
           </button>
           <button
-            className="bg-red-600 text-sm px-2 py-1 rounded-sm"
+            className="bg-red-600 text-sm px-2 py-1 rounded-sm "
             onClick={() => handleDelete(post._id)}
           >
             Delete
           </button>
+        <div className="flex justify-between uppercase py-2">
+          <h3>{post.title}</h3>
+          
         </div>
         <p>{post.description}</p>
-        {post.image && <img src={post.image.url} alt="imagen proporcionada por el Moderador" />}
+        <div className=" flex justify-center items-center ">
+        {post.image && <img   src={post.image.url} className="w-full h-full object-cover " alt="imagen proporcionada por el Moderador" />}
+        </div>
       </div>
     </div>
   );
