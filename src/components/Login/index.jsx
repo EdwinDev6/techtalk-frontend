@@ -40,6 +40,7 @@ const Signup = () => {
       <div className={styles.login_form_container}>
         <div className={styles.left}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
+
             <h1> Login </h1>
             <input
               type="email"
@@ -67,7 +68,7 @@ const Signup = () => {
             </button>
           </form>
           <div >
-            <h1> Dont have a acount?</h1><Link to="/signup">
+            <h3> Dont have a acount?</h3><Link to="/signup">
                   <button type="button" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded-full'>
                     Sign Up
                   </button>

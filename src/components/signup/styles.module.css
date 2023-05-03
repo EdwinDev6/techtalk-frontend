@@ -33,14 +33,14 @@
 }
 
 .right {
-	width: auto;
-	height: 500px;
+	width: 60vh;
+	height: 80vh;
 	flex: 2;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgba(9,101,121,1) 0%, rgba(0, 213, 255, 0.807) 100%);
+	background-color: rgba(0, 0, 0, 0.189);
 	box-shadow: 0 0.188em 1.550em rgb(44, 75, 75);
 	border-top-right-radius: 10px;
 }
@@ -56,6 +56,7 @@
 	margin-top: 0;
 	font-weight: bold;
 	padding-bottom: 15px;
+	color: #5d5959d0;
 }
 
 .input {
@@ -63,10 +64,10 @@
 	border: none;
 	width: 370px;
 	padding: 15px;
-	border-radius: 10px;
-	background-color: #edf5f3;
-	margin: 5px 0;
+	background-color: #edf5f325;
+	margin: 1.8vh;
 	font-size: 14px;
+	color: wheat;
 }
 
 .error_msg {
@@ -85,7 +86,7 @@
 	border: none;
 	outline: none;
 	padding: 12px 0;
-	background-color: rgb(102, 115, 212);
+	background-color: rgb(29, 34, 77);
 	border-radius: 20px;
 	width: 180px;
 	font-weight: bold;
@@ -94,7 +95,7 @@
 }
 
 .green_btn {
-	background-color: #3bb19b;
+	background-color: #b13b3b;
 	color: white;
 	margin: 10px;
 }

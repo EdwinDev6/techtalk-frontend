@@ -1,14 +1,19 @@
 .navbar{
-    background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgba(9,101,121,1) 0%, rgba(0, 213, 255, 0.807) 100%);
+	background-color: rgba(126, 119, 119, 0.189);
     display: flex;
     justify-content: space-between;
+}
+.navbar h1{
+    font-weight: bold;
+    font-size: 3vh;
+    align-self: center;
+    padding-left: 5vh;
 }
 
 .menu-horizontal{
     list-style: none;
     display: flex;
     justify-content: space-around;
-    
 }
 
 .menu-horizontal li{
@@ -20,7 +25,7 @@
 }
 
 .menu-horizontal:hover{
-    background-color: green;
+    background-color: rgb(32, 34, 32);
     transition: 1s;
 }
 

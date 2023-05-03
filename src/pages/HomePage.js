@@ -21,26 +21,26 @@ export function HomePage() {
 
   return (
     <div className='text-white'>
-       <nav className="navbar">
-        <h1>Techtalk</h1>
-        <ul className="menu-horizontal">
-          <li>
-            <p>Options</p>
-            <ul className="menu-vertical">
-              <li>
-                <button className="bg-white hover:bg-blue-500 text-black  py-2  rounded" onClick = {handleLogout}>
-                    Logout
-                </button>
-              </li>
-              <li>
-                <Link to="/new"  className="bg-white  py-2 text-black hover:bg-blue-500">Create new Post</Link>
-              </li>
-            </ul>
+        <nav className="navbar">
+          <h1>Techtalk</h1>
+          <ul className="menu-horizontal">
+            <li>
+              <p>Options</p>
+              <ul className="menu-vertical">
+                <li>
+                  <button className="bg-white hover:bg-red-700 text-black  py-2  rounded" onClick = {handleLogout}>
+                      Logout
+                  </button>
+                </li>
+                <li>
+                  <Link to="/new"  className="bg-white  py-2 text-black hover:bg-blue-500">Create new Post</Link>
+                </li>
+              </ul>
 
-          </li>
-          
-        </ul>
-    </nav>
+            </li>
+            
+          </ul>
+        </nav>
     
     <header className="flex justify-between">
       <h1 className="text-2xl text-gray-300 font-bold">Post ({posts.length})</h1>
