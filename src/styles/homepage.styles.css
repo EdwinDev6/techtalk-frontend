@@ -1,0 +1,39 @@
+.navbar{
+    background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgba(9,101,121,1) 0%, rgba(0, 213, 255, 0.807) 100%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-horizontal{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.menu-horizontal li{
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.menu-horizontal:hover{
+    background-color: green;
+    transition: 1s;
+}
+
+
+
+.menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    background-color: azure;
+}
+
+.menu-horizontal li:hover .menu-vertical{
+    display: block;
+}

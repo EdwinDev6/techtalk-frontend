@@ -31,7 +31,7 @@ export function PostForm() {
       <div className="bg-zinc-800 p-10 shadow-md shadow-black">
         <header className="flex justify-between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
-          <Link to="/" className="text-gray-400 text-sm hover:text-gray-300">
+          <Link to="/home" className="text-gray-400 text-sm hover:text-gray-300">
             Go Back
           </Link>
         </header>
@@ -50,7 +50,7 @@ export function PostForm() {
             await createPost(values);
           }
           actions.setSubmitting(false);
-          navigate("/");
+          navigate("/home");
         }}
 
       

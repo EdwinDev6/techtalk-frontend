@@ -2,6 +2,7 @@ import { usePosts } from "../context/postContext";
 import {VscEmptyWindow} from 'react-icons/vsc'
 import { Link } from "react-router-dom"; 
 import { PostCard } from "../components/PostCard";
+import '../styles/homepage.styles.css' 
 
 export function HomePage() {
   const handleLogout = ()=> {
@@ -20,16 +21,29 @@ export function HomePage() {
 
   return (
     <div className='text-white'>
-       <nav className="bg-gray-900 shadow">
+       <nav className="navbar">
         <h1>Techtalk</h1>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {handleLogout}>
-            Logout
-        </button>
+        <ul className="menu-horizontal">
+          <li>
+            <p>Options</p>
+            <ul className="menu-vertical">
+              <li>
+                <button className="bg-white hover:bg-blue-500 text-black  py-2  rounded" onClick = {handleLogout}>
+                    Logout
+                </button>
+              </li>
+              <li>
+                <Link to="/new"  className="bg-white  py-2 text-black hover:bg-blue-500">Create new Post</Link>
+              </li>
+            </ul>
+
+          </li>
+          
+        </ul>
     </nav>
     
     <header className="flex justify-between">
       <h1 className="text-2xl text-gray-300 font-bold">Post ({posts.length})</h1>
-    <Link to="/new"  className="bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500">Create new Post</Link>
     </header>
 
     <div className="grid  gap-4 w-25">
