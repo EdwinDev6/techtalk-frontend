@@ -22,7 +22,7 @@ const Signup = () => {
         const url = "http://localhost:4000/api/auth/signin";
         const {data:res} = await axios.post(url,data);
         localStorage.setItem("token", res.data);
-        window.location= "/"
+        window.location= "/home"
     } catch (error) {
         if(error.response &&
             error.response.status >=400 &&

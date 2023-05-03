@@ -21,7 +21,7 @@ const Signup = () => {
     try {
         const url = "http://localhost:4000/api/auth/signup";
         const {data:res} = await axios.post(url,data);
-        navigate("/login")
+        navigate("/")
         console.log(res.message)
     } catch (error) {
         if(error.response &&

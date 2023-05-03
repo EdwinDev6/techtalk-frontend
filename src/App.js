@@ -14,9 +14,9 @@ function App() {
       <div className="px-10  m-auto">
         <PostProvider>
       <Routes>
-        {user && <Route path="/" exact element={<HomePage/>}/>}
+        {user && <Route path="/home" exact element={<HomePage/>}/>}
         <Route path="/signup" exact element={<Signup/>}/>
-        <Route path ="/login" exact element={<Login/>}/>
+        <Route path ="/" exact element={<Login/>}/>
       <Route path="/new" element={<PostForm />} />
       <Route path="/posts/:id" element={<PostForm />} />
       <Route path="*" element={<NotFoundPage />} />
