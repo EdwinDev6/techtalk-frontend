@@ -39,12 +39,6 @@ const Signup = () => {
     <div className={styles.Signup_container}>
       <div className={styles.Signup_form_container}>
         <div className={styles.left}>
-          <h1> Welcome Back</h1>
-          <Link to="/login">
-            <button type="button" className={styles.white_btn}>
-              Log In
-            </button>
-          </Link>
         </div>
       </div>
       <div className={styles.right}>
@@ -85,6 +79,12 @@ const Signup = () => {
 
           </button>
         </form>
+          <h1> All ready have a acount? </h1>
+          <Link to="/">
+            <button type="button" className={styles.white_btn}>
+              Log In
+            </button>
+          </Link>
       </div>
     </div>
   );

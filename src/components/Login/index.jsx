@@ -39,45 +39,45 @@ const Signup = () => {
     <div className="w-full">
       <div className={styles.login_form_container}>
         <div className={styles.left}>
-        <form className={styles.form_container} onSubmit={handleSubmit}>
-          <h1> Login to Your Account</h1>
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={handleChange}
-            value={data.email}
-            required
-            className={styles.input}
-          />
+          <form className={styles.form_container} onSubmit={handleSubmit}>
+            <h1> Login </h1>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+              value={data.email}
+              required
+              className={styles.input}
+            />
 
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-            value={data.password}
-            required
-            className={styles.input}
-          />
-          {error && <div className={styles.error_msg}> {error}</div>}
-          <button type="submit" className={styles.green_btn}>
-            Sign in
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+              value={data.password}
+              required
+              className={styles.input}
+            />
+            {error && <div className={styles.error_msg}> {error}</div>}
+            <button type="submit" className={styles.green_btn}>
+              Sign in
 
-          </button>
-        </form>
-        <div >
-      <h1> New Here?</h1><Link to="/signup">
-            <button type="button" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded-full'>
-              Sign Up
             </button>
-          </Link>
-        
-      </div>
+          </form>
+          <div >
+            <h1> Dont have a acount?</h1><Link to="/signup">
+                  <button type="button" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded-full'>
+                    Sign Up
+                  </button>
+            </Link>
+          
+          </div>
         </div>
-        
+          
       </div>
-     
+      
     </div>
   );
 };

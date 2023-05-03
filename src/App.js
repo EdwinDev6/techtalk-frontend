@@ -20,7 +20,7 @@ function App() {
       <Route path="/new" element={<PostForm />} />
       <Route path="/posts/:id" element={<PostForm />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/" exact element ={<Navigate replace to ="/login"/>}/>
+      <Route path="/home" exact element ={<Navigate replace to ="/"/>}/>
     </Routes>
     <Toaster/>
     </PostProvider>
