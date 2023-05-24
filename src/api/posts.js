@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-export const getPostsRequest = async () => await axios.get('http://localhost:4000/api/posts')
+export const getPostsRequest = async () => await axios.get('http://localhost:4000/api/posts',{
+
+})
 
 export const createPostRequest = async (post) => {
+    const token = localStorage.getItem('token')
     const form = new FormData()
 
     for (let key in post){
@@ -11,7 +14,9 @@ export const createPostRequest = async (post) => {
 
     return await axios.post('http://localhost:4000/api/posts', form, {
         headers: {
-            "Content-Type": "multipart/form-data"
+            "Content-Type": "multipart/form-data",
+            // eslint-disable-next-line no-template-curly-in-string
+            'Authorization': `Bearer ${token}`
         }
     });
 }

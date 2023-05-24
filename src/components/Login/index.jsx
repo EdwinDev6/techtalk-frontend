@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
-const Signup = () => {
+const Signin = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,7 +21,8 @@ const Signup = () => {
     try {
         const url = "http://localhost:4000/api/auth/signin";
         const {data:res} = await axios.post(url,data);
-        localStorage.setItem("token", res.data);
+        localStorage.setItem("token", res.token);
+        
         window.location= "/"
     } catch (error) {
         if(error.response &&
@@ -82,4 +83,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;

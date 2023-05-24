@@ -8,16 +8,16 @@ import Login from './components/Login';
 
 function App() {
   
-  const user = localStorage.getItem("token")
+  const token = localStorage.getItem("token")
   return (
     <div className="bg-neutral-900 min-h-screen flex items-center">
       <div className="px-10  m-auto">
         <PostProvider>
       <Routes>
-        {user && <Route path="/" exact element={<HomePage/>}/>}
+        {token && <Route path="/" exact element={<HomePage/>}/>}
         <Route path="/signup" exact element={<Signup/>}/>
         <Route path ="/login" exact element={<Login/>}/>
-      <Route path="/new" element={<PostForm />} />
+        {token && <Route path="/new" element={<PostForm /> }/>}
       <Route path="/posts/:id" element={<PostForm />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/" exact element ={<Navigate replace to ="/login"/>}/>
