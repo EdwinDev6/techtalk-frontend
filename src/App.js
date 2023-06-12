@@ -1,33 +1,71 @@
-import { HomePage, PostForm, NotFoundPage } from "./pages/index";
+import { HomePage, HomeUser, PostForm, NotFoundPage } from "./pages/index";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { PostProvider } from "./context/postContext";
 import { Toaster } from "react-hot-toast";
 import Signup from './components/signup';
 import Login from './components/Login';
+import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import { Proteger } from "./og/Proteger";
 
+  function App() {
 
-function App() {
   
-  const token = localStorage.getItem("token")
-  return (
-    <div className="bg-neutral-900 min-h-screen flex items-center">
-      <div className="px-10  m-auto">
-        <PostProvider>
-      <Routes>
-        {token && <Route path="/" exact element={<HomePage/>}/>}
-        <Route path="/signup" exact element={<Signup/>}/>
-        <Route path ="/login" exact element={<Login/>}/>
-        {token && <Route path="/new" element={<PostForm /> }/>}
-      <Route path="/posts/:id" element={<PostForm />} />
-      <Route path="*" element={<NotFoundPage />} />
-      <Route path="/" exact element ={<Navigate replace to ="/login"/>}/>
-    </Routes>
-    <Toaster/>
-    </PostProvider>
+  return  (
     
+    <div className="bg-neutral-900 min-h-screen flex items-center">
+      <div className="px-10 m-auto">
+        <PostProvider>
+        <Navbar/>
+        <Routes>  
+
+          <Route element={<Proteger/>}>
+            <Route path="/new" element={<PostForm />} /> 
+            <Route path="/home" element={<HomePage />} />
+          </Route>
+            
+           <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Navigate replace to="/login" />} />
+            <Route path="/Homeuser" element={<HomeUser />} />
+             
+            <Route path="*" element={<NotFoundPage />} />
+            
+          </Routes>
+          <Toaster />
+        </PostProvider>
       </div>
     </div>
   );
 }
 
+
+export function Navigation() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/new">Create Post</Link>
+        </li>
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/About">Sobre Nosotros</Link>
+        </li>
+        <li>
+          <Link to="/moderator">Moderator</Link>
+        </li>
+        <li>
+          <Link to="/home">Admin</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
 export default App;
+
+
+
+
