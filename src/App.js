@@ -19,17 +19,18 @@ import { Proteger } from "./og/Proteger";
         <Navbar/>
         <Routes>  
 
-          <Route element={<Proteger/>}>
-            <Route path="/new" element={<PostForm />} /> 
-            <Route path="/home" element={<HomePage />} />
-          </Route>
-            
+         
            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Navigate replace to="/login" />} />
             <Route path="/Homeuser" element={<HomeUser />} />
-             
             <Route path="*" element={<NotFoundPage />} />
+
+            <Route element={<Proteger/>}>
+            <Route path="/new" element={<PostForm />} /> 
+            <Route path="/home" element={<HomePage />} />
+          </Route>
+            
             
           </Routes>
           <Toaster />
