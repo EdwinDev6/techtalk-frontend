@@ -9,6 +9,7 @@ import Login from './components/Login';
 function App() {
   
   const token = localStorage.getItem("token")
+  
   return (
     <div className="bg-neutral-900 min-h-screen flex items-center">
       <div className="px-10  m-auto">

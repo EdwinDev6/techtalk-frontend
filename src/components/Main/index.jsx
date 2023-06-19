@@ -1,14 +1,15 @@
 import styles from './style.module.css';
 
 
-const Main = () =>{
-
+const Main = () => {
     const handleLogout = ()=> {
-    localStorage.removeItem("token");
-    window.location.reload();
-}
+        localStorage.removeItem("token");
+        window.location.reload();
+    }
 
-return(
+    console.log(localStorage.getItem("token"))
+
+return (
     <div className={styles.main_container}>
     <nav className={styles.navbar}>
         <h1>Techtalk</h1>
@@ -17,8 +18,7 @@ return(
         </button>
     </nav>
     </div>
-);
-
-
+ );
 };
+
 export default Main;

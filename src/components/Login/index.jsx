@@ -16,7 +16,7 @@ const Signin = () => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         const url = "http://localhost:4000/api/auth/signin";
