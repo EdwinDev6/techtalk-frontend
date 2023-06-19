@@ -5,7 +5,6 @@ import { Toaster } from "react-hot-toast";
 import Signup from './components/signup';
 import Login from './components/Login';
 import { Link } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
 import { Proteger } from "./og/Proteger";
 
   function App() {
@@ -13,10 +12,10 @@ import { Proteger } from "./og/Proteger";
   
   return  (
     
-    <div className="bg-neutral-900 min-h-screen flex items-center">
-      <div className="px-10 m-auto">
+    <div className="">
+    
         <PostProvider>
-        <Navbar/>
+        
         <Routes>  
 
          
@@ -36,7 +35,7 @@ import { Proteger } from "./og/Proteger";
           <Toaster />
         </PostProvider>
       </div>
-    </div>
+    
   );
 }
 
