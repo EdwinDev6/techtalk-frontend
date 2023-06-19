@@ -12,6 +12,8 @@ const Signup = () => {
     password: "",
   });
   const [error, setError] = useState("")
+  
+  const { setAuth } = useAuth()
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -26,9 +28,9 @@ const Signup = () => {
     try {
         const url = "http://localhost:4000/api/auth/signup";
         const {data:res} = await axios.post(url,data);
-        const token = res?.token
         const roles = res?.roles
-        useAuth({ roles, token })
+        const token = res?.token
+        setAuth({roles, token})
         navigate(from, {replace: true})
     } catch (error) {
         if(error.response &&

@@ -1,12 +1,8 @@
+import { useContext } from "react"
+import AuthContext from "../context/AuthProvider"
 
-
-const useAuth = (auth) => {
-    if (auth) {
-        localStorage.setItem("auth", auth)
-    }
-    else {
-        return localStorage.getItem("auth")
-    }
+const useAuth = () => {
+    return useContext(AuthContext)
 }
 
 export default useAuth
