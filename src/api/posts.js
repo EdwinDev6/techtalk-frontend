@@ -5,7 +5,7 @@ export const getPostsRequest = async () => await axios.get('http://localhost:400
 })
 
 export const createPostRequest = async (post) => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('auth')
     const form = new FormData()
 
     for (let key in post){

@@ -7,8 +7,6 @@ const Main = () => {
         window.location.reload();
     }
 
-    console.log(localStorage.getItem("token"))
-
 return (
     <div className={styles.main_container}>
     <nav className={styles.navbar}>
