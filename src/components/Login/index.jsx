@@ -19,9 +19,10 @@ const Signin = () => {
     try {
       const url = "http://localhost:4000/api/auth/signin";
       const { data: res } = await axios.post(url, data);
+      console.log(res)
       localStorage.setItem("token", res.token);
 
-      window.location = "/homeuser";
+      //window.location = "/homeuser";
     } catch (error) {
       if (
         error.response &&
@@ -115,6 +116,7 @@ const Signin = () => {
                 <input type="text" required />
                 <label>Username</label>
               </div>
+
               <div className="input-box">
                 <span className="icon">
                   <i className="bx bxs-envelope"></i>

@@ -36,13 +36,11 @@ const Signup = () => {
   }
 
   return (
+
+    <div className="container">
     <div className={styles.Signup_container}>
-      <div className={styles.Signup_form_container}>
-        
-      </div>
-      <div className={styles.right}>
         <form className={styles.form_container} onSubmit={handleSubmit}>
-          <h1> Create Account</h1>
+          <h1> Sign Up</h1>
           <input
             type="Text"
             placeholder="UserName"
@@ -52,7 +50,7 @@ const Signup = () => {
             required
             className={styles.input}
           />
-
+            <label>Username</label>
           <input
             type="email"
             placeholder="Email"
@@ -73,19 +71,19 @@ const Signup = () => {
             className={styles.input}
           />
           {error && <div className={styles.error_msg}> {error}</div>}
-          <button type="submit" className={styles.green_btn}>
+          <button type="submit" className={styles.signup_btn}>
             Sign Up
 
           </button>
 
           <Link to="/login">
-            <button type="button" className={styles.white_btn}>
+            <button type="button" className={styles.login_btn}>
               Log In
             </button>
           </Link>
         </form>
       </div>
-    </div>
+      </div>
   );
 };
 
