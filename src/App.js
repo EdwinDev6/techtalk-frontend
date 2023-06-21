@@ -20,9 +20,16 @@ function App() {
           <Route path ="login" exact element={ <Login/> }/>
           
           {/* Private routes */}
-          <Route element={<RequiresAuth/>}>
+          <Route element={<RequiresAuth allowedRoles={["admin"]}/>}>
             <Route path="/" exact element={ <HomePage/>} />
             <Route path="/posts/:id" element={ <PostForm />} />
+            <Route path="/new" exact element={ <PostForm/>} />
+          </Route>
+
+
+          <Route element={<RequiresAuth allowedRoles={["user"]}/>}>
+           
+            
           </Route>
 
           {/* Catch all */}
