@@ -1,6 +1,8 @@
+import React from "react";
 import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import styles from "./styles.module.css";
-import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 const Signup = () => {
@@ -10,7 +12,12 @@ const Signup = () => {
     password: "",
   });
   const [error, setError] = useState("")
-  const navigate= useNavigate();
+  
+  const { setAuth } = useAuth()
+
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || "/"
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -21,8 +28,10 @@ const Signup = () => {
     try {
         const url = "http://localhost:4000/api/auth/signup";
         const {data:res} = await axios.post(url,data);
-        navigate("/login")
-        console.log(res.message)
+        const roles = res?.roles
+        const token = res?.token
+        setAuth({roles, token})
+        navigate(from, {replace: true})
     } catch (error) {
         if(error.response &&
             error.response.status >=400 &&
@@ -32,7 +41,6 @@ const Signup = () => {
             }
         
     }
-
   }
 
   return (
