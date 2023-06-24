@@ -10,8 +10,7 @@ function App() {
   
 
   return (
-    <div className="bg-neutral-900 min-h-screen flex items-center">
-      <div className="px-10  m-auto">
+   
       <PostProvider>
 
         <Routes>
@@ -38,8 +37,7 @@ function App() {
         </Routes>
         <Toaster/>
       </PostProvider>
-      </div>
-    </div>
+    
   );
 }
 
