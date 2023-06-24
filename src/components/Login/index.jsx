@@ -1,5 +1,4 @@
 import { useState } from "react";
-import styles from "./styles.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from 'axios'
@@ -97,7 +96,7 @@ const Signin = () => {
                </div>
 
                <div className="mt-6">
-                 {error && <div className={styles.error_msg}>{error}</div>}
+                 {error && <div className="w-370px p-15px my-5px text-14px bg-f34646 text-white rounded-5px text-center">{error}</div>}
                 
                  <button
                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
