@@ -2,7 +2,7 @@ import { HomePage, PostForm, NotFoundPage } from "./pages/index";
 import { Routes, Route } from "react-router-dom";
 import { PostProvider } from "./context/postContext";
 import { Toaster } from "react-hot-toast";
-import Signup from './components/signup';
+import Signup from './components/Signup';
 import Login from './components/Login';
 import RequiresAuth from "./components/RequiresAuth";
 
