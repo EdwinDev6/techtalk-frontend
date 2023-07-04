@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
     setFormValues({
       ...formValues,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -18,13 +18,13 @@ const ContactForm = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-      body: JSON.stringify(Object.fromEntries(formData))
+      body: JSON.stringify(Object.fromEntries(formData)),
     })
       .then(async (response) => {
         let json = await response.json();
@@ -39,9 +39,9 @@ const ContactForm = () => {
       });
 
     setFormValues({
-      name: '',
-      email: '',
-      message: ''
+      name: "",
+      email: "",
+      message: "",
     });
   };
 
@@ -49,10 +49,20 @@ const ContactForm = () => {
     <div className="flex min-h-screen items-center justify-start bg-white">
       <div className="mx-auto w-full max-w-lg">
         <h1 className="text-4xl font-medium ">Contact us</h1>
-        <p className="mt-3 ">Email us at help@techtalk12.com or message us here:</p>
+        <p className="mt-3 ">
+          Email us at help@techtalk12.com or message us here:
+        </p>
 
-        <form action="https://api.web3forms.com/submit" className="mt-10" onSubmit={handleSubmit}>
-          <input type="hidden" name="access_key" value="22ce114e-b91e-4bf5-b88e-d54b1a19a69c" />
+        <form
+          action="https://api.web3forms.com/submit"
+          className="mt-10"
+          onSubmit={handleSubmit}
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="22ce114e-b91e-4bf5-b88e-d54b1a19a69c"
+          />
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="relative z-0">
               <input
@@ -94,7 +104,10 @@ const ContactForm = () => {
               </label>
             </div>
           </div>
-          <button type="submit" className="mt-5 rounded-md bg-black px-10 py-2 text-white">
+          <button
+            type="submit"
+            className="mt-5 rounded-md bg-black px-10 py-2 text-white"
+          >
             Send Message
           </button>
         </form>
