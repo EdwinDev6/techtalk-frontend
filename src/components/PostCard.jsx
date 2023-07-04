@@ -3,18 +3,18 @@ import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-export function insertarMedia(rutaArchivo) {
-  var extension = rutaArchivo.split('.').pop().toLowerCase();
+export function insertMedia(filePath) {
+  var extension = filePath.split('.').pop().toLowerCase();
 
   if (extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif') {
 
-    return <img src={rutaArchivo} alt="Imagen" />;
+    return <img src={filePath} alt="Imagen" />;
   } else if (extension === 'mp4' || extension === 'webm' || extension === 'ogv') {
 
-    return <video src={rutaArchivo} alt="Video" controls autoPlay muted loop></video>;
+    return <video src={filePath} alt="Video" controls autoPlay muted loop></video>;
   } else {
 
-    return <p>Tipo de archivo no compatible</p>;
+    return <p>Unsupported file type</p>;
   }
 }
 
@@ -22,7 +22,7 @@ export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
 
-  const fechaNormal = moment(post.createdAt).format("DD/MM/YYYY");
+  const normalDate= moment(post.createdAt).format("DD/MM/YYYY");
 
   const handleDelete = (id) => {
     toast(
@@ -74,7 +74,7 @@ export function PostCard({ post }) {
               TechTalk
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {fechaNormal}
+              {normalDate}
             </p>
           </div>
         </div>
@@ -95,7 +95,7 @@ export function PostCard({ post }) {
         </div>
       </div>
 
-      {post.image && insertarMedia(post.image.url)}
+      {post.image && insertMedia(post.image.url)}
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>

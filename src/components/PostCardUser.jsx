@@ -1,7 +1,7 @@
 import moment from "moment";
-import { insertarMedia } from "./PostCard";
+import { insertMedia } from "./PostCard";
 export function PostCardUser({ post }) {
-  const fechaNormal = moment(post.createdAt).format("DD/MM/YYYY");
+  const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
   return (
     <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <div className="flex items-center justify-between px-4">
@@ -17,7 +17,7 @@ export function PostCardUser({ post }) {
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
               {" "}
-              {fechaNormal}
+              {normalDate}
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@ export function PostCardUser({ post }) {
           </svg>
         </div>
       </div>
-      {post.image && insertarMedia(post.image.url)}
+      {post.image && insertMedia(post.image.url)}
       
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
