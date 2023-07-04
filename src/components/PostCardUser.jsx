@@ -1,5 +1,5 @@
 import moment from "moment";
-
+import { insertarMedia } from "./PostCard";
 export function PostCardUser({ post }) {
   const fechaNormal = moment(post.createdAt).format("DD/MM/YYYY");
   return (
@@ -38,7 +38,8 @@ export function PostCardUser({ post }) {
           </svg>
         </div>
       </div>
-      {post.image && <img src={post.image.url} alt="imagen " />}
+      {post.image && insertarMedia(post.image.url)}
+      
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
         <p className="text-lg font font-thin  text-black">{post.description}</p>
