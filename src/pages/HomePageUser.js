@@ -1,11 +1,10 @@
 import { usePosts } from "../context/postContext";
 import {VscEmptyWindow} from 'react-icons/vsc'
-import { PostCard } from "../components/PostCard";
 
+import { PostCardUser } from "../components/PostCardUser";
 
-export function HomePage() {
- 
- 
+export function HomePageUser() {
+
     const { posts } = usePosts()
 
     if (posts.length === 0 )
@@ -16,9 +15,13 @@ export function HomePage() {
       )
 
   return (
+   
+    
+   
+
     <div className="grid  gap-4 w-25">
     {posts.map(post => (
-        <PostCard post={post} key={post._id}/>
+        <PostCardUser post={post} key={post._id}/>
      ))}
     </div>
     
