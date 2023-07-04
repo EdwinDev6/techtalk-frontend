@@ -1,10 +1,12 @@
 import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
-
+import moment from 'moment';
 export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
+
+  const fechaNormal = moment(post.createdAt).format('DD/MM/YYYY');
 
   const handleDelete = (id) => {
     toast(
@@ -56,7 +58,7 @@ export function PostCard({ post }) {
               TechTalk
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {post.createdAt}
+              {fechaNormal}
             </p>
           </div>
         </div>

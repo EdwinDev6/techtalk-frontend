@@ -1,8 +1,8 @@
 
-
+import moment from 'moment';
 
 export function PostCardUser({ post }) {
- 
+  const fechaNormal = moment(post.createdAt).format('DD/MM/YYYY');
   return (
     
     <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
@@ -11,7 +11,7 @@ export function PostCardUser({ post }) {
           <img className="w-12 rounded-full" src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Alex" />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">TechTalk</h1>
-            <p className="text-sm text-gray-800 hover:underline cursor-pointer">{post.createdAt}</p>
+            <p className="text-sm text-gray-800 hover:underline cursor-pointer"> {fechaNormal}</p>
           </div>
         </div>
         <div>
