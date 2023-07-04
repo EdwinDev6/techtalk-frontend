@@ -3,18 +3,17 @@ import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-// Función para insertar la etiqueta de imagen o video según el tipo de archivo
 export function insertarMedia(rutaArchivo) {
   var extension = rutaArchivo.split('.').pop().toLowerCase();
 
   if (extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif') {
-    // Es una imagen
+
     return <img src={rutaArchivo} alt="Imagen" />;
   } else if (extension === 'mp4' || extension === 'webm' || extension === 'ogv') {
-    // Es un video
+
     return <video src={rutaArchivo} alt="Video" controls autoPlay muted loop></video>;
   } else {
-    // Otro tipo de archivo, no compatible
+
     return <p>Tipo de archivo no compatible</p>;
   }
 }
