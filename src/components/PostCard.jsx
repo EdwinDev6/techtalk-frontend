@@ -1,10 +1,36 @@
 import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+
+export function insertMedia(filePath) {
+  var extension = filePath.split(".").pop().toLowerCase();
+
+  if (
+    extension === "jpg" ||
+    extension === "jpeg" ||
+    extension === "png" ||
+    extension === "gif"
+  ) {
+    return <img src={filePath} alt="Imagen" />;
+  } else if (
+    extension === "mp4" ||
+    extension === "webm" ||
+    extension === "ogv"
+  ) {
+    return (
+      <video src={filePath} alt="Video" controls autoPlay muted loop></video>
+    );
+  } else {
+    return <p>Unsupported file type</p>;
+  }
+}
 
 export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
+
+  const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
 
   const handleDelete = (id) => {
     toast(
@@ -49,14 +75,14 @@ export function PostCard({ post }) {
           <img
             className="w-12 rounded-full"
             src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            alt="Alex"
+            alt="img Logo"
           />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               TechTalk
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {post.createdAt}
+              {normalDate}
             </p>
           </div>
         </div>
@@ -77,7 +103,8 @@ export function PostCard({ post }) {
         </div>
       </div>
 
-      {post.image && <img src={post.image.url} alt="imagen " />}
+      {post.image && insertMedia(post.image.url)}
+
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
         <p className="text-lg font font-thin  text-black">{post.description}</p>

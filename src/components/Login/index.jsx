@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
@@ -12,9 +11,8 @@ const Signin = () => {
 
   const { setAuth } = useAuth();
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+ 
+ 
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -30,7 +28,7 @@ const Signin = () => {
       setAuth({ roles, token });
 
       console.log(roles);
-      navigate(from, { replace: true });
+      window.location= "/homeuser"
     } catch (error) {
       if (
         error.response &&
@@ -68,7 +66,7 @@ const Signin = () => {
           <div className="flex-1">
             <div className="text-center">
               <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
-                TechTalk{" "}
+                TechTalk
               </h2>
               <p className="mt-3 text-gray-500 dark:text-gray-300">
                 Sign in to access your account
