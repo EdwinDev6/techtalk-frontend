@@ -9,7 +9,7 @@ export function PostCardUser({ post }) {
           <img
             className="w-12 rounded-full"
             src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            alt="Alex"
+            alt="logo"
           />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
@@ -39,7 +39,7 @@ export function PostCardUser({ post }) {
         </div>
       </div>
       {post.image && insertMedia(post.image.url)}
-      
+
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
         <p className="text-lg font font-thin  text-black">{post.description}</p>

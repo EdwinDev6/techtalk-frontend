@@ -4,16 +4,24 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 export function insertMedia(filePath) {
-  var extension = filePath.split('.').pop().toLowerCase();
+  var extension = filePath.split(".").pop().toLowerCase();
 
-  if (extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif') {
-
+  if (
+    extension === "jpg" ||
+    extension === "jpeg" ||
+    extension === "png" ||
+    extension === "gif"
+  ) {
     return <img src={filePath} alt="Imagen" />;
-  } else if (extension === 'mp4' || extension === 'webm' || extension === 'ogv') {
-
-    return <video src={filePath} alt="Video" controls autoPlay muted loop></video>;
+  } else if (
+    extension === "mp4" ||
+    extension === "webm" ||
+    extension === "ogv"
+  ) {
+    return (
+      <video src={filePath} alt="Video" controls autoPlay muted loop></video>
+    );
   } else {
-
     return <p>Unsupported file type</p>;
   }
 }
@@ -22,7 +30,7 @@ export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
 
-  const normalDate= moment(post.createdAt).format("DD/MM/YYYY");
+  const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
 
   const handleDelete = (id) => {
     toast(
