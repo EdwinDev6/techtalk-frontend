@@ -6,6 +6,7 @@ import {
   getPostRequest,
   updatePostRequest,
 } from "../api/posts";
+import useAuth from "../hooks/useAuth";
 
 export const postContext = createContext();
 
@@ -16,6 +17,7 @@ export const usePosts = () => {
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const {auth } = useAuth()
 
   useEffect(() => {
     (async () => {
@@ -26,7 +28,7 @@ export const PostProvider = ({ children }) => {
 
   const createPost = async (post) => {
     try {
-      const res = await createPostRequest(post);
+      const res = await createPostRequest(post, auth.token);
     setPosts([...posts, res.data]);
     } catch (error) {
       console.log(error)
@@ -34,7 +36,7 @@ export const PostProvider = ({ children }) => {
   };
 
   const deletePost = async (id) => {
-    await deletePostRequest(id);
+    await deletePostRequest(id, auth.token);
     setPosts(posts.filter((post) => post._id !== id));
   };
 
@@ -49,7 +51,7 @@ export const PostProvider = ({ children }) => {
 
   const updatePost = async (id, post) => {
     
-    const res = await updatePostRequest(id, post);
+    const res = await updatePostRequest(id, post, auth.token);
     setPosts(posts.map((post) => (post.id === id ? res.data : post)));
     
   };
