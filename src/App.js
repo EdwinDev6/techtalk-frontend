@@ -28,12 +28,12 @@ function App() {
           {/* Public routes */}
           <Route path="signup" exact element={<Signup />} />
           <Route path="login" exact element={<Login />} />
-          <Route path="/homeuser" exact element={<HomePageUser />} />
+          <Route path="/" exact element={<HomePageUser />} />
           <Route path="/contact" exact element={<ContactForm />} />
 
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["admin"]} />}>
-            <Route path="/" exact element={<HomePage />} />
+            <Route path="/admin" exact element={<HomePage />} />
             <Route path="/posts/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
           </Route>

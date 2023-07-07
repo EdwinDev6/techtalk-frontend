@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const [data, setData] = useState({
@@ -10,7 +11,9 @@ const Signin = () => {
   const [error, setError] = useState("");
 
   const { setAuth } = useAuth();
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
  
  
 
@@ -28,7 +31,7 @@ const Signin = () => {
       setAuth({ roles, token });
 
       console.log(roles);
-      window.location= "/homeuser"
+      navigate(from, { replace: true });
     } catch (error) {
       if (
         error.response &&
