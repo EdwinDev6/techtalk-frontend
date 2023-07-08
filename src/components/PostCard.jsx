@@ -89,13 +89,13 @@ export function PostCard({ post }) {
         <div>
           {" "}
           <button
-            className="bg-sky-400 text-sm px-2 py-1 rounded-sm"
+            className="bg-gray-400   hover:bg-sky-400 text-sm px-2 py-1 rounded-sm"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
             Edit
           </button>{" "}
           <button
-            className="bg-red-600 text-sm px-2 py-1 rounded-sm "
+            className="bg-gray-400  hover:bg-red-600 text-sm px-2 py-1 rounded-sm "
             onClick={() => handleDelete(post._id)}
           >
             Delete
