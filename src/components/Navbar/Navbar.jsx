@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const { setAuth } = useAuth();
 
   const handleLogout = () => {
+    setAuth({ roles: null, token: null });
     window.location = "/login";
   };
 
