@@ -1,5 +1,7 @@
 import moment from "moment";
 import { insertMedia } from "./PostCard";
+import logoImg from "../Images/postimg.jpg"
+
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
   return (
@@ -8,7 +10,7 @@ export function PostCardUser({ post }) {
         <div className="flex justify-between items-center py-4">
           <img
             className="w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            src={logoImg}
             alt="logo"
           />
           <div className="ml-3">
