@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import backgroundImage from '../../Images/logoimg.jpg'
 const Signin = () => {
   const [data, setData] = useState({
     email: "",
@@ -47,11 +47,8 @@ const Signin = () => {
       <div className="flex justify-center h-screen">
         <div
           className="hidden bg-cover lg:block lg:w-2/3"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1557992260-ec58e38d363c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80)",
-          }}
-        >
+          style={{ backgroundImage: `url('${backgroundImage}')` }}
+    >
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
             <div>
               <h2 className="text-4xl font-bold text-white">TechTalk News</h2>

@@ -2,6 +2,8 @@ import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import logoImg from "../Images/postimg.jpg"
+
 
 export function insertMedia(filePath) {
   var extension = filePath.split(".").pop().toLowerCase();
@@ -74,7 +76,7 @@ export function PostCard({ post }) {
         <div className="flex justify-between items-center py-4">
           <img
             className="w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            src={logoImg}
             alt="img Logo"
           />
           <div className="ml-3">
@@ -89,13 +91,13 @@ export function PostCard({ post }) {
         <div>
           {" "}
           <button
-            className="bg-gray-400   hover:bg-sky-400 text-sm px-2 py-1 rounded-sm"
+            className="bg-gray-300   hover:bg-sky-300 text-sm px-2 py-1 rounded-sm transition duration-500 hover:shadow-md hover:translate-y-4"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
             Edit
           </button>{" "}
           <button
-            className="bg-gray-400  hover:bg-red-600 text-sm px-2 py-1 rounded-sm "
+            className="bg-gray-300  hover:bg-red-400 text-sm px-2 py-1 rounded-sm transition duration-500 hover:shadow-md hover:translate-y-4"
             onClick={() => handleDelete(post._id)}
           >
             Delete
