@@ -48,7 +48,7 @@ const ContactForm = () => {
   return (
     <div className="flex min-h-screen items-center justify-start bg-white">
       <div className="mx-auto w-full max-w-lg">
-        <h1 className="text-4xl font-medium ">Contact us</h1>
+        <h1 className="text-4xl font-medium animate-bounce">Contact us</h1>
         <p className="mt-3 ">
           Email us at help@techtalk12.com or message us here:
         </p>
@@ -106,7 +106,7 @@ const ContactForm = () => {
           </div>
           <button
             type="submit"
-            className="mt-5 rounded-md bg-black px-10 py-2 text-white"
+            className="mt-5 rounded-md bg-black px-10 py-2 text-white "
           >
             Send Message
           </button>

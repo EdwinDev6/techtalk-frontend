@@ -91,16 +91,18 @@ export function PostCard({ post }) {
         <div>
           {" "}
           <button
-            className="bg-gray-300   hover:bg-sky-300 text-sm px-2 py-1 rounded-sm transition duration-500 hover:shadow-md hover:translate-y-4"
+            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
-            Edit
+            <div class="absolute inset-0 w-2 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span class="relative text-black group-hover:text-white">Edit</span>
           </button>{" "}
           <button
-            className="bg-gray-300  hover:bg-red-400 text-sm px-2 py-1 rounded-sm transition duration-500 hover:shadow-md hover:translate-y-4"
+            className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => handleDelete(post._id)}
           >
-            Delete
+            <div class="absolute inset-0 w-2 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span class="relative text-black group-hover:text-white">Delete</span>
           </button>
         </div>
       </div>
