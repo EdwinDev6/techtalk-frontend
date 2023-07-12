@@ -79,7 +79,7 @@ export function PostForm() {
             />
             <label
               htmlFor="description"
-              className="text-sm block font-bold text-gray-400"
+              className="text-sm block font-bold text-gray-400 "
             >
               Description
             </label>
@@ -87,7 +87,7 @@ export function PostForm() {
               component="textarea"
               name="description"
               placeholder="Description"
-              className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full "
               rows={5}
             />
             <ErrorMessage

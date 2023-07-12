@@ -29,8 +29,9 @@ const Signin = () => {
       const roles = res?.roles;
       const token = res?.token;
       setAuth({ roles, token });
-
+      
       console.log(roles);
+      
       navigate(from, { replace: true });
     } catch (error) {
       if (

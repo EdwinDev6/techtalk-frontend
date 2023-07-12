@@ -14,6 +14,7 @@ function App() {
   const isLoginPage = location.pathname === "/login";
 
   return (
+    
     <div
       className="bg-cover h-screen w-screen overflow-y-scroll"
       style={{
