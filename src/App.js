@@ -9,10 +9,11 @@ import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import ContactForm from "./pages/Contact";
+
 function App() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
-
+  
   return (
     
     <div
