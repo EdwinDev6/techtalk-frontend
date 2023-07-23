@@ -30,9 +30,11 @@ const Signin = () => {
       const token = res?.token;
       setAuth({ roles, token });
       
-      console.log(roles);
-      
-      navigate(from, { replace: true });
+      if (roles === "admin") {
+        navigate("/admin", { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     } catch (error) {
       if (
         error.response &&

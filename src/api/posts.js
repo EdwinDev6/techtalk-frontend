@@ -13,7 +13,7 @@ export const createPostRequest = async (post, token) => {
   return await axios.post("http://localhost:4000/api/posts", form, {
     headers: {
       "Content-Type": "multipart/form-data",
-      // eslint-disable-next-line no-template-curly-in-string
+      
       Authorization: `Bearer ${token}`,
     },
   });

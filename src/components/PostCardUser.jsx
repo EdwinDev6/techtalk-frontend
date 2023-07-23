@@ -1,24 +1,22 @@
 import moment from "moment";
 import { insertMedia } from "./PostCard";
-import logoImg from "../Images/postimg.jpg"
+import logoImg from "../Images/postimg.jpg";
 
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
   return (
-    <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+       
+    <div className="container mx-auto max-w-sm bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+      
       <div className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
-          <img
-            className="w-12 rounded-full"
-            src={logoImg}
-            alt="logo"
-          />
+          <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               TechTalk
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {" "}
+             
               {normalDate}
             </p>
           </div>
@@ -47,5 +45,6 @@ export function PostCardUser({ post }) {
         <p className="text-lg font font-thin  text-black">{post.description}</p>
       </div>
     </div>
+    
   );
 }

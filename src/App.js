@@ -9,7 +9,7 @@ import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import ContactForm from "./pages/Contact";
-
+import {Carousel} from "./components/Carousel/Carousel";
 function App() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
@@ -26,13 +26,14 @@ function App() {
     >
       <PostProvider>
         <Navbar />
+        <Carousel/>
         <Routes>
           {/* Public routes */}
           <Route path="signup" exact element={<Signup />} />
           <Route path="login" exact element={<Login />} />
           <Route path="/" exact element={<HomePageUser />} />
           <Route path="/contact" exact element={<ContactForm />} />
-
+          
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["admin"]} />}>
             <Route path="/admin" exact element={<HomePage />} />

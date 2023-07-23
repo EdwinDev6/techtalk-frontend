@@ -72,6 +72,7 @@ export function PostCard({ post }) {
 
   return (
     <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+      
       <div className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
           <img
@@ -94,14 +95,14 @@ export function PostCard({ post }) {
             className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
-            <div class="absolute inset-0 w-2 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <div class="absolute inset-0 w-1 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
             <span class="relative text-black group-hover:text-white">Edit</span>
           </button>{" "}
           <button
             className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => handleDelete(post._id)}
           >
-            <div class="absolute inset-0 w-2 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <div class="absolute inset-0 w-1 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
             <span class="relative text-black group-hover:text-white">Delete</span>
           </button>
         </div>
