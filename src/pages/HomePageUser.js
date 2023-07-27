@@ -21,6 +21,9 @@ export function HomePageUser() {
             {reversedPosts.map(post => (
                 <PostCardUser post={post} key={post._id}/>
             ))}
+            
         </div>
+       
+        
     );
 }

@@ -11,4 +11,4 @@ const RequiresAuth = ( {allowedRoles } ) => {
     )
 }
 
-export default RequiresAuth
+export default RequiresAuth;

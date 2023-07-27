@@ -5,20 +5,20 @@ import {  useLocation } from 'react-router-dom';
 export function Carousel() {
   const slides = [
     {
-      url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
+      url: 'https://i2.wp.com/www.revistamercado.do/wp-content/uploads/2021/08/Mano-humana-y-robo%CC%81tica-tocan-un-cerebro-digital-1.jpg?w=1280&ssl=1',
     },
     {
-      url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
+      url: 'https://i1.wp.com/www.revistamercado.do/wp-content/uploads/2021/08/Steve-Jobs-presenta-el-primer-iPhone-en-2007-1.jpg?w=1280&ssl=1',
     },
     {
-      url: 'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
+      url: 'https://i2.wp.com/www.revistamercado.do/wp-content/uploads/2021/08/Mujer-immersa-en-videojuego-con-realidad-virtual.jpg?w=1280&ssl=1',
     },
 
     {
       url: 'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
     },
     {
-      url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
+      url: 'https://i2.wp.com/www.revistamercado.do/wp-content/uploads/2021/08/Coche-auto%CC%81nomo-con-HUD-Head-Up-Display.-Vehi%CC%81culo-auto%CC%81nomo-en-las-calles-de-la-ciudad.png?w=1280&ssl=1',
     },
   ];
 

@@ -1,48 +1,17 @@
-import { useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-import backgroundImage from '../../Images/logoimg.jpg'
+
+import backgroundImage from "../../Images/logoimg.jpg";
+import useLoginForm from "./useLoginForm";
+import useAuthentication from "./useAuthentication";
+
 const Signin = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-
-  const { setAuth } = useAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
- 
- 
-
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
+  const { data, error, handleChange, setError } = useLoginForm();
+  const { authenticate } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const url = "http://localhost:4000/api/auth/signin";
-      const { data: res } = await axios.post(url, data);
-      const roles = res?.roles;
-      const token = res?.token;
-      setAuth({ roles, token });
-      
-      if (roles === "admin") {
-        navigate("/admin", { replace: true });
-      } else {
-        navigate(from, { replace: true });
-      }
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+    const errorMessage = await authenticate(data);
+    if (errorMessage) {
+      setError(errorMessage);
     }
   };
   return (
@@ -51,7 +20,7 @@ const Signin = () => {
         <div
           className="hidden bg-cover lg:block lg:w-2/3"
           style={{ backgroundImage: `url('${backgroundImage}')` }}
-    >
+        >
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
             <div>
               <h2 className="text-4xl font-bold text-white">TechTalk News</h2>

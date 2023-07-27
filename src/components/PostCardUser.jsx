@@ -6,7 +6,7 @@ export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
   return (
        
-    <div className="container mx-auto max-w-sm bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+    <div className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10 ">
       
       <div className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">

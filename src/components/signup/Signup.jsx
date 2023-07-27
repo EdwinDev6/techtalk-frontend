@@ -43,8 +43,8 @@ const Signup = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black dark:bg-gray-900">
-      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black dark:bg-gray-900 ">
+      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md animate-flip-down animate-once animate-duration-[4000ms] animate-ease-out">
         <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
           Join us Now
         </div>
