@@ -71,7 +71,7 @@ export function PostCard({ post }) {
   };
 
   return (
-    <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+    <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[4000ms] animate-ease-out">
       
       <div className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
@@ -92,7 +92,7 @@ export function PostCard({ post }) {
         <div>
           {" "}
           <button
-            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
+            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
             <div class="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>

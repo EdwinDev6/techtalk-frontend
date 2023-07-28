@@ -1,12 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const useAuthentication = () => {
-  const { setAuth, } = useAuth();
-  const location = useLocation();
+  const { setAuth } = useAuth();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
 
   const authenticate = async (data) => {
     try {
@@ -16,9 +14,11 @@ const useAuthentication = () => {
       const token = res?.token;
       setAuth({ roles, token });
 
-
-      
-      navigate(from, { replace: true });
+      if (roles === "admin") {
+        navigate("/");
+      } else {
+        navigate("/admin");
+      }
     } catch (error) {
       if (
         error.response &&

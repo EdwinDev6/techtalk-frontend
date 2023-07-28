@@ -27,12 +27,12 @@ export function PostForm() {
   }, [params.id, getPost]);
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7">
+    <div className="flex items-center justify-center ">
+      <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-flip-down animate-once animate-duration-[2000ms] animate-ease-linear">
         <header className="flex justify-between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
           <Link
-            to="/"
+            to="/admin"
             className="text-gray-400 text-sm hover:text-white underline"
           >
             Go Back
@@ -52,7 +52,7 @@ export function PostForm() {
               await createPost(values);
             }
             actions.setSubmitting(false);
-            navigate("/");
+            navigate("/admin");
           }}
           enableReinitialize
         >
