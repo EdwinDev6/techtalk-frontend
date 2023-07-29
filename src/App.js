@@ -2,8 +2,8 @@ import { HomePage, PostForm, NotFoundPage } from "./pages/index";
 import { Routes, Route } from "react-router-dom";
 import { PostProvider } from "./context/postContext";
 import { Toaster } from "react-hot-toast";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+import Signup from "./components/signup/Signup";
+import Login from "./components/Login/Login";
 import RequiresAuth from "./components/RequiresAuth";
 import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
@@ -14,6 +14,7 @@ function App() {
   const isLoginPage = location.pathname === "/login";
 
   return (
+    
     <div
       className="bg-cover h-screen w-screen overflow-y-scroll"
       style={{
@@ -28,12 +29,12 @@ function App() {
           {/* Public routes */}
           <Route path="signup" exact element={<Signup />} />
           <Route path="login" exact element={<Login />} />
-          <Route path="/homeuser" exact element={<HomePageUser />} />
+          <Route path="/" exact element={<HomePageUser />} />
           <Route path="/contact" exact element={<ContactForm />} />
 
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["admin"]} />}>
-            <Route path="/" exact element={<HomePage />} />
+            <Route path="/admin" exact element={<HomePage />} />
             <Route path="/posts/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
           </Route>

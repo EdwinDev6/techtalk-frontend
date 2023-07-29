@@ -79,7 +79,7 @@ export function PostForm() {
             />
             <label
               htmlFor="description"
-              className="text-sm block font-bold text-gray-400"
+              className="text-sm block font-bold text-gray-400 "
             >
               Description
             </label>
@@ -87,7 +87,7 @@ export function PostForm() {
               component="textarea"
               name="description"
               placeholder="Description"
-              className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full "
               rows={5}
             />
             <ErrorMessage
@@ -104,7 +104,7 @@ export function PostForm() {
             <input type="file" name="image" className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full" onChange={(e)=> setFieldValue('image',e.target.files[0])}/>
             <button
               type="submit"
-              className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400"
+              className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400 animate-pulse"
               disable={isSubmitting}
             >
               {isSubmitting ?  <button

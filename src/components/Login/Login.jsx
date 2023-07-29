@@ -1,7 +1,8 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import backgroundImage from '../../Images/logoimg.jpg'
 const Signin = () => {
   const [data, setData] = useState({
     email: "",
@@ -10,7 +11,9 @@ const Signin = () => {
   const [error, setError] = useState("");
 
   const { setAuth } = useAuth();
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
  
  
 
@@ -26,9 +29,10 @@ const Signin = () => {
       const roles = res?.roles;
       const token = res?.token;
       setAuth({ roles, token });
-
+      
       console.log(roles);
-      window.location= "/homeuser"
+      
+      navigate(from, { replace: true });
     } catch (error) {
       if (
         error.response &&
@@ -44,11 +48,8 @@ const Signin = () => {
       <div className="flex justify-center h-screen">
         <div
           className="hidden bg-cover lg:block lg:w-2/3"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1557992260-ec58e38d363c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80)",
-          }}
-        >
+          style={{ backgroundImage: `url('${backgroundImage}')` }}
+    >
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
             <div>
               <h2 className="text-4xl font-bold text-white">TechTalk News</h2>
@@ -130,7 +131,7 @@ const Signin = () => {
                   )}
 
                   <button
-                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    className="w-full px-4 py-2 tracking-wide rounded-lg text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
                     type="submit"
                   >
                     Sign in

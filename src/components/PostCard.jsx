@@ -2,6 +2,8 @@ import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import logoImg from "../Images/postimg.jpg"
+
 
 export function insertMedia(filePath) {
   var extension = filePath.split(".").pop().toLowerCase();
@@ -74,7 +76,7 @@ export function PostCard({ post }) {
         <div className="flex justify-between items-center py-4">
           <img
             className="w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            src={logoImg}
             alt="img Logo"
           />
           <div className="ml-3">
@@ -89,16 +91,18 @@ export function PostCard({ post }) {
         <div>
           {" "}
           <button
-            className="bg-sky-400 text-sm px-2 py-1 rounded-sm"
+            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
-            Edit
+            <div class="absolute inset-0 w-2 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span class="relative text-black group-hover:text-white">Edit</span>
           </button>{" "}
           <button
-            className="bg-red-600 text-sm px-2 py-1 rounded-sm "
+            className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => handleDelete(post._id)}
           >
-            Delete
+            <div class="absolute inset-0 w-2 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span class="relative text-black group-hover:text-white">Delete</span>
           </button>
         </div>
       </div>

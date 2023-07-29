@@ -1,5 +1,7 @@
 import moment from "moment";
 import { insertMedia } from "./PostCard";
+import logoImg from "../Images/postimg.jpg"
+
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
   return (
@@ -8,7 +10,7 @@ export function PostCardUser({ post }) {
         <div className="flex justify-between items-center py-4">
           <img
             className="w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            src={logoImg}
             alt="logo"
           />
           <div className="ml-3">
@@ -24,7 +26,7 @@ export function PostCardUser({ post }) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 cursor-pointer"
+            className="h-7 w-7 cursor-not-allowed"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -33,7 +35,7 @@ export function PostCardUser({ post }) {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z "
             />
           </svg>
         </div>
