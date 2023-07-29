@@ -7,27 +7,19 @@ import Login from "./components/Login/Login";
 import RequiresAuth from "./components/RequiresAuth";
 import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
-import { useLocation } from "react-router-dom";
 import ContactForm from "./pages/Contact";
-function App() {
-  const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+import { Carousel } from "./components/Carousel/Carousel";
 
+
+function App() {
   return (
-    
-    <div
-      className="bg-cover h-screen w-screen overflow-y-scroll"
-      style={{
-        backgroundImage: isLoginPage
-          ? "none"
-          : "url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80)",
-      }}
-    >
+    <div className="bg-cover bg-gray-200 h-screen w-screen overflow-y-scroll">
       <PostProvider>
         <Navbar />
+        <Carousel />
         <Routes>
           {/* Public routes */}
-          <Route path="signup" exact element={<Signup />} />
+          <Route path="signup" exact element={<Signup /> } />
           <Route path="login" exact element={<Login />} />
           <Route path="/" exact element={<HomePageUser />} />
           <Route path="/contact" exact element={<ContactForm />} />
