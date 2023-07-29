@@ -1,46 +1,8 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+import useSignupLogic from "../../hooks/useSignupLogic";
 
 const Signup = () => {
-  const [data, setData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-
-  const { setAuth } = useAuth();
-
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/login";
-
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const url = "http://localhost:4000/api/auth/signup";
-      const { data: res } = await axios.post(url, data);
-      const roles = res?.roles;
-      const token = res?.token;
-      setAuth({ roles, token });
-      navigate(from, { replace: true });
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
-    }
-  };
+  const { data, error, handleChange, handleSubmit } = useSignupLogic();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black dark:bg-gray-900 ">
@@ -129,7 +91,6 @@ const Signup = () => {
             <div className="flex w-full">
               {error && (
                 <div className="w-370 px-15 py-15 my-5 text-14 bg-red-500 text-white rounded-5 text-center">
-                  {" "}
                   {error}
                 </div>
               )}

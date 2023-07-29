@@ -28,7 +28,7 @@ export function PostForm() {
 
   return (
     <div className="flex items-center justify-center ">
-      <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-flip-down animate-once animate-duration-[2000ms] animate-ease-linear">
+      <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
         <header className="flex justify-between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
           <Link

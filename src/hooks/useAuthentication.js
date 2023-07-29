@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const useAuthentication = () => {

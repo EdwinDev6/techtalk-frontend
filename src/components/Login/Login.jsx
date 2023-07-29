@@ -1,6 +1,6 @@
 import backgroundImage from "../../Images/logoimg.jpg";
-import useLoginForm from "./useLoginForm";
-import useAuthentication from "./useAuthentication";
+import useLoginForm from "../../hooks/useLoginForm";
+import useAuthentication from "../../hooks/useAuthentication";
 
 const Signin = () => {
   const { data, error, handleChange, setError } = useLoginForm();

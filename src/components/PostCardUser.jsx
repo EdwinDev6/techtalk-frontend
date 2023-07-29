@@ -42,7 +42,7 @@ export function PostCardUser({ post }) {
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
-        <p className="text-lg font font-thin  text-black">{post.description}</p>
+        <p className="text-lg font font-thin  text-black text-justify">{post.description}</p>
       </div>
     </div>
     

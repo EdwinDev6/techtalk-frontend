@@ -17,7 +17,7 @@ const Navbar = () => {
     window.location = "/login";
   };
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const toggleMenu = () => {
     setOpen(!open);
@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <div className="antialiased bg-white dark-mode:bg-gray-900">
       <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
-        <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+        <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
           <div className="flex flex-row items-center justify-between p-4">
             <Link
               to="/"
@@ -35,7 +35,7 @@ const Navbar = () => {
               TechTalk News
             </Link>
             <button
-              className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
+              className="rounded-lg md:hidden focus:outline-none focus:shadow-outline "
               onClick={toggleMenu}
             >
               <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
@@ -58,7 +58,7 @@ const Navbar = () => {
           <nav
             className={`flex-col flex-grow ${
               open ? "flex" : "hidden"
-            } pb-4 md:pb-0 md:flex md:justify-end md:flex-row`}
+            } pb-4 md:pb-0 md:flex md:justify-end md:flex-row navbar-transition animate-flip-down duration-700`}
           >
             <Link
               to="/"

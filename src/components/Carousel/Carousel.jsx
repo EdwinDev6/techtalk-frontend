@@ -45,7 +45,7 @@ export function Carousel() {
     return null;
   }
   return (
-    <div className="max-w-[50] h-[500px] w-90 m-auto py-16 px-10 relative group animate-fade-right animate-once animate-duration-[4000ms] animate-ease-out">
+    <div className="max-w-[50] h-[500px] w-90 m-auto py-16 px-10 relative group animate-fade-right animate-once animate-duration-[500ms] animate-ease-out">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full rounded bg-center bg-cover duration-500"
