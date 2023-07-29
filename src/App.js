@@ -4,7 +4,7 @@ import { PostProvider } from "./context/postContext";
 import { Toaster } from "react-hot-toast";
 import Signup from "./components/signup/Signup";
 import Login from "./components/Login/Login";
-import RequiresAuth from "./hooks/RequiresAuth";
+import RequiresAuth from "./components/RequiresAuth";
 import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
 import ContactForm from "./pages/Contact";

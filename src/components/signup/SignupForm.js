@@ -1,6 +1,6 @@
 import React from "react";
-import useForm from "./useForm";
-import useAuth from "./useAuth";
+import useForm from "../../hooks/useForm";
+import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 

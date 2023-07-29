@@ -27,7 +27,7 @@ export function insertMedia(filePath) {
   }
 }
 
-export function PostCard({ post }) {
+export function PostCard({ post, user }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
 
