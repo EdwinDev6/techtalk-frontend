@@ -15,6 +15,7 @@ const useSignupLogic = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const SignupUrl = process.env.REACT_APP_API_SIGNUP;
   const from = location.state?.from?.pathname || "/login";
 
   const handleChange = ({ currentTarget: input }) => {
@@ -24,7 +25,7 @@ const useSignupLogic = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:4000/api/auth/signup";
+      const url = SignupUrl;
       const { data: res } = await axios.post(url, data);
       const roles = res?.roles;
       const token = res?.token;
