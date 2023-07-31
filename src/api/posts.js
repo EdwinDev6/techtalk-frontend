@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const PostUrl = process.env.REACT_APP_POST_URL;
+const UpdatePost = process.env.REACT_APP_UPDATE_POST;
+const DeletePost = process.env.REACT_APP_POST_DELETE;
+const PostId = process.env.REACT_APP_POST_ID;
+
+
 export const getPostsRequest = async () =>
-  await axios.get("http://localhost:4000/api/posts", {});
+  await axios.get(PostUrl, {});
 
 export const createPostRequest = async (post, token) => {
   const form = new FormData();
@@ -10,27 +16,26 @@ export const createPostRequest = async (post, token) => {
     form.append(key, post[key]);
   }
 
-  return await axios.post("http://localhost:4000/api/posts", form, {
+  return await axios.post(PostUrl, form, {
     headers: {
       "Content-Type": "multipart/form-data",
-      // eslint-disable-next-line no-template-curly-in-string
+
       Authorization: `Bearer ${token}`,
     },
   });
 };
 
 export const deletePostRequest = async (id, token) =>
-  await axios.delete("http://localhost:4000/api/posts/" + id, {
+  await axios.delete(DeletePost + id, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
 export const getPostRequest = async (id) =>
-  await axios.get("http://localhost:4000/api/posts/" + id);
-
-export const updatePostRequest = async (id, newFields, token) =>
-  await axios.put(`http://localhost:4000/api/posts/${id}`, newFields, {
+  await axios.get(PostId + id);
+  export const updatePostRequest = async (id, newFields, token) =>
+  await axios.put(`${UpdatePost}/${id}`, newFields, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
     name: "",
@@ -48,7 +47,7 @@ const ContactForm = () => {
   return (
     <div className="flex min-h-screen items-center justify-start bg-white">
       <div className="mx-auto w-full max-w-lg">
-        <h1 className="text-4xl font-medium animate-bounce">Contact us</h1>
+        <h1 className="text-4xl font-medium animate-bounce">Contact Us</h1>
         <p className="mt-3 ">
           Email us at help@techtalk12.com or message us here:
         </p>
