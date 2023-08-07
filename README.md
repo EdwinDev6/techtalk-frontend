@@ -10,10 +10,6 @@ Techtalk is a project made based on a blog or digital newspaper to publish news,
 
 ## Instalation
 
-### Clone the Repository
-$ git clone https://github.com/Edwin6666/techtalk-frontend.git
-$ cd techtalk-frontend
-
 Add your environment variables according to your data, example:
 ### REACT_APP_API_URL=http://localhost:5000/api
 
