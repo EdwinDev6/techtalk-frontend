@@ -1,4 +1,5 @@
 import { useState } from "react";
+const apiWeb = process.env.REACT_APP_API_CONTACT;
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
     name: "",
@@ -15,33 +16,39 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(Object.fromEntries(formData)),
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status === 200) {
-          console.log(json.message);
-        } else {
-          console.log(response);
-        }
+    const form = e.target;
+
+    if (form.checkValidity()) {
+      const formData = new FormData(form);
+
+      fetch(apiWeb, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status === 200) {
+            console.log(json.message);
+          } else {
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    setFormValues({
-      name: "",
-      email: "",
-      message: "",
-    });
+      setFormValues({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } else {
+    }
   };
 
   return (
@@ -71,6 +78,7 @@ const ContactForm = () => {
                 placeholder=" "
                 value={formValues.name}
                 onChange={handleChange}
+                required
               />
               <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                 Your name
@@ -84,6 +92,7 @@ const ContactForm = () => {
                 placeholder=" "
                 value={formValues.email}
                 onChange={handleChange}
+                required
               />
               <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                 Your email
@@ -97,6 +106,7 @@ const ContactForm = () => {
                 placeholder=" "
                 value={formValues.message}
                 onChange={handleChange}
+                required
               ></textarea>
               <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                 Your message
@@ -106,6 +116,7 @@ const ContactForm = () => {
           <button
             type="submit"
             className="mt-5 rounded-md py-2 px-4 bg-transparent text-black font-semibold border border-black  hover:bg-black hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 "
+            required
           >
             Send Message
           </button>
