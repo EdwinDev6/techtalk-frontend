@@ -87,13 +87,10 @@ const Signup = () => {
                 />
               </div>
             </div>
-
+            <div className="flex w-full justify-center">
+              <span>{error}</span>
+            </div>
             <div className="flex w-full">
-              {error && (
-                <div className="w-370 px-15 py-15 my-5 text-14 bg-red-500 text-white rounded-5 text-center">
-                  {error}
-                </div>
-              )}
               <button
                 type="submit"
                 className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in"

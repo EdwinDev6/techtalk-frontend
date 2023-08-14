@@ -17,7 +17,7 @@ export const usePosts = () => {
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-  const {auth } = useAuth()
+  const { auth } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -29,9 +29,9 @@ export const PostProvider = ({ children }) => {
   const createPost = async (post) => {
     try {
       const res = await createPostRequest(post, auth.token);
-    setPosts([...posts, res.data]);
+      setPosts([...posts, res.data]);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -41,20 +41,18 @@ export const PostProvider = ({ children }) => {
   };
 
   const getPost = async (id) => {
+    
     try {
       const res = await getPostRequest(id);
       return res.data;
-      
     } catch (error) {
       console.error(error);
     }
   };
 
   const updatePost = async (id, post) => {
-    
     const res = await updatePostRequest(id, post, auth.token);
     setPosts(posts.map((post) => (post.id === id ? res.data : post)));
-    
   };
 
   return (

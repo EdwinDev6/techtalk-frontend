@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "../../hooks/useForm";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-
+import toast from 'react-hot-toast';
 
 const SignupForm = ({ onSuccess }) => {
   const initialState = {
@@ -31,6 +31,7 @@ const SignupForm = ({ onSuccess }) => {
         error.response.status <= 500
       ) {
         setError(error.response.data.message);
+        toast.error("This didn't work.")
       }
     }
   };
@@ -110,11 +111,7 @@ const SignupForm = ({ onSuccess }) => {
       </div>
 
       <div className="flex w-full">
-        {error && (
-          <div className="w-370 px-15 py-15 my-5 text-14 bg-red-500 text-white rounded-5 text-center">
-            {error}
-          </div>
-        )}
+            <span> {error} </span>
         <button
           type="submit"
           className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in"

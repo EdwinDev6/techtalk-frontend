@@ -27,7 +27,7 @@ export function insertMedia(filePath) {
   }
 }
 
-export function PostCard({ post, user }) {
+export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
 
@@ -38,8 +38,7 @@ export function PostCard({ post, user }) {
       (t) => (
         <div>
           <p className="text-white">
-            {" "}
-            Do you want to Delete? <strong>{id}</strong>
+           <b> Do you want to Delete?</b> {post.title}
           </p>
           <div>
             <button
@@ -47,6 +46,7 @@ export function PostCard({ post, user }) {
               onClick={() => {
                 deletePost(id);
                 toast.dismiss(t.id);
+                toast.success("Post Deleted Successful");
               }}
             >
               Delete
@@ -54,7 +54,20 @@ export function PostCard({ post, user }) {
 
             <button
               className="bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2"
-              onClick={() => toast.dismiss(t.id)}
+              onClick={() => {
+                toast.dismiss(t.id);
+                toast(
+                  "Notification: Post deletion cancelled. Your post has been preserved and will not be deleted. Thank you for your understanding and collaboration! ",
+                  {
+                    duration: 6000,
+                    style: {
+                      borderRadius: "10px",
+                      background: "#333",
+                      color: "#fff",
+                    },
+                  }
+                );
+              }}
             >
               Cancel
             </button>
@@ -84,20 +97,21 @@ export function PostCard({ post, user }) {
           </div>
         </div>
         <div>
-          {" "}
           <button
             className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
             onClick={() => navigate(`/posts/${post._id}`)}
           >
-            <div class="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span class="relative text-black group-hover:text-white">Edit</span>
+            <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span className="relative text-black group-hover:text-white">
+              Edit
+            </span>
           </button>
           <button
             className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
             onClick={() => handleDelete(post._id)}
           >
-            <div class="absolute inset-0 w-0 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span class="relative text-black group-hover:text-white">
+            <div className="absolute inset-0 w-0 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span className="relative text-black group-hover:text-white">
               Delete
             </span>
           </button>

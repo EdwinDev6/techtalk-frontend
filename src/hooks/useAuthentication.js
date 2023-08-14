@@ -13,7 +13,7 @@ const useAuthentication = () => {
       const roles = res?.roles;
       const token = res?.token;
       setAuth({ roles, token });
-
+     
       if (roles === "admin") {
         navigate("/");
       } else {

@@ -3,7 +3,7 @@ import { usePosts } from "../context/postContext";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-
+import { Toaster, toast } from "react-hot-toast";
 export function PostForm() {
   const { createPost, getPost, updatePost } = usePosts();
   const navigate = useNavigate();
@@ -53,6 +53,7 @@ export function PostForm() {
             }
             actions.setSubmitting(false);
             navigate("/admin");
+            toast.success('Post saved successfully!')
           }}
           enableReinitialize
         >
@@ -108,7 +109,7 @@ export function PostForm() {
               <button
                 type="submit"
                 className="bg-yellow-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400 animate-pulse float-right"
-                disable={isSubmitting}
+                disable={isSubmitting} 
               >
                 {isSubmitting ? (
                   <button
@@ -128,6 +129,7 @@ export function PostForm() {
             </Form>
           )}
         </Formik>
+        <Toaster/>
       </div>
     </div>
   );
