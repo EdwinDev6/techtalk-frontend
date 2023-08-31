@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 const apiWeb = process.env.REACT_APP_API_CONTACT;
+
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
     name: "",
@@ -31,11 +33,11 @@ const ContactForm = () => {
         body: JSON.stringify(Object.fromEntries(formData)),
       })
         .then(async (response) => {
-          let json = await response.json();
+          
           if (response.status === 200) {
-            console.log(json.message);
+            toast.success('Submitted successfully!');
           } else {
-            console.log(response);
+            toast.error("Something has gone wrong");
           }
         })
         .catch((error) => {
@@ -63,6 +65,7 @@ const ContactForm = () => {
           action="https://api.web3forms.com/submit"
           className="mt-10"
           onSubmit={handleSubmit}
+          
         >
           <input
             type="hidden"

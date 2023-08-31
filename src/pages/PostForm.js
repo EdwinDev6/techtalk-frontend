@@ -54,7 +54,7 @@ export function PostForm() {
             }
 
             try {
-              await getPostsRequest();
+             
               toast.success("Post saved successfully and posts list updated!");
             } catch (error) {
               toast.error("Error updating posts list.");
@@ -62,6 +62,7 @@ export function PostForm() {
 
             actions.setSubmitting(false);
             navigate("/admin");
+            await getPostsRequest();
           }}
           enableReinitialize
         >
