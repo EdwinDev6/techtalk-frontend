@@ -38,7 +38,7 @@ export function PostCard({ post }) {
       (t) => (
         <div>
           <p className="text-white">
-           <b> Do you want to Delete?</b> {post.title}
+            <b> Do you want to Delete?</b> {post.title}
           </p>
           <div>
             <button

@@ -31,7 +31,7 @@ export const PostProvider = ({ children }) => {
       const res = await createPostRequest(post, auth.token);
       setPosts([...posts, res.data]);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -46,7 +46,7 @@ export const PostProvider = ({ children }) => {
       const res = await getPostRequest(id);
       return res.data;
     } catch (error) {
-      console.error(error);
+      ;
     }
   };
 
