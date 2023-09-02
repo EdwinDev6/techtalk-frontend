@@ -87,9 +87,7 @@ const Signup = () => {
                 />
               </div>
             </div>
-            <div className="flex w-full justify-center">
-              <span>{error}</span>
-            </div>
+            <p className="flex w-full justify-center">{error}</p>
             <div className="flex w-full">
               <button
                 type="submit"

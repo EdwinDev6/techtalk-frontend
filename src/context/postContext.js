@@ -46,7 +46,7 @@ export const PostProvider = ({ children }) => {
       const res = await getPostRequest(id);
       return res.data;
     } catch (error) {
-      ;
+      
     }
   };
 
