@@ -3,7 +3,8 @@ import { usePosts } from "../context/postContext";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-
+import { Toaster, toast } from "react-hot-toast";
+import { getPostsRequest } from "../api/posts";
 export function PostForm() {
   const { createPost, getPost, updatePost } = usePosts();
   const navigate = useNavigate();
@@ -51,8 +52,17 @@ export function PostForm() {
             } else {
               await createPost(values);
             }
+
+            try {
+             
+              toast.success("Post saved successfully and posts list updated!");
+            } catch (error) {
+              toast.error("Error updating posts list.");
+            }
+
             actions.setSubmitting(false);
             navigate("/admin");
+            await getPostsRequest();
           }}
           enableReinitialize
         >
@@ -108,19 +118,13 @@ export function PostForm() {
               <button
                 type="submit"
                 className="bg-yellow-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400 animate-pulse float-right"
-                disable={isSubmitting}
+                disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  <button
-                    type="button"
-                    className="bg-yellow-600 h-max w-max rounded-lg text-white font-bold hover:bg-indigo-300 hover:cursor-not-allowed duration-[500ms,800ms]"
-                    disabled
-                  >
-                    <div className="flex items-center justify-center m-[10px]">
-                      <div className="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>
-                      <div className="ml-2">Processing...</div>
-                    </div>
-                  </button>
+                  <div className="flex items-center justify-center m-[10px]">
+                    <div className="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>
+                    <div className="ml-2">Processing...</div>
+                  </div>
                 ) : (
                   "Save"
                 )}
@@ -128,6 +132,7 @@ export function PostForm() {
             </Form>
           )}
         </Formik>
+        <Toaster />
       </div>
     </div>
   );
