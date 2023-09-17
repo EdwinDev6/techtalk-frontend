@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import { usePosts } from "../context/postContext";
 import { VscEmptyWindow } from 'react-icons/vsc'
 import { PostCard } from "../components/PostCard";
 
 export function HomePage() {
 
-  const { posts } = usePosts();
+  const { posts, getAllPost } = usePosts();
+
+  useEffect(() => {
+    getAllPost()
+  }, [getAllPost])
 
   if (posts.length === 0) {
     return (

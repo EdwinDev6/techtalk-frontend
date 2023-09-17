@@ -9,7 +9,7 @@ import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
 import ContactForm from "./pages/Contact";
 import { Carousel } from "./components/Carousel/Carousel";
-
+import UserList from "./pages/Users";
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
             <Route path="/admin" exact element={<HomePage />} />
             <Route path="/posts/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
+            <Route path="/users" exact element={<UserList />} />
           </Route>
 
           {/* Catch all */}
