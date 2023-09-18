@@ -8,7 +8,8 @@ export function HomePageUser() {
     
     useEffect(() => {
     getAllPost()
-    }, [getAllPost])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     if (posts.length === 0)
         return (
             <div className='flex flex-col justify-center items-center'>

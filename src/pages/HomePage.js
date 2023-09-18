@@ -8,8 +8,9 @@ export function HomePage() {
   const { posts, getAllPost } = usePosts();
 
   useEffect(() => {
-    getAllPost()
-  }, [getAllPost])
+    getAllPost();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (posts.length === 0) {
     return (
