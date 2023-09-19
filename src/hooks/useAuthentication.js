@@ -14,11 +14,13 @@ const useAuthentication = () => {
       const roles = res?.roles;
       const token = res?.token;
 
+
       if (!roles || !token) {
         throw new Error("No roles or token received in response.");
       }
 
       Cookies.set("token", token, { secure: true, sameSite: "strict" });
+
 
       if (roles === "admin") {
         navigate("/");

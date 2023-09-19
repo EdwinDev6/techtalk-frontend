@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
+
 import Cookies from "js-cookie";
 
 const RequiresAuth = ({ allowedRoles }) => {
@@ -12,6 +13,7 @@ const RequiresAuth = ({ allowedRoles }) => {
     allowedRoles.some((allowedRole) => userRoles.includes(allowedRole));
 
   return isAuthorized ? (
+
     <Outlet />
   ) : (
     <Navigate to={"/"} state={{ from: location }} replace />

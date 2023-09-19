@@ -57,7 +57,9 @@ export const PostProvider = ({ children }) => {
   const updatePost = async (id, post) => {
     const res = await updatePostRequest(id, post, auth.token);
     setPosts(posts.map((post) => (post.id === id ? res.data : post)));
+
     getAllPost()
+
   };
 
   return (

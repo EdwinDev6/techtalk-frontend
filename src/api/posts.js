@@ -7,9 +7,11 @@ const DeletePost = process.env.REACT_APP_POST_DELETE;
 const PostId = process.env.REACT_APP_POST_ID;
 
 
+
 const getTokenFromCookie = () => {
   return Cookies.get("token") || ""; 
 };
+
 
 export const getPostsRequest = async () =>
   await axios.get(PostUrl, {});
