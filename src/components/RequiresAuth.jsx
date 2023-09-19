@@ -1,12 +1,19 @@
 import React from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+
+import Cookies from "js-cookie";
 
 const RequiresAuth = ({ allowedRoles }) => {
-  const { auth } = useAuth();
   const location = useLocation();
 
-  return auth?.roles?.find((role) => allowedRoles?.includes(role.name)) ? (
+  const userRoles = Cookies.get("roles");
+
+  const isAuthorized =
+    userRoles &&
+    allowedRoles.some((allowedRole) => userRoles.includes(allowedRole));
+
+  return isAuthorized ? (
+
     <Outlet />
   ) : (
     <Navigate to={"/"} state={{ from: location }} replace />

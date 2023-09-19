@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import { usePosts } from "../context/postContext";
 import { VscEmptyWindow } from 'react-icons/vsc'
 import { PostCardUser } from "../components/PostCardUser";
 
 export function HomePageUser() {
-    const { posts } = usePosts();
-
+    const { posts, getAllPost } = usePosts();
+    
+    useEffect(() => {
+    getAllPost()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     if (posts.length === 0)
         return (
             <div className='flex flex-col justify-center items-center'>

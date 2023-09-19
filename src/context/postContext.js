@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext } from "react";
 import {
   getPostsRequest,
   createPostRequest,
@@ -7,6 +7,7 @@ import {
   updatePostRequest,
 } from "../api/posts";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
 export const postContext = createContext();
 
@@ -19,12 +20,14 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const { auth } = useAuth();
 
-  useEffect(() => {
-    (async () => {
+  const getAllPost = async () => {
+    try {
       const res = await getPostsRequest();
       setPosts(res.data);
-    })();
-  }, []);
+    } catch (error) {
+      toast.error(error);
+    }
+  }
 
   const createPost = async (post) => {
     try {
@@ -38,6 +41,7 @@ export const PostProvider = ({ children }) => {
   const deletePost = async (id) => {
     await deletePostRequest(id, auth.token);
     setPosts(posts.filter((post) => post._id !== id));
+    getAllPost()
   };
 
   const getPost = async (id) => {
@@ -53,12 +57,16 @@ export const PostProvider = ({ children }) => {
   const updatePost = async (id, post) => {
     const res = await updatePostRequest(id, post, auth.token);
     setPosts(posts.map((post) => (post.id === id ? res.data : post)));
+
+    getAllPost()
+
   };
 
   return (
     <postContext.Provider
       value={{
         posts,
+        getAllPost,
         createPost,
         deletePost,
         getPost,
