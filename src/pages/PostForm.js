@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { getPostsRequest } from "../api/posts";
+
 export function PostForm() {
   const { createPost, getPost, updatePost } = usePosts();
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export function PostForm() {
   }, [params.id, getPost]);
 
   return (
-    <div className="flex items-center justify-center ">
+    <div className="flex items-center justify-center">
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
         <header className="flex justify-between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
@@ -54,7 +55,6 @@ export function PostForm() {
             }
 
             try {
-             
               toast.success("Post saved successfully and posts list updated!");
             } catch (error) {
               toast.error("Error updating posts list.");
@@ -94,7 +94,7 @@ export function PostForm() {
                 component="textarea"
                 name="description"
                 placeholder="Description"
-                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full "
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
                 rows={5}
               />
               <ErrorMessage
@@ -103,15 +103,15 @@ export function PostForm() {
                 className="text-red-400 text-sm"
               />
               <label
-                htmlFor="title"
+                htmlFor="image"
                 className="text-sm block font-bold text-gray-400"
               >
-                Imagen
+                Image
               </label>
               <input
                 type="file"
                 name="image"
-                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white  w-full"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
                 onChange={(e) => setFieldValue("image", e.target.files[0])}
               />
 

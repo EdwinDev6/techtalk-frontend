@@ -83,8 +83,8 @@ export function PostCard({ post }) {
   };
 
   return (
-    <div className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
-      <div className="flex items-center justify-between px-4">
+    <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
+      <header className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
           <img className="w-12 rounded-full" src={logoImg} alt="img Logo" />
           <div className="ml-3">
@@ -116,7 +116,7 @@ export function PostCard({ post }) {
             </span>
           </button>
         </div>
-      </div>
+      </header>
 
       {post.image && insertMedia(post.image.url)}
 
@@ -126,6 +126,6 @@ export function PostCard({ post }) {
           {post.description}
         </p>
       </div>
-    </div>
+    </article>
   );
 }

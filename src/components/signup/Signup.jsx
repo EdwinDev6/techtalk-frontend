@@ -5,16 +5,16 @@ const Signup = () => {
   const { data, error, handleChange, handleSubmit } = useSignupLogic();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black dark:bg-gray-900 ">
-      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md animate-flip-down animate-once animate-duration-[4000ms] animate-ease-out">
-        <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-black dark:bg-gray-900 ">
+      <article className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md animate-flip-down animate-once animate-duration-[4000ms] animate-ease-out">
+        <header className="font-medium self-center text-xl sm:text-3xl text-gray-800">
           Join us Now
-        </div>
-        <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
+        </header>
+        <p className="mt-4 self-center text-xl sm:text-sm text-gray-800">
           Enter your credentials to get access account
-        </div>
+        </p>
 
-        <div className="mt-10">
+        <section className="mt-10">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col mb-5">
               <label
@@ -110,14 +110,10 @@ const Signup = () => {
               </button>
             </div>
           </form>
-        </div>
-      </div>
-      <div className="flex justify-center items-center mt-6">
-        <a
-          href="/login"
-          target="_blank"
-          className="inline-flex items-center text-white font-medium text-xs text-center"
-        >
+        </section>
+      </article>
+      <footer className="flex justify-center items-center mt-6">
+        <p className="inline-flex items-center text-white font-medium text-xs text-center">
           <span className="ml-2">
             You have an account?{" "}
             <a
@@ -127,9 +123,9 @@ const Signup = () => {
               Login here
             </a>
           </span>
-        </a>
-      </div>
-    </div>
+        </p>
+      </footer>
+    </section>
   );
 };
 
