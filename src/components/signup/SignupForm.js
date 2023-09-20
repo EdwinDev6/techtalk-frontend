@@ -3,7 +3,7 @@ import useForm from "../../hooks/useForm";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import toast from 'react-hot-toast';
-
+import Cookies from 'js-cookie'
 const SignupForm = ({ onSuccess }) => {
   const initialState = {
     username: "",
@@ -22,6 +22,7 @@ const SignupForm = ({ onSuccess }) => {
       const roles = res?.roles;
       const token = res?.token;
       setAuth({ roles, token });
+      Cookies.set("token", token, { secure: true, sameSite: "strict" });
       resetForm();
       onSuccess();
     } catch (error) {
