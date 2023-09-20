@@ -17,41 +17,35 @@ const Signin = () => {
   return (
     <div className="bg-black dark:bg-gray-900">
       <div className="flex justify-center h-screen">
-        <div
-          className="hidden bg-cover lg:block lg:w-2/3"
-          style={{ backgroundImage: `url('${backgroundImage}')` }}
-        >
+        <section className="hidden bg-cover lg:block lg:w-2/3" style={{ backgroundImage: `url('${backgroundImage}')` }}>
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-            <div>
-              <h2 className="text-4xl font-bold text-white">TechTalk News</h2>
+            <article>
+              <h1 className="text-4xl font-bold text-white">TechTalk News</h1>
               <p className="max-w-xl mt-3 text-gray-300">
                 Welcome to TechTalk, the go-to social network for technology and
                 news enthusiasts! Here, you can connect with a passionate
                 community that shares your interests and discover the latest
                 trends in the digital world.
               </p>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
-        <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+        <aside className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
+            <header className="text-center">
+              <h1 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
                 TechTalk
-              </h2>
+              </h1>
               <p className="mt-3 text-gray-500 dark:text-gray-300">
                 Sign in to access your account
               </p>
-            </div>
+            </header>
 
             <div className="mt-8">
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                  >
+                  <label htmlFor="email" className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Email Address
                   </label>
                   <input
@@ -68,16 +62,10 @@ const Signin = () => {
 
                 <div className="mt-6">
                   <div className="flex justify-between mb-2">
-                    <label
-                      htmlFor="password"
-                      className="text-sm text-gray-600 dark:text-gray-200"
-                    >
+                    <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">
                       Password
                     </label>
-                    <a
-                      href="*"
-                      className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline"
-                    >
+                    <a href="*" className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">
                       Forgot password?
                     </a>
                   </div>
@@ -122,9 +110,10 @@ const Signin = () => {
               </p>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );
 };
+
 export default Signin;
