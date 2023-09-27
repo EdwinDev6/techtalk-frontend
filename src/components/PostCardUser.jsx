@@ -4,11 +4,10 @@ import logoImg from "../Images/postimg.jpg";
 
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
+  
   return (
-       
-    <div className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10 ">
-      
-      <div className="flex items-center justify-between px-4">
+    <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+      <header className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
           <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
@@ -16,7 +15,6 @@ export function PostCardUser({ post }) {
               TechTalk
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-             
               {normalDate}
             </p>
           </div>
@@ -33,18 +31,20 @@ export function PostCardUser({ post }) {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z "
+              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
             />
           </svg>
         </div>
-      </div>
+      </header>
+
       {post.image && insertMedia(post.image.url)}
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
-        <p className="text-lg font font-thin  text-black text-justify">{post.description}</p>
+        <p className="text-lg font font-thin text-black text-justify">
+          {post.description}
+        </p>
       </div>
-    </div>
-    
+    </article>
   );
 }

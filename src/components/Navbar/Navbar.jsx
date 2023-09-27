@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,14 +11,15 @@ const Navbar = () => {
   const isHomePage = location.pathname === "/";
   const isFormPage = location.pathname === "/new";
   const isAdminPage = location.pathname === "/admin";
-  const userListPage = location.pathname === "/users"
-  const isContactPage = location.pathname === "/contact"
+  const userListPage = location.pathname === "/users";
+  const isContactPage = location.pathname === "/contact";
+
   const { setAuth } = useAuth();
 
   const handleLogout = () => {
     setAuth({ roles: null, token: null });
-    Cookies.remove('token');
-    Cookies.remove('roles');
+    Cookies.remove("token");
+    Cookies.remove("roles");
     window.location = "/login";
   };
 
@@ -27,10 +28,13 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
+  if (isLoginPage) {
+    return null;
+  }
 
   return (
-    <div className="antialiased bg-white dark-mode:bg-gray-900">
-      <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+    <header className="antialiased bg-white dark-mode:bg-gray-900">
+      <nav className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
         <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
           <div className="flex flex-row items-center justify-between p-4">
             <Link
@@ -65,7 +69,7 @@ const Navbar = () => {
               open ? "flex" : "hidden"
             } pb-4 md:pb-0 md:flex md:justify-end md:flex-row navbar-transition animate-flip-down duration-700`}
           >
-           {!isAdminPage && !isFormPage && !userListPage && (
+            {!isAdminPage && !isFormPage && !userListPage && (
               <Link
                 to="/"
                 className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
@@ -83,16 +87,18 @@ const Navbar = () => {
               </Link>
             )}
 
-            {!isHomePage && isFormPage && !isContactPage && (
-              <Link
-                to="/admin"
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-              >
-                Admin Page
-              </Link>
-            )}
+            {(!isHomePage || (userListPage && !isContactPage)) &&
+              !isAdminPage &&
+              location.pathname !== "/contact" && (
+                <Link
+                  to="/admin"
+                  className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
+                >
+                  Admin Page
+                </Link>
+              )}
 
-            {!isHomePage && isAdminPage &&(
+            {!isHomePage && isAdminPage && (
               <Link
                 to="/users"
                 className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
@@ -115,15 +121,15 @@ const Navbar = () => {
                   className="flex flex-row text-gray-900 bg-gray-200 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline  "
                   onClick={handleLogout}
                 >
-                  {Cookies.get('token') ? "Logout" : "Login"}{" "}
+                  {Cookies.get("token") ? "Logout" : "Login"}{" "}
                   <FontAwesomeIcon icon={faSignOutAlt} />
                 </button>
               </div>
             )}
           </nav>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

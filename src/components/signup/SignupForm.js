@@ -3,7 +3,7 @@ import useForm from "../../hooks/useForm";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import toast from 'react-hot-toast';
-
+import Cookies from 'js-cookie'
 const SignupForm = ({ onSuccess }) => {
   const initialState = {
     username: "",
@@ -22,6 +22,7 @@ const SignupForm = ({ onSuccess }) => {
       const roles = res?.roles;
       const token = res?.token;
       setAuth({ roles, token });
+      Cookies.set("token", token, { secure: true, sameSite: "strict" });
       resetForm();
       onSuccess();
     } catch (error) {
@@ -38,80 +39,67 @@ const SignupForm = ({ onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col mb-5">
-        <label
-          htmlFor="username"
-          className="mb-1 text-xs tracking-wide text-gray-600"
-        >
-          UserName:
-        </label>
-        <div className="relative">
-          <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <i className="fas fa-user text-blue-500"></i>
-          </div>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-            placeholder="Enter your Username"
-            onChange={handleChange}
-            value={data.username}
-            required
-          />
+      <label htmlFor="username" className="mb-1 text-xs tracking-wide text-gray-600">
+        UserName:
+      </label>
+      <div className="relative mb-5">
+        <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+          <i className="fas fa-user text-blue-500"></i>
         </div>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+          placeholder="Enter your Username"
+          onChange={handleChange}
+          value={data.username}
+          required
+        />
       </div>
-      <div className="flex flex-col mb-5">
-        <label
-          htmlFor="email"
-          className="mb-1 text-xs tracking-wide text-gray-600"
-        >
-          E-Mail Address:
-        </label>
-        <div className="relative">
-          <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <i className="fas fa-at text-blue-500"></i>
-          </div>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-            placeholder="Enter your email"
-            onChange={handleChange}
-            value={data.email}
-            required
-          />
+      
+      <label htmlFor="email" className="mb-1 text-xs tracking-wide text-gray-600">
+        E-Mail Address:
+      </label>
+      <div className="relative mb-5">
+        <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+          <i className="fas fa-at text-blue-500"></i>
         </div>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+          placeholder="Enter your email"
+          onChange={handleChange}
+          value={data.email}
+          required
+        />
       </div>
-      <div className="flex flex-col mb-6">
-        <label
-          htmlFor="password"
-          className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-        >
-          Password:
-        </label>
-        <div className="relative">
-          <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <span>
-              <i className="fas fa-lock text-blue-500"></i>
-            </span>
-          </div>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-            placeholder="Enter your password"
-            onChange={handleChange}
-            value={data.password}
-            required
-          />
+      
+      <label htmlFor="password" className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">
+        Password:
+      </label>
+      <div className="relative mb-6">
+        <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+          <span>
+            <i className="fas fa-lock text-blue-500"></i>
+          </span>
         </div>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+          placeholder="Enter your password"
+          onChange={handleChange}
+          value={data.password}
+          required
+        />
       </div>
 
       <div className="flex w-full">
-            <span> {error} </span>
+        <span> {error} </span>
         <button
           type="submit"
           className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in"
