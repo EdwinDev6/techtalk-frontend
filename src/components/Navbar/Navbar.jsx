@@ -39,7 +39,7 @@ const Navbar = () => {
           <div className="flex flex-row items-center justify-between p-4">
             <Link
               to="#"
-              className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline "
+              className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline pointer-events-none"
             >
               TechTalk News
             </Link>
