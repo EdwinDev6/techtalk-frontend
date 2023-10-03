@@ -9,6 +9,7 @@ const Navbar = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
   const isHomePage = location.pathname === "/";
+  const isSignupPage = location.pathname === "/signup";
   const isFormPage = location.pathname === "/new";
   const isAdminPage = location.pathname === "/admin";
   const userListPage = location.pathname === "/users";
@@ -28,7 +29,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-  if (isLoginPage) {
+  if (isLoginPage || isSignupPage) {
     return null;
   }
 
