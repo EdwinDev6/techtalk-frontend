@@ -27,6 +27,9 @@ const useAuthentication = () => {
       } else {
         navigate("/admin");
       }
+      toast('successful login, have fun!', {
+        icon: '👏',
+      });
     } catch (error) {
       if (error.response) {
         if (error.response.status === 401) {

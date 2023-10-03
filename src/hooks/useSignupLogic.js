@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
 import axios from "axios";
+import {  toast } from "react-hot-toast";
 
 const useSignupLogic = () => {
   const [data, setData] = useState({
@@ -9,7 +10,7 @@ const useSignupLogic = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
   const { setAuth } = useAuth();
 
@@ -31,16 +32,27 @@ const useSignupLogic = () => {
       const token = res?.token;
       setAuth({ roles, token });
       navigate(from, { replace: true });
+      toast('Account creation successful, now log in!', {
+        icon: '👏',
+      });
     } catch (error) {
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+        const errorMessage = error.response.data.message;
+        toast.error(`Error: ${errorMessage}`, {
+          icon: '❌',
+        });
+      } else {
+        toast.error('An error occurred. Please try again later.', {
+          icon: '❌',
+        });
       }
     }
   };
+  
 
   return {
     data,
