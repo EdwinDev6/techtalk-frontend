@@ -26,6 +26,12 @@ const useSignupLogic = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      
+      if (data.password.length < 6) {
+        toast.error("Password must be at least 6 characters long.");
+        return; 
+      }
+
       const url = SignupUrl;
       const { data: res } = await axios.post(url, data);
       const roles = res?.roles;
