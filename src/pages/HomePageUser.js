@@ -7,17 +7,19 @@ export function HomePageUser() {
     const { posts, getAllPost } = usePosts();
     
     useEffect(() => {
-    getAllPost()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    if (posts.length === 0)
+        getAllPost();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+   
+    if (!Array.isArray(posts)) {
         return (
             <div className='flex flex-col justify-center items-center'>
                 <VscEmptyWindow className='w-48 h-48 text-white'/>
                 <h1 className='text-white text-2xl'> There are no posts</h1>
             </div>
         );
-
+    }
     
     const reversedPosts = [...posts].reverse();
 
@@ -26,9 +28,6 @@ export function HomePageUser() {
             {reversedPosts.map(post => (
                 <PostCardUser post={post} key={post._id}/>
             ))}
-            
         </div>
-       
-        
     );
 }
