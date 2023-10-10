@@ -8,7 +8,7 @@ import RequiresAuth from "./components/RequiresAuth";
 import { HomePageUser } from "./pages/HomePageUser";
 import Navbar from "./components/Navbar/Navbar";
 import ContactForm from "./pages/Contact";
-import { Carousel } from "./components/Carousel/Carousel";
+import { DefaultCarousel } from "./components/Carousel/Carousel";
 import UserList from "./pages/Users";
 
 function App() {
@@ -16,12 +16,12 @@ function App() {
     <div className="bg-cover bg-gray-200 h-screen w-screen overflow-y-scroll">
       <PostProvider>
         <Navbar />
-        <Carousel />
+        
         <Routes>
           {/* Public routes */}
           <Route path="signup" exact element={<Signup /> } />
           <Route path="login" exact element={<Login />} />
-          <Route path="/" exact element={<HomePageUser />} />
+          <Route path="/" exact element={<HomePageWithCarousel />} />
           <Route path="/contact" exact element={<ContactForm />} />
 
           {/* Private routes */}
@@ -40,5 +40,12 @@ function App() {
     </div>
   );
 }
-
+function HomePageWithCarousel() {
+  return (
+    <>
+      <DefaultCarousel />
+      <HomePageUser />
+    </>
+  );
+}
 export default App;
