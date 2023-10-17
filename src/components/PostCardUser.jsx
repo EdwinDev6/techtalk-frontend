@@ -11,12 +11,13 @@ export function PostCardUser({ post }) {
         <div className="flex justify-between items-center py-4">
           <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
-            <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
-              TechTalk
+          <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
+              {post.author}
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
               {normalDate}
             </p>
+            <p className="text-blue-400 capitalize "> {post.categories}</p>
           </div>
         </div>
         <div>
@@ -44,6 +45,7 @@ export function PostCardUser({ post }) {
         <p className="text-lg font font-thin text-black text-justify">
           {post.description}
         </p>
+        <h4 className="text-gray-400 capitalize right-0"> Source:{post.source}</h4>
       </div>
     </article>
   );

@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { usePosts } from "../context/postContext";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
@@ -13,6 +13,9 @@ export function PostForm() {
     title: "",
     description: "",
     image: null,
+    categories: "",
+    source: "",
+    author: "",
   });
   const params = useParams();
 
@@ -23,6 +26,9 @@ export function PostForm() {
         setPost({
           title: post.title,
           description: post.description,
+          categories: post.categories,
+          source: post.source,
+          author: post.author,
         });
       }
     })();
@@ -31,14 +37,9 @@ export function PostForm() {
   return (
     <div className="flex items-center justify-center">
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
-        <header className="flex justify-between items-center py-4 text-white">
+        <header className="flex justify between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
-          <Link
-            to="/admin"
-            className="text-gray-400 text-sm hover:text-white underline"
-          >
-            Go Back
-          </Link>
+          
         </header>
 
         <Formik
@@ -46,6 +47,9 @@ export function PostForm() {
           validationSchema={Yup.object({
             title: Yup.string().required("Title is Required"),
             description: Yup.string().required("Description is Required"),
+            categories: Yup.string(),
+            source: Yup.string(),
+            author: Yup.string(),
           })}
           onSubmit={async (values, actions) => {
             if (params.id) {
@@ -100,6 +104,54 @@ export function PostForm() {
               <ErrorMessage
                 component="p"
                 name="description"
+                className="text-red-400 text-sm"
+              />
+              <label
+                htmlFor="categories"
+                className="text-sm block font-bold text-gray-400"
+              >
+                Categories
+              </label>
+              <Field
+                name="categories"
+                placeholder="Categories"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              />
+              <ErrorMessage
+                component="p"
+                name="categories"
+                className="text-red-400 text-sm"
+              />
+              <label
+                htmlFor="source"
+                className="text-sm block font-bold text-gray-400"
+              >
+                Source
+              </label>
+              <Field
+                name="source"
+                placeholder="Source"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              />
+              <ErrorMessage
+                component="p"
+                name="source"
+                className="text-red-400 text-sm"
+              />
+              <label
+                htmlFor="author"
+                className="text-sm block font-bold text-gray-400"
+              >
+                Author
+              </label>
+              <Field
+                name="author"
+                placeholder="Author"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              />
+              <ErrorMessage
+                component="p"
+                name="author"
                 className="text-red-400 text-sm"
               />
               <label
