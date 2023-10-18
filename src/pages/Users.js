@@ -11,7 +11,7 @@ function UserList() {
         setUsers(response.data);
       })
       .catch((error) => {
-        // Manejar errores aquí si es necesario
+        
       });
   }, []);
 

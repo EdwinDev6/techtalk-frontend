@@ -25,7 +25,7 @@ function App() {
           <Route path="/contact" exact element={<ContactForm />} />
 
           {/* Private routes */}
-          <Route element={<RequiresAuth allowedRoles={["admin"]} />}>
+          <Route element={<RequiresAuth allowedRoles={["moderator"]} />}>
             <Route path="/admin" exact element={<HomePage />} />
             <Route path="/posts/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
