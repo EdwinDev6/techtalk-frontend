@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
+import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import logoImg from "../Images/postimg.jpg";
@@ -123,10 +124,12 @@ export function PostCard({ post }) {
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
-        <p className="text-lg font font-thin  text-black text-justify">
+
+        <ReactMarkdown className="text-lg font font-thin text-black text-justify">
           {post.description}
-        </p>
-      <h4 className="text-gray-400 capitalize my-2"> Source:{post.source}</h4>
+        </ReactMarkdown>
+
+        <h4 className="text-gray-400 capitalize my-2"> Source:{post.source}</h4>
       </div>
     </article>
   );

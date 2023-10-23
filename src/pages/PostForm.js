@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { usePosts } from "../context/postContext";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
-import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { getPostsRequest } from "../api/posts";
 
@@ -38,7 +38,7 @@ export function PostForm() {
   return (
     <div className="flex items-center justify-center">
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
-        <header className="flex justify between items-center py-4 text-white">
+        <header className="flex justify-between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
         </header>
 
@@ -106,6 +106,7 @@ export function PostForm() {
                 name="description"
                 className="text-red-400 text-sm"
               />
+
               <label
                 htmlFor="categories"
                 className="text-sm block font-bold text-gray-400"
@@ -167,9 +168,9 @@ export function PostForm() {
                 onChange={(e) => {
                   const selectedImage = e.target.files[0];
                   setFieldValue("image", selectedImage);
-                  
+
                   const imageUrl = URL.createObjectURL(selectedImage);
-                 
+
                   document.getElementById("image-preview").src = imageUrl;
                 }}
               />
