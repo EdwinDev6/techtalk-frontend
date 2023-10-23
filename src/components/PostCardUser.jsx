@@ -1,17 +1,18 @@
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
 import logoImg from "../Images/postimg.jpg";
 
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
-  
+
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
           <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
-          <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
+            <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               {post.author}
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
@@ -42,10 +43,13 @@ export function PostCardUser({ post }) {
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
-        <p className="text-lg font font-thin text-black text-justify">
+        <ReactMarkdown className="text-lg font font-thin text-black text-justify">
           {post.description}
-        </p>
-        <h4 className="text-gray-400 capitalize my-2"> Source:{post.source}</h4>
+        </ReactMarkdown>
+        <h4 className="text-gray-400 capitalize my-2">
+          {" "}
+          Source: {post.source}
+        </h4>
       </div>
     </article>
   );
