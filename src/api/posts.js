@@ -41,9 +41,18 @@ export const deletePostRequest = async (id) =>
 export const getPostRequest = async (id) =>
   await axios.get(PostId + id);
 
-export const updatePostRequest = async (id, newFields) =>
-  await axios.put(`${UpdatePost}/${id}`, newFields, {
-    headers: {
-      Authorization: `Bearer ${getTokenFromCookie()}`, 
-    },
-  });
+  export const updatePostRequest = async (id, formData) => {
+    try {
+      const response = await axios.put(`${UpdatePost}/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${getTokenFromCookie()}`,
+          'Content-Type': 'multipart/form-data', 
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      
+      throw error;
+    }
+  };
