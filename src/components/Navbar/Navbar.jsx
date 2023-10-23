@@ -14,7 +14,7 @@ const Navbar = () => {
   const isAdminPage = location.pathname === "/admin";
   const userListPage = location.pathname === "/users";
   const isContactPage = location.pathname === "/contact";
-
+  
   const { setAuth } = useAuth();
 
   const handleLogout = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
   if (isLoginPage || isSignupPage) {
     return null;
   }
-
+  const hideHomeLink = location.pathname.startsWith("/posts/");
   return (
     <header className="antialiased bg-white dark-mode:bg-gray-900">
       <nav className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
@@ -70,7 +70,7 @@ const Navbar = () => {
               open ? "flex" : "hidden"
             } pb-4 md:pb-0 md:flex md:justify-end md:flex-row navbar-transition animate-flip-down duration-700`}
           >
-            {!isAdminPage && !isFormPage && !userListPage && (
+            { !hideHomeLink &&!isAdminPage && !isFormPage && !userListPage && (
               <Link
                 to="/"
                 className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"

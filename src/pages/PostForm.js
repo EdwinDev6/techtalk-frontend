@@ -29,6 +29,7 @@ export function PostForm() {
           categories: post.categories,
           source: post.source,
           author: post.author,
+          image: post.image,
         });
       }
     })();
@@ -39,7 +40,6 @@ export function PostForm() {
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
         <header className="flex justify between items-center py-4 text-white">
           <h3 className="text-xl">New Post</h3>
-          
         </header>
 
         <Formik
@@ -164,7 +164,20 @@ export function PostForm() {
                 type="file"
                 name="image"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
-                onChange={(e) => setFieldValue("image", e.target.files[0])}
+                onChange={(e) => {
+                  const selectedImage = e.target.files[0];
+                  setFieldValue("image", selectedImage);
+                  
+                  const imageUrl = URL.createObjectURL(selectedImage);
+                 
+                  document.getElementById("image-preview").src = imageUrl;
+                }}
+              />
+              <img
+                id="image-preview"
+                src={post.image ? post.image.url : ""}
+                alt="original imagen"
+                style={{ maxWidth: "100%", maxHeight: "200px" }}
               />
 
               <button

@@ -22,7 +22,7 @@ const useAuthentication = () => {
       Cookies.set("token", token, { secure: true, sameSite: "strict" });
 
 
-      if (roles === "admin") {
+      if (roles === "moderator") {
         navigate("/");
       } else {
         navigate("/admin");
