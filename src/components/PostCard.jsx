@@ -126,7 +126,7 @@ export function PostCard({ post }) {
         <p className="text-lg font font-thin  text-black text-justify">
           {post.description}
         </p>
-      <h4 className="text-gray-400 capitalize right-0"> Source:{post.source}</h4>
+      <h4 className="text-gray-400 capitalize my-2"> Source:{post.source}</h4>
       </div>
     </article>
   );
