@@ -129,7 +129,7 @@ export function PostCard({ post }) {
           {post.description}
         </ReactMarkdown>
 
-        <h4 className="text-gray-400 capitalize my-2"> Source:{post.source}</h4>
+        <h4 className="text-gray-400 capitalize my-2"> Source: {post.source}</h4>
       </div>
     </article>
   );
