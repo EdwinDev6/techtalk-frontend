@@ -177,12 +177,14 @@ export function PostForm() {
                   setImagePreview((prev) => ({ ...prev, src: imageUrl }));
                 }}
               />
-              <img
-                id="image-preview"
-                src={imagePreview.src || (post.image ? post.image.url : "")}
-                alt={imagePreview.alt}
-                style={{ maxWidth: "100%", maxHeight: "200px" }}
-              />
+              {imagePreview.src || (post.image && post.image.url) ? (
+                <img
+                  id="image-preview"
+                  src={imagePreview.src || post.image.url}
+                  alt={imagePreview.alt}
+                  style={{ maxWidth: "100%", maxHeight: "200px" }}
+                />
+              ) : null}
 
               <button
                 type="submit"
