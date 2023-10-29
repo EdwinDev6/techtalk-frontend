@@ -34,7 +34,10 @@ export function PostForm() {
       }
     })();
   }, [params.id, getPost]);
-
+  const [imagePreview, setImagePreview] = useState({
+    src: "",
+    alt: "original imagen",
+  });
   return (
     <div className="flex items-center justify-center">
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
@@ -171,15 +174,17 @@ export function PostForm() {
 
                   const imageUrl = URL.createObjectURL(selectedImage);
 
-                  document.getElementById("image-preview").src = imageUrl;
+                  setImagePreview((prev) => ({ ...prev, src: imageUrl }));
                 }}
               />
-              <img
-                id="image-preview"
-                src={post.image ? post.image.url : ""}
-                alt="original imagen"
-                style={{ maxWidth: "100%", maxHeight: "200px" }}
-              />
+              {imagePreview.src || (post.image && post.image.url) ? (
+                <img
+                  id="image-preview"
+                  src={imagePreview.src || post.image.url}
+                  alt={imagePreview.alt}
+                  style={{ maxWidth: "100%", maxHeight: "200px" }}
+                />
+              ) : null}
 
               <button
                 type="submit"
