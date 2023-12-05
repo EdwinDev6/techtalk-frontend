@@ -36,6 +36,8 @@ const useAuthentication = () => {
           toast.error("invalid credential");
         } else if (error.response.status === 500) {
           toast.error("internal server error");
+        }else if (error.response.status === 400) {
+          toast.error("user not found");
         }
       }
     }
