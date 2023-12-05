@@ -51,7 +51,7 @@ export function PostForm() {
             title: Yup.string().required("Title is Required"),
             description: Yup.string().required("Description is Required"),
             categories: Yup.string().required("Categories is Required"),
-            source: Yup.string().required("Source is Required"),
+            source: Yup.string(),
             author: Yup.string().required("Author is Required"),
           })}
           onSubmit={async (values, actions) => {
