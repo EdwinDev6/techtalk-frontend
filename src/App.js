@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ContactForm from "./pages/Contact";
 import { DefaultCarousel } from "./components/Carousel/Carousel";
 import UserList from "./pages/Users";
+import { PostDetailsCard } from "./components/PostDetailsCard";
 
 function App() {
   return (
@@ -23,11 +24,12 @@ function App() {
           <Route path="login" exact element={<Login />} />
           <Route path="/" exact element={<HomePageWithCarousel />} />
           <Route path="/contact" exact element={<ContactForm />} />
+          <Route path="/post/:id" exact element={<PostDetailsCard />} />
 
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["moderator"]} />}>
             <Route path="/admin" exact element={<HomePage />} />
-            <Route path="/posts/:id" element={<PostForm />} />
+            <Route path="/edit/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
             <Route path="/users" exact element={<UserList />} />
           </Route>

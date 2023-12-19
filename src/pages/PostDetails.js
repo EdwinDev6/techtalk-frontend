@@ -1,15 +1,20 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom"; // Importa useParams de React Router
 import { usePosts } from "../context/postContext";
 import { VscEmptyWindow } from "react-icons/vsc";
-import { PostCard } from "../components/PostCard";
+import { PostdetailsCard } from "../components/PostDetailsCard";
 
 export function HomePage() {
-  const { posts, getAllPost } = usePosts();
+  const { posts,  getPost } = usePosts();
+  const { postId } = useParams(); // Obtén el ID de la ruta
 
   useEffect(() => {
-    getAllPost();
+    
+      // Si hay un ID en la ruta, obtén solo ese post
+      getPost(postId);
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // Asegúrate de ejecutar el efecto cuando cambia el ID
 
   if (posts.length === 0) {
     return (
@@ -20,13 +25,13 @@ export function HomePage() {
     );
   }
 
- 
+  
 
   return (
     <main className="flex flex-row flex-wrap">
       {posts.map((post) => (
         <article key={post._id} className="m-4">
-          <PostCard post={post} />
+          <PostdetailsCard post={post} />
         </article>
       ))}
     </main>

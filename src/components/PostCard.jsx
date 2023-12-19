@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import logoImg from "../Images/postimg.jpg";
-
+import { Link } from "react-router-dom";
 export function insertMedia(filePath) {
   var extension = filePath.split(".").pop().toLowerCase();
 
@@ -31,7 +31,6 @@ export function insertMedia(filePath) {
 export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
-
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
 
   const handleDelete = (id) => {
@@ -101,7 +100,7 @@ export function PostCard({ post }) {
         <div>
           <button
             className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
-            onClick={() => navigate(`/posts/${post._id}`)}
+            onClick={() => navigate(`/edit/${post._id}`)}
           >
             <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
             <span className="relative text-black group-hover:text-white">
@@ -126,10 +125,24 @@ export function PostCard({ post }) {
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
 
         <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-          {post.description}
+          {post.description
+            ? `${post.description.substr(0, 330)}...`
+            : "sin descripción"}
         </ReactMarkdown>
 
-        <h4 className="text-gray-400 capitalize my-2"> Source: {post.source}</h4>
+        <Link
+          to={`/post/${post._id}`}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center"
+          state={{ post}}
+          
+        >
+          Read more
+        </Link>
+
+        <h4 className="text-gray-400 capitalize my-2">
+          {" "}
+          Source: {post.source}
+        </h4>
       </div>
     </article>
   );
