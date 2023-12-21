@@ -2,7 +2,7 @@ import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
 import logoImg from "../Images/postimg.jpg";
-
+import { Link } from "react-router-dom";
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
 
@@ -44,8 +44,19 @@ export function PostCardUser({ post }) {
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
         <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-          {post.description}
+          {post.description
+            ? `${post.description.substr(0, 330)}...`
+            : "sin descripción"}
         </ReactMarkdown>
+
+        <Link
+          to={`/post/${post._id}`}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center"
+          state={{ post}}
+          
+        >
+          Read more
+        </Link>
         <h4 className="text-gray-400 capitalize my-2">
           {" "}
           Source: {post.source}

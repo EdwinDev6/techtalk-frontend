@@ -3,11 +3,12 @@ import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
 import logoImg from "../Images/postimg.jpg";
 import { useLocation } from "react-router-dom";
+import { Comments } from "./Comments";
 
-export function PostDetailsCard( ) {
-  let {state}= useLocation();
+export function PostDetailsCard() {
+  let { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
-  
+
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">
@@ -20,7 +21,10 @@ export function PostDetailsCard( ) {
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
               {normalDate}
             </p>
-            <p className="text-blue-400 capitalize "> {state.post.categories}</p>
+            <p className="text-blue-400 capitalize ">
+              {" "}
+              {state.post.categories}
+            </p>
           </div>
         </div>
         <div>
@@ -44,15 +48,16 @@ export function PostDetailsCard( ) {
       {state.post.image && insertMedia(state.post.image.url)}
 
       <div className="p-6">
-        <h2 className="text-xl text-gray-800 font-semibold">{state.post.title}</h2>
+        <h2 className="text-xl text-gray-800 font-semibold">
+          {state.post.title}
+        </h2>
         <ReactMarkdown className="text-lg font font-thin text-black text-justify">
           {state.post.description}
         </ReactMarkdown>
         <h4 className="text-gray-400 capitalize my-2">
-          {" "}
           Source: {state.post.source}
         </h4>
-        <h3> {state.post.comments}</h3>
+        <Comments comments={state.post.comments} />
       </div>
     </article>
   );

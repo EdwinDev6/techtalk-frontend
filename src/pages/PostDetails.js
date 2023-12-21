@@ -1,20 +1,21 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom"; // Importa useParams de React Router
+import { useParams } from "react-router-dom"; 
 import { usePosts } from "../context/postContext";
 import { VscEmptyWindow } from "react-icons/vsc";
 import { PostdetailsCard } from "../components/PostDetailsCard";
 
 export function HomePage() {
   const { posts,  getPost } = usePosts();
-  const { postId } = useParams(); // Obtén el ID de la ruta
+  const { postId } = useParams(); 
 
   useEffect(() => {
     
-      // Si hay un ID en la ruta, obtén solo ese post
+      
       getPost(postId);
   
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Asegúrate de ejecutar el efecto cuando cambia el ID
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
 
   if (posts.length === 0) {
     return (
