@@ -51,7 +51,6 @@ export function PostForm() {
             title: Yup.string().required("Title is Required"),
             description: Yup.string().required("Description is Required"),
             categories: Yup.string().transform((value, originalValue) => {
-              // Convert the value to a string
               return originalValue ? originalValue.toString() : value;
             }).required("Categories is Required"),
             source: Yup.string(),
