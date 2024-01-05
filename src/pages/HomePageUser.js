@@ -24,12 +24,13 @@ export function HomePageUser() {
    
 
     return (
-        <main className="flex flex-row flex-wrap">
+        <main className="flex flex-row flex-wrap justify-center items-center">
           {posts.map((post) => (
             <article key={post._id} className="m-4">
               <PostCardUser post={post} />
             </article>
           ))}
         </main>
+        
       );
     }

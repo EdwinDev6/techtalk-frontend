@@ -1,4 +1,4 @@
-import { HomePage, PostForm, NotFoundPage } from "./pages/index";
+import { HomePage, PostForm, NotFoundPage, SubscriptionPage } from "./pages/index";
 import { Routes, Route } from "react-router-dom";
 import { PostProvider } from "./context/postContext";
 import { Toaster } from "react-hot-toast";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/" exact element={<HomePageWithCarousel />} />
           <Route path="/contact" exact element={<ContactForm />} />
           <Route path="/post/:id" exact element={<PostDetailsCard />} />
-
+          <Route path="/subscription" exact element={<SubscriptionPage />} />
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["moderator"]} />}>
             <Route path="/admin" exact element={<HomePage />} />
