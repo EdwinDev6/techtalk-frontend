@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
@@ -7,12 +7,12 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { Comments } from "./Comments";
 import toast from "react-hot-toast";
+import { SocialShare } from "./SocialShare";
 
 export function PostDetailsCard() {
   const { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
   const [commentText, setCommentText] = useState("");
-
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -32,18 +32,15 @@ export function PostDetailsCard() {
       );
 
       if (response.status === 201) {
-        toast.success('successful comment')
+        toast.success("successful comment");
         setCommentText("");
-        
       } else {
-        
       }
     } catch (error) {
-      toast.error("This didn't work.")
+      toast.error("This didn't work.");
     }
   };
 
-  
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">
@@ -60,36 +57,29 @@ export function PostDetailsCard() {
           </div>
         </div>
         <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 cursor-not-allowed"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-            />
-          </svg>
+          <SocialShare />
         </div>
       </header>
 
       {state.post.image && insertMedia(state.post.image.url)}
 
       <div className="p-6">
-        <h2 className="text-xl text-gray-800 font-semibold">{state.post.title}</h2>
+        <h2 className="text-xl text-gray-800 font-semibold">
+          {state.post.title}
+        </h2>
         <ReactMarkdown className="text-lg font font-thin text-black text-justify">
           {state.post.description}
         </ReactMarkdown>
-        <h4 className="text-gray-400 capitalize my-2">Source: {state.post.source}</h4>
+        <h4 className="text-gray-400 capitalize my-2">
+          Source: {state.post.source}
+        </h4>
 
-        
         <form onSubmit={handleCommentSubmit}>
-          <label htmlFor="commentText" className="block text-gray-800 font-medium mb-1">
-          write your comment:
+          <label
+            htmlFor="commentText"
+            className="block text-gray-800 font-medium mb-1"
+          >
+            write your comment:
           </label>
           <textarea
             id="commentText"
@@ -100,12 +90,14 @@ export function PostDetailsCard() {
             className="w-full border p-2 mb-2"
             required
           />
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
-          Send comment
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded"
+          >
+            Send comment
           </button>
         </form>
 
-       
         <Comments comments={state.post.comments} />
       </div>
     </article>
