@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
@@ -8,12 +8,14 @@ import { useLocation } from "react-router-dom";
 import { Comments } from "./Comments";
 import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
-
+import { usePosts } from "../context/postContext";
 export function PostDetailsCard() {
   const { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
   const [commentText, setCommentText] = useState("");
-
+  const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
+  const { getPost } = usePosts();
+  const [postData, setPostData] = useState(state.post);
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,6 +36,7 @@ export function PostDetailsCard() {
       if (response.status === 201) {
         toast.success("Successful comment");
         setCommentText("");
+        setIsCommentSubmitted(true);
       } else {
         toast.error("Error posting comment");
       }
@@ -41,6 +44,20 @@ export function PostDetailsCard() {
       toast.error("This didn't work.");
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (isCommentSubmitted) {
+          const data = await getPost(state.post._id);
+          setPostData(data);
+          
+        }
+      } catch (error) {
+        toast.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [state, isCommentSubmitted, getPost]);
 
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
@@ -49,12 +66,12 @@ export function PostDetailsCard() {
           <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
-              {state.post.author}
+              {postData.author}
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
               {normalDate}
             </p>
-            <p className="text-blue-400 capitalize ">{state.post.categories}</p>
+            <p className="text-blue-400 capitalize ">{postData.categories}</p>
           </div>
         </div>
         <div>
@@ -62,17 +79,17 @@ export function PostDetailsCard() {
         </div>
       </header>
 
-      {state.post.image && insertMedia(state.post.image.url)}
+      {postData.image && insertMedia(postData.image.url)}
 
       <div className="p-6">
         <h2 className="text-xl text-gray-800 font-semibold">
-          {state.post.title}
+          {postData.title}
         </h2>
         <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-          {state.post.description}
+          {postData.description}
         </ReactMarkdown>
         <h4 className="text-gray-400 capitalize my-2">
-          Source: {state.post.source}
+          Source: {postData.source}
         </h4>
 
         <form onSubmit={handleCommentSubmit}>
@@ -112,10 +129,10 @@ export function PostDetailsCard() {
         </form>
 
         <div className=" text-base font-bold text-gray-700  mt-3 my-2">
-          {state.post.comments.length} Comment(s)
+          {postData.comments.length} Comment(s)
         </div>
 
-        <Comments comments={state.post.comments} />
+        <Comments comments={postData.comments} />
       </div>
     </article>
   );
