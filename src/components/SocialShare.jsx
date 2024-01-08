@@ -2,10 +2,6 @@ import { Dropdown } from "flowbite-react";
 import { FaFacebook, FaWhatsapp, FaLinkedin } from "react-icons/fa";
 
 export function SocialShare() {
-  const currentUrl = window.location.href;
-
-  console.log("Current URL:", currentUrl);
-
   return (
     <Dropdown label="Share">
       <Dropdown.Header>

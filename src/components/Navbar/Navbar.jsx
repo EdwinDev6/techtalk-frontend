@@ -15,6 +15,7 @@ const Navbar = () => {
   const userListPage = location.pathname === "/users";
   const isContactPage = location.pathname === "/contact";
   const isSubscribePage = location.pathname === "/subscription";
+  
   const { setAuth } = useAuth();
 
   const handleLogout = () => {

@@ -32,9 +32,10 @@ export function PostDetailsCard() {
       );
 
       if (response.status === 201) {
-        toast.success("successful comment");
+        toast.success("Successful comment");
         setCommentText("");
       } else {
+        toast.error("Error posting comment");
       }
     } catch (error) {
       toast.error("This didn't work.");
@@ -79,7 +80,7 @@ export function PostDetailsCard() {
             htmlFor="commentText"
             className="block text-gray-800 font-medium mb-1"
           >
-            write your comment:
+            Write your comment:
           </label>
           <textarea
             id="commentText"
@@ -87,16 +88,32 @@ export function PostDetailsCard() {
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
             rows={4}
-            className="w-full border p-2 mb-2"
+            placeholder="Type your comment..."
+            className="px-3 py-2 border shadow-sm border-gray-300 rounded-md w-full block placeholder:text-gray-400 placeholder-gray-500
+            focus:outline-none focus:ring-1 bg-gray-50 focus:ring-blue-600 focus:border-blue-600 text-sm"
             required
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded"
+            className="mt-2 inline-flex items-center justify-center text-gray-100 font-medium leading-none
+            bg-blue-600 rounded-md py-2 px-3 border border-transparent transform-gpu hover:-translate-y-0.5 
+            transition-all ease-in duration-300 hover:text-gray-200 hover:bg-blue-700 text-sm "
           >
             Send comment
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 ml-2 rotate-90 "
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
           </button>
         </form>
+
+        <div className=" text-base font-bold text-gray-700  mt-3 my-2">
+          {state.post.comments.length} Comment(s)
+        </div>
 
         <Comments comments={state.post.comments} />
       </div>
