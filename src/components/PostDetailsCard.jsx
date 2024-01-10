@@ -47,6 +47,14 @@ export function PostDetailsCard() {
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      setIsCommentSubmitted(true);
+    } catch (error) {
+      toast.error("Error deleting comment");
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -134,7 +142,10 @@ export function PostDetailsCard() {
           {postData.comments.length} Comment(s)
         </div>
 
-        <Comments comments={postData.comments} />
+        <Comments
+          comments={postData.comments}
+          onDeleteComment={handleDeleteComment}
+        />
       </div>
     </article>
   );
