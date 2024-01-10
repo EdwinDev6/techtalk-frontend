@@ -14,14 +14,22 @@ export function insertMedia(filePath) {
     extension === "png" ||
     extension === "gif"
   ) {
-    return <img src={filePath} alt="Imagen" />;
+    return <img src={filePath} alt="Imagen" className="w-full" />;
   } else if (
     extension === "mp4" ||
     extension === "webm" ||
     extension === "ogv"
   ) {
     return (
-      <video src={filePath} alt="Video" controls autoPlay muted loop></video>
+      <video
+        src={filePath}
+        alt="Video"
+        controls
+        autoPlay
+        muted
+        loop
+        className="w-full"
+      ></video>
     );
   } else {
     return <p>Unsupported file type</p>;
@@ -83,45 +91,44 @@ export function PostCard({ post }) {
   };
 
   return (
-    <Link to={`/post/${post._id}`} className="post-card-link" state={{ post }}>
-      <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
-        <header className="flex items-center justify-between px-4">
-          <div className="flex justify-between items-center py-4">
-            <img className="w-12 rounded-full" src={logoImg} alt="img Logo" />
-            <div className="ml-3">
-              <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
-                {post.author}
-              </h1>
-              <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-                {normalDate}
-              </p>
-              <p className="text-blue-400 capitalize "> {post.categories}</p>
-            </div>
+    <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
+      <header className="flex items-center justify-between px-4">
+        <div className="flex justify-between items-center py-4">
+          <img className="w-12 rounded-full" src={logoImg} alt="img Logo" />
+          <div className="ml-3">
+            <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
+              {post.author}
+            </h1>
+            <p className="text-sm text-gray-800 hover:underline cursor-pointer">
+              {normalDate}
+            </p>
+            <p className="text-blue-400 capitalize "> {post.categories}</p>
           </div>
-          <div>
-            <button
-              className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
-              onClick={() => navigate(`/edit/${post._id}`)}
-            >
-              <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-              <span className="relative text-black group-hover:text-white">
-                Edit
-              </span>
-            </button>
-            <button
-              className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
-              onClick={() => handleDelete(post._id)}
-            >
-              <div className="absolute inset-0 w-0 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-              <span className="relative text-black group-hover:text-white">
-                Delete
-              </span>
-            </button>
-          </div>
-        </header>
+        </div>
+        <div>
+          <button
+            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
+            onClick={() => navigate(`/edit/${post._id}`)}
+          >
+            <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span className="relative text-black group-hover:text-white">
+              Edit
+            </span>
+          </button>
+          <button
+            className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
+            onClick={() => handleDelete(post._id)}
+          >
+            <div className="absolute inset-0 w-0 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <span className="relative text-black group-hover:text-white">
+              Delete
+            </span>
+          </button>
+        </div>
+      </header>
 
+      <Link to={`/post/${post._id}`} state={{ post }}>
         {post.image && insertMedia(post.image.url)}
-
         <div className="p-6">
           <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
 
@@ -136,7 +143,7 @@ export function PostCard({ post }) {
             Source: {post.source}
           </h4>
         </div>
-      </article>
-    </Link>
+      </Link>
+    </article>
   );
 }

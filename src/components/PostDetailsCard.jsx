@@ -9,6 +9,7 @@ import { Comments } from "./Comments";
 import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
 import { usePosts } from "../context/postContext";
+
 export function PostDetailsCard() {
   const { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
@@ -16,6 +17,7 @@ export function PostDetailsCard() {
   const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
   const { getPost } = usePosts();
   const [postData, setPostData] = useState(state.post);
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,13 +46,13 @@ export function PostDetailsCard() {
       toast.error("This didn't work.");
     }
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (isCommentSubmitted) {
           const data = await getPost(state.post._id);
           setPostData(data);
-          
         }
       } catch (error) {
         toast.error("Error fetching data:", error);
@@ -128,7 +130,7 @@ export function PostDetailsCard() {
           </button>
         </form>
 
-        <div className=" text-base font-bold text-gray-700  mt-3 my-2">
+        <div className="text-base font-bold text-gray-700 mt-3 my-2">
           {postData.comments.length} Comment(s)
         </div>
 
