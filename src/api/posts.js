@@ -8,7 +8,7 @@ const PostId = process.env.REACT_APP_POST_ID;
 
 
 
-const getTokenFromCookie = () => {
+export const getTokenFromCookie = () => {
   return Cookies.get("token") || ""; 
 };
 

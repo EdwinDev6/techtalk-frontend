@@ -9,7 +9,7 @@ import { Comments } from "./Comments";
 import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
 import { usePosts } from "../context/postContext";
-
+import { getTokenFromCookie } from "../api/posts";
 export function PostDetailsCard() {
   const { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
@@ -29,7 +29,7 @@ export function PostDetailsCard() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${""}`,
+            Authorization: `Bearer ${getTokenFromCookie()}`,
           },
         }
       );
