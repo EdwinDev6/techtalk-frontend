@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { usePosts } from "../context/postContext";
 import ReactMarkdown from "react-markdown";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 import logoImg from "../Images/postimg.jpg";
 
@@ -14,14 +14,22 @@ export function insertMedia(filePath) {
     extension === "png" ||
     extension === "gif"
   ) {
-    return <img src={filePath} alt="Imagen" />;
+    return <img src={filePath} alt="Imagen" className="w-full" />;
   } else if (
     extension === "mp4" ||
     extension === "webm" ||
     extension === "ogv"
   ) {
     return (
-      <video src={filePath} alt="Video" controls autoPlay muted loop></video>
+      <video
+        src={filePath}
+        alt="Video"
+        controls
+        autoPlay
+        muted
+        loop
+        className="w-full"
+      ></video>
     );
   } else {
     return <p>Unsupported file type</p>;
@@ -31,7 +39,6 @@ export function insertMedia(filePath) {
 export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
-
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
 
   const handleDelete = (id) => {
@@ -101,7 +108,7 @@ export function PostCard({ post }) {
         <div>
           <button
             className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
-            onClick={() => navigate(`/posts/${post._id}`)}
+            onClick={() => navigate(`/edit/${post._id}`)}
           >
             <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
             <span className="relative text-black group-hover:text-white">
@@ -120,17 +127,23 @@ export function PostCard({ post }) {
         </div>
       </header>
 
-      {post.image && insertMedia(post.image.url)}
+      <Link to={`/post/${post._id}`} state={{ post }}>
+        {post.image && insertMedia(post.image.url)}
+        <div className="p-6">
+          <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
 
-      <div className="p-6">
-        <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
+          <ReactMarkdown className="text-lg font font-thin text-black text-justify">
+            {post.description
+              ? `${post.description.substr(0, 330)}...Read More`
+              : "not description"}
+          </ReactMarkdown>
 
-        <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-          {post.description}
-        </ReactMarkdown>
-
-        <h4 className="text-gray-400 capitalize my-2"> Source: {post.source}</h4>
-      </div>
+          <h4 className="text-gray-400 capitalize my-2">
+            {" "}
+            Source: {post.source}
+          </h4>
+        </div>
+      </Link>
     </article>
   );
 }

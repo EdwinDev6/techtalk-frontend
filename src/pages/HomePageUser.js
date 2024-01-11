@@ -21,13 +21,16 @@ export function HomePageUser() {
         );
     }
     
-    const reversedPosts = [...posts].reverse();
+   
 
     return (
-        <div className="grid gap-4 w-25">
-            {reversedPosts.map(post => (
-                <PostCardUser post={post} key={post._id}/>
-            ))}
-        </div>
-    );
-}
+        <main className="flex flex-row flex-wrap justify-center items-center">
+          {posts.map((post) => (
+            <article key={post._id} className="m-4">
+              <PostCardUser post={post} />
+            </article>
+          ))}
+        </main>
+        
+      );
+    }

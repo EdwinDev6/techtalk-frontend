@@ -20,11 +20,11 @@ export function HomePage() {
     );
   }
 
-  const reversedPosts = [...posts].reverse();
+ 
 
   return (
     <main className="flex flex-row flex-wrap">
-      {reversedPosts.map((post) => (
+      {posts.map((post) => (
         <article key={post._id} className="m-4">
           <PostCard post={post} />
         </article>
