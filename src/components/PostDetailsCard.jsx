@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
@@ -14,7 +14,6 @@ export function PostDetailsCard() {
   const { state } = useLocation();
   const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
   const [commentText, setCommentText] = useState("");
-  const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
   const { getPost } = usePosts();
   const [postData, setPostData] = useState(state.post);
 
@@ -38,7 +37,8 @@ export function PostDetailsCard() {
       if (response.status === 201) {
         toast.success("Successful comment");
         setCommentText("");
-        setIsCommentSubmitted(true);
+        const updatedPost = await getPost(postId);
+        setPostData(updatedPost);
       } else {
         toast.error("Error posting comment");
       }
@@ -47,28 +47,14 @@ export function PostDetailsCard() {
     }
   };
 
-  const handleDeleteComment = async (commentId) => {
+  const handleDeleteComment = async () => {
     try {
-      setIsCommentSubmitted(true);
+      const updatedPost = await getPost(state.post._id);
+      setPostData(updatedPost);
     } catch (error) {
-      toast.error("Error deleting comment");
+      toast.error("Error deleting comment", error);
     }
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (isCommentSubmitted) {
-          const data = await getPost(state.post._id);
-          setPostData(data);
-        }
-      } catch (error) {
-        toast.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, [state, isCommentSubmitted, getPost]);
-
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">

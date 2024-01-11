@@ -23,7 +23,8 @@ export const Comment = ({ comment, onDelete }) => {
   };
 
   const canEditAndDelete =
-    comment.commentator.trim() === Cookies.get("username").trim();
+  comment?.commentator?.trim() === Cookies.get("username")?.trim();
+
 
   return (
     <div className="comentario mb-3">
