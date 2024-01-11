@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
@@ -47,12 +47,29 @@ export function PostDetailsCard() {
     }
   };
 
-  const handleDeleteComment = async () => {
+  const handleDeleteComment = async (deletedCommentId) => {
     try {
-      const updatedPost = await getPost(state.post._id);
-      setPostData(updatedPost);
+      setPostData((prevPostData) => ({
+        ...prevPostData,
+        comments: prevPostData.comments.filter(
+          (comment) => comment._id !== deletedCommentId
+        ),
+      }));
     } catch (error) {
       toast.error("Error deleting comment", error);
+    }
+  };
+
+  const handleEditComment = async (editedComment) => {
+    try {
+      setPostData((prevPostData) => ({
+        ...prevPostData,
+        comments: prevPostData.comments.map((comment) =>
+          comment._id === editedComment._id ? editedComment : comment
+        ),
+      }));
+    } catch (error) {
+      toast.error("Error editing comment", error);
     }
   };
   return (
@@ -131,6 +148,7 @@ export function PostDetailsCard() {
         <Comments
           comments={postData.comments}
           onDeleteComment={handleDeleteComment}
+          onEditComment={handleEditComment}
         />
       </div>
     </article>
