@@ -1,12 +1,22 @@
 import moment from "moment";
+import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
 import logoImg from "../Images/postimg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export function PostCardUser({ post }) {
   const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = Cookies.get("token");
+
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <Link to={`/post/${post._id}`} state={{ post }}>
       <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">

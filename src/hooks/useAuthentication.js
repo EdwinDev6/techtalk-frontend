@@ -14,21 +14,19 @@ const useAuthentication = () => {
       const roles = res?.roles;
       const token = res?.token;
 
-
       if (!roles || !token) {
         throw new Error("No roles or token received in response.");
       }
 
       Cookies.set("token", token, { secure: true, sameSite: "strict" });
 
-
-      if (roles === "moderator") {
-        navigate("/");
-      } else {
+      if (roles.some((role) => role.name === "moderator")) {
         navigate("/admin");
+      } else {
+        navigate("/");
       }
-      toast('successful login, have fun!', {
-        icon: '👏',
+      toast("successful login, have fun!", {
+        icon: "👏",
       });
     } catch (error) {
       if (error.response) {
@@ -36,7 +34,7 @@ const useAuthentication = () => {
           toast.error("invalid credential");
         } else if (error.response.status === 500) {
           toast.error("internal server error");
-        }else if (error.response.status === 400) {
+        } else if (error.response.status === 400) {
           toast.error("user not found");
         }
       }
