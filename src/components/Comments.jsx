@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { useState } from "react";
 
 export const Comment = ({ comment, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -48,7 +47,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
   };
 
   const canEditAndDelete =
-    comment?.commentator?.trim() === Cookies.get("username")?.trim();
+    comment?.commentator?.trim() === Cookies.get("username")?.trim()
 
   return (
     <div className="comentario mb-3">
@@ -57,7 +56,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
           {comment.commentator}
         </strong>
         <small className="text-sm font-normal text-gray-500 ml-1">
-          -{moment(comment.createdAt).format("DD/MM/YYYY")}
+          -{moment(comment.createdAt).fromNow()}
           <span className="isolate inline-flex rounded-md shadow-sm">
             {canEditAndDelete && (
               <>
@@ -65,14 +64,14 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                   <>
                     <button
                       type="button"
-                      className="relative inline-flex items-center bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                       onClick={handleEditComment}
                     >
                       Save
                     </button>
                     <button
                       type="button"
-                      className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                       onClick={() => setIsEditing(false)}
                     >
                       Cancel
@@ -89,7 +88,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                     </button>
                     <button
                       type="button"
-                      className="relative -ml-px inline-flex items-center bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                       onClick={handleDeleteComment}
                     >
                       Delete
