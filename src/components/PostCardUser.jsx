@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export function PostCardUser({ post }) {
-  const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
+  const relativeDate = moment(post.createdAt).fromNow();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function PostCardUser({ post }) {
                 {post.author}
               </h1>
               <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-                {normalDate}
+                {relativeDate}
               </p>
               <p className="text-blue-400 capitalize ">{post.categories}</p>
             </div>

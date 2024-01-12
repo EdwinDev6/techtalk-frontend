@@ -39,7 +39,7 @@ export function insertMedia(filePath) {
 export function PostCard({ post }) {
   const { deletePost } = usePosts();
   const navigate = useNavigate();
-  const normalDate = moment(post.createdAt).format("DD/MM/YYYY");
+  const relativeDate = moment(post.createdAt).fromNow();
 
   const handleDelete = (id) => {
     toast(
@@ -99,8 +99,8 @@ export function PostCard({ post }) {
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               {post.author}
             </h1>
-            <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {normalDate}
+            <p className="text-sm text-gray-800 ">
+              {relativeDate}
             </p>
             <p className="text-blue-400 capitalize "> {post.categories}</p>
           </div>
