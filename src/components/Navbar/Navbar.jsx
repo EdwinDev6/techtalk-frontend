@@ -49,6 +49,7 @@ const Navbar = () => {
             >
               TechTalk News
             </Link>
+
             <button
               className="rounded-lg md:hidden focus:outline-none focus:shadow-outline "
               onClick={toggleMenu}

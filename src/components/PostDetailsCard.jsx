@@ -10,9 +10,11 @@ import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
 import { usePosts } from "../context/postContext";
 import { getTokenFromCookie } from "../api/posts";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostDetailsCard() {
   const { state } = useLocation();
-  const normalDate = moment(state.post.createdAt).format("DD/MM/YYYY");
+  const relativeDate = moment(state.post.createdAt).fromNow();
   const [commentText, setCommentText] = useState("");
   const { getPost } = usePosts();
   const [postData, setPostData] = useState(state.post);
@@ -72,17 +74,26 @@ export function PostDetailsCard() {
       toast.error("Error editing comment", error);
     }
   };
+  const goBack = () => {
+    window.history.back();
+  };
   return (
     <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
+          <button
+            className="text-lg text-gray-900 dark-mode:text-white focus:outline-none focus:shadow-outline mr-4"
+            onClick={goBack}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>{" "}
           <img className="w-12 rounded-full" src={logoImg} alt="logo" />
           <div className="ml-3">
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               {postData.author}
             </h1>
             <p className="text-sm text-gray-800 hover:underline cursor-pointer">
-              {normalDate}
+              {relativeDate}
             </p>
             <p className="text-blue-400 capitalize ">{postData.categories}</p>
           </div>
