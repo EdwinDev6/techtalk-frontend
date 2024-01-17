@@ -14,5 +14,6 @@ export const useRouteVariables = () => {
     isSubscribePage: location.pathname === "/subscription",
     isDetailPage: location.pathname.startsWith("/post/"),
     hideHomeLink: location.pathname.startsWith("/posts/"),
+    isEmailPage: location.pathname==="/email",
   };
 };

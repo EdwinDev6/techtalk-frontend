@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const SubscriptionPage = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedEmail = Cookies.get("email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
   const handleSubscribe = async (e) => {
     e.preventDefault();
 
@@ -24,7 +33,10 @@ export const SubscriptionPage = () => {
 
       if (response.status === 200) {
         toast.success("Subscription successful!");
-        setEmail("");
+      } else if (response.status === 202) {
+        toast("I know you are excited but you are already subscribed!", {
+          icon: "😃",
+        });
       } else {
         toast.error("Failed to subscribe");
       }
@@ -47,15 +59,18 @@ export const SubscriptionPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/users/unsubscribe",
+        "http://localhost:4000/api/users/email-unsubscribe",
         {
           email: email,
         }
       );
 
       if (response.status === 200) {
-        toast.success("Unsubscribe successful!");
-        setEmail("");
+        navigate("/email");
+      } else if (response.status === 202) {
+        toast("You are no longer subscribed, please stop trying.", {
+          icon: "🤷‍♂️",
+        });
       } else {
         toast.error("Failed to unsubscribe");
       }
@@ -87,9 +102,8 @@ export const SubscriptionPage = () => {
             Do you want to receive notifications when there is a new post?
           </div>
           <p className="text-sm md:text-base">
-            Enter your email address to which you wish to receive notifications
-            from us. If you are already subscribed and want to unsubscribe,
-            enter your email and click on the unsubscribe button.
+            If you subscribe and then want to unsubscribe you have to verify
+            your email (you can only subscribe your email in session)
           </p>
         </div>
         <div className="flex flex-col mt-8">
@@ -100,6 +114,7 @@ export const SubscriptionPage = () => {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            readOnly={true}
             className="bg-transparent border-2 rounded-full py-4 px-6 text-[16px] leading-[22.4px] font-light placeholder:text-white text-white"
             placeholder="E-mail Address"
           />
