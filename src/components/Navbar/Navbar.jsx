@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
 import { useRouteVariables } from "./Location";
+import Dropdown from "./Dropdown";
 const Navbar = () => {
   const location = useLocation();
   const {
@@ -20,16 +17,7 @@ const Navbar = () => {
     isHomePage,
     isContactPage,
     isEmailPage,
-    isConfirmPage,
   } = useRouteVariables();
-  const { setAuth } = useAuth();
-
-  const handleLogout = () => {
-    setAuth({ roles: null, token: null });
-    Cookies.remove("token");
-    Cookies.remove("roles");
-    window.location = "/login";
-  };
 
   const [open, setOpen] = useState(false);
 
@@ -42,7 +30,7 @@ const Navbar = () => {
 
   return (
     <header className="antialiased bg-white dark-mode:bg-gray-900">
-      <nav className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+      <nav className="w-full  text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
         <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
           <div className="flex flex-row items-center justify-between p-4">
             <Link
@@ -74,7 +62,7 @@ const Navbar = () => {
             </button>
           </div>
           <nav
-            className={`flex-col flex-grow ${
+            className={`flex-col z-50 flex-grow ${
               open ? "flex" : "hidden"
             } pb-4 md:pb-0 md:flex md:justify-end md:flex-row navbar-transition animate-flip-down duration-700`}
           >
@@ -88,19 +76,6 @@ const Navbar = () => {
                   className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
                 >
                   Home
-                </Link>
-              )}
-            {!hideHomeLink &&
-              !isAdminPage &&
-              !isFormPage &&
-              !userListPage &&
-              !isSubscribePage &&
-              !isDetailPage && (
-                <Link
-                  to="/subscription"
-                  className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-                >
-                  Subscribe
                 </Link>
               )}
 
@@ -118,7 +93,7 @@ const Navbar = () => {
               !isSubscribePage &&
               location.pathname !== "/contact" &&
               !isDetailPage &&
-              !isEmailPage && !isConfirmPage&& (
+              !isEmailPage && (
                 <Link
                   to="/admin"
                   className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
@@ -135,26 +110,7 @@ const Navbar = () => {
                 Users List
               </Link>
             )}
-
-            {isHomePage && (
-              <Link
-                to="/contact"
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-              >
-                Contact
-              </Link>
-            )}
-            {!isLoginPage && (
-              <div className="relative" onClick={() => setOpen(false)}>
-                <button
-                  className="flex flex-row text-gray-900 bg-gray-200 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline  "
-                  onClick={handleLogout}
-                >
-                  {Cookies.get("token") ? "Logout" : "Login"}{" "}
-                  <FontAwesomeIcon icon={faSignOutAlt} />
-                </button>
-              </div>
-            )}
+          <Dropdown />
           </nav>
         </div>
       </nav>
