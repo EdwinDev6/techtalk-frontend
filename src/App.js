@@ -13,6 +13,8 @@ import UserList from "./pages/Users";
 import { PostDetailsCard } from "./components/PostDetailsCard";
 import ConfirmUnsubscribePage from './pages/UnsubscribePage';
 import EmailVerificationPage from "./pages/EmailPage";
+import ForgotPassword from "./pages/ForgotPassword"
+import ResetPassword from "./pages/ResetPassword";
 function App() {
   return (
     <div className="bg-cover bg-gray-200 h-screen w-screen overflow-y-scroll">
@@ -29,6 +31,12 @@ function App() {
           <Route path="/subscription" exact element={<SubscriptionPage />} />
           <Route path="/confirm-unsubscribe" element={<ConfirmUnsubscribePage />} />
           <Route path="/email" element={<EmailVerificationPage />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="reset-password/:resetToken"
+            element={<ResetPassword />}
+          />
+          
           {/* Private routes */}
           <Route element={<RequiresAuth allowedRoles={["moderator"]} />}>
             <Route path="/admin" exact element={<HomePage />} />

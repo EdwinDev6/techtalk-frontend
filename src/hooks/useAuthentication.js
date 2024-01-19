@@ -18,7 +18,8 @@ const useAuthentication = () => {
         throw new Error("No roles or token received in response.");
       }
 
-      Cookies.set("token", token, { secure: true, sameSite: "strict" });
+      // Actualizar el token almacenado localmente
+      Cookies.set("token", token, { secure: true, httpOnly: true, sameSite: "strict" });
 
       if (roles.some((role) => role.name === "moderator")) {
         navigate("/admin");

@@ -24,7 +24,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-  if (isLoginPage || isSignupPage) {
+  if (isLoginPage || isSignupPage ) {
     return null;
   }
 
