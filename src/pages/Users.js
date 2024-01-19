@@ -1,19 +1,79 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { EditRolesDialog } from "../components/DialogManage";
+import toast from "react-hot-toast";
+dayjs.extend(relativeTime);
 
 function UserList() {
   const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [isEditRolesDialogOpen, setIsEditRolesDialogOpen] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/users")
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        
-      });
+    const fetchData = async () => {
+      try {
+        const usersResponse = await axios.get(
+          "http://localhost:4000/api/users"
+        );
+
+        const mappedUsers = usersResponse.data.map((user) => ({
+          ...user,
+          roleNames: user.roles.map((roleId) => mapRoleIdToRoleName(roleId)),
+        }));
+
+        setUsers(mappedUsers);
+      } catch (error) {
+        toast.error("Error fetching users:", error);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  const mapRoleIdToRoleName = (roleId) => {
+    switch (roleId) {
+      case "644888ac94e168f50383b2f0":
+        return "user";
+      case "644888ac94e168f50383b2f1":
+        return "moderator";
+      case "644888ac94e168f50383b2f2":
+        return "admin";
+      default:
+        return "unknown";
+    }
+  };
+
+  const handleEditRoles = (userId) => {
+    setSelectedUserId(userId);
+
+    setIsEditRolesDialogOpen(true);
+  };
+
+  const handleUpdateRoles = async (newRoles) => {
+    try {
+      await axios.put(`http://localhost:4000/api/users/update-role`, {
+        userId: selectedUserId,
+        roles: newRoles,
+      });
+
+      const updatedUsers = await axios.get("http://localhost:4000/api/users");
+      const mappedUsers = updatedUsers.data.map((user) => ({
+        ...user,
+        roleNames: user.roles.map((roleId) => mapRoleIdToRoleName(roleId)),
+      }));
+
+      setUsers(mappedUsers);
+      toast.success("Update Rol Successful")
+    } catch (error) {
+      toast.error("Error updating user roles:", error);
+    } finally {
+      setSelectedUserId(null);
+
+      setIsEditRolesDialogOpen(false);
+    }
+  };
 
   return (
     <div className="p-4">
@@ -25,21 +85,28 @@ function UserList() {
               <tr className="bg-indigo-600 text-white">
                 <th className="py-2 px-4">Username</th>
                 <th className="py-2 px-4">Email</th>
-                <th className="py-2 px-4">Rol</th>
+                <th className="py-2 px-4">Roles</th>
                 <th className="py-2 px-4">Date</th>
                 <th className="py-2 px-4">Edit</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user.id} className="text-sm font-normal">
+              {users.map((user, index) => (
+                <tr key={index} className="text-sm font-normal">
                   <td className="py-2 px-4">{user.username}</td>
                   <td className="py-2 px-4">{user.email}</td>
-                  <td className="py-2 px-4">{user.roles}</td>
-                  <td className="py-2 px-4">{user.createdAt}</td>
                   <td className="py-2 px-4">
-                    <button className="bg-blue-500 text-white py-1 px-2 rounded-md">
-                      Save
+                    {user.roleNames ? user.roleNames.join(", ") : "No roles"}
+                  </td>
+                  <td className="py-2 px-4">
+                    {dayjs(user.createdAt).fromNow()}
+                  </td>
+                  <td className="py-2 px-4">
+                    <button
+                      className="bg-blue-500 text-white py-1 px-2 rounded-md"
+                      onClick={() => handleEditRoles(user._id)}
+                    >
+                      Edit Roles
                     </button>
                   </td>
                 </tr>
@@ -48,6 +115,14 @@ function UserList() {
           </table>
         </div>
       </div>
+
+      {selectedUserId && (
+        <EditRolesDialog
+          open={isEditRolesDialogOpen}
+          onAccept={handleUpdateRoles}
+          onCancel={() => setIsEditRolesDialogOpen(false)}
+        />
+      )}
     </div>
   );
 }
