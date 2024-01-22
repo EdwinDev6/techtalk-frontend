@@ -1,7 +1,8 @@
 import backgroundImage from "../../Images/logoimg.jpg";
 import useLoginForm from "../../hooks/useLoginForm";
 import useAuthentication from "../../hooks/useAuthentication";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock,faEnvelope,faNewspaper, faKey } from "@fortawesome/free-solid-svg-icons";
 const Signin = () => {
   const { data, error, handleChange, setError } = useLoginForm();
   const { authenticate } = useAuthentication();
@@ -34,8 +35,8 @@ const Signin = () => {
         <aside className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
             <header className="text-center">
-              <h1 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
-                TechTalk
+              <h1 className="text-4xl font-bold text-center text-gray-500 dark:text-white">
+                TechTalk <FontAwesomeIcon icon={faNewspaper} />
               </h1>
               <p className="mt-3 text-gray-500 dark:text-gray-300">
                 Sign in to access your account
@@ -45,8 +46,8 @@ const Signin = () => {
             <div className="mt-8">
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Email Address
+                  <label htmlFor="email" className="block mb-2 text-sm text-gray-300 dark:text-gray-200">
+                  <FontAwesomeIcon icon={faEnvelope} style={{color: "#1271ba",}} /> Email Address
                   </label>
                   <input
                     type="email"
@@ -62,11 +63,11 @@ const Signin = () => {
 
                 <div className="mt-6">
                   <div className="flex justify-between mb-2">
-                    <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">
-                      Password
+                    <label htmlFor="password" className="text-sm text-gray-300 dark:text-gray-200">
+                    <FontAwesomeIcon icon={faLock} style={{color: "#1271ba",}} /> Password
                     </label>
-                    <a href="forgot-password" className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">
-                      Forgot password?
+                    <a href="forgot-password" className="text-sm text-gray-300 focus:text-blue-500 hover:text-blue-500 hover:underline">
+                    Forgot password <FontAwesomeIcon icon={faKey} style={{color: "#1271ba",}} /> ?
                     </a>
                   </div>
 

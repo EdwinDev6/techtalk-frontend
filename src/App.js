@@ -25,7 +25,6 @@ function App() {
           {/* Public routes */}
           <Route path="signup" exact element={<Signup /> } />
           <Route path="login" exact element={<Login />} />
-          <Route path="/" exact element={<HomePageWithCarousel />} />
           <Route path="/contact" exact element={<ContactForm />} />
           <Route path="/post/:id" exact element={<PostDetailsCard />} />
           <Route path="/subscription" exact element={<SubscriptionPage />} />
@@ -42,6 +41,13 @@ function App() {
             <Route path="/admin" exact element={<HomePage />} />
             <Route path="/edit/:id" element={<PostForm />} />
             <Route path="/new" exact element={<PostForm />} />
+          </Route>
+
+          <Route element={<RequiresAuth allowedRoles={["user"]} />}>
+          <Route path="/" exact element={<HomePageWithCarousel />} />
+          </Route>
+
+          <Route element={<RequiresAuth allowedRoles={["admin"]} />}>
             <Route path="/users" exact element={<UserList />} />
           </Route>
 
