@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRouteVariables } from "./Location";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faPlus,
+  faNewspaper,
+} from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 const Navbar = () => {
   const {
@@ -17,6 +22,7 @@ const Navbar = () => {
     isContactPage,
     isEmailPage,
     isConfirmPage,
+    isForgotPage,
   } = useRouteVariables();
 
   const [open, setOpen] = useState(false);
@@ -24,7 +30,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-  if (isLoginPage || isSignupPage) {
+  if (isLoginPage || isSignupPage || isEmailPage || isForgotPage) {
     return null;
   }
 
@@ -37,7 +43,7 @@ const Navbar = () => {
               to="#"
               className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline pointer-events-none"
             >
-              TechTalk News
+              TechTalk News <FontAwesomeIcon icon={faNewspaper} />
             </Link>
 
             <button
@@ -75,7 +81,7 @@ const Navbar = () => {
                   to="/"
                   className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
                 >
-                  Home
+                  <FontAwesomeIcon icon={faHouse} /> Home
                 </Link>
               )}
 
@@ -84,32 +90,26 @@ const Navbar = () => {
                 to="/new"
                 className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
               >
-                Create Post
+                <FontAwesomeIcon icon={faPlus} /> Create Post
               </Link>
             )}
 
-            {(!isHomePage || (userListPage && !isContactPage)) &&
+            {(!isHomePage || userListPage) &&
               !isAdminPage &&
+              !isContactPage &&
               !isSubscribePage &&
               !isDetailPage &&
               !isEmailPage &&
-              !isConfirmPage && (
+              !isConfirmPage &&
+              !userListPage && (
                 <Link
                   to="/admin"
                   className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
                 >
-                  Admin Page
+                  <FontAwesomeIcon icon={faHouse} /> Home
                 </Link>
               )}
 
-            {!isHomePage && isAdminPage && (
-              <Link
-                to="/users"
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-              >
-                Users List
-              </Link>
-            )}
             <Dropdown />
           </nav>
         </div>

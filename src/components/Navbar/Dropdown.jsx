@@ -4,7 +4,7 @@ import { useRouteVariables } from "./Location";
 import useAuth from "../../hooks/useAuth";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt,faUser } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt,faUserTie, faBell, faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 const Dropdown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,9 +23,11 @@ const Dropdown = () => {
 
   const handleLogout = () => {
     setAuth({ roles: null, token: null });
+    window.location = "/login";
     Cookies.remove("token");
     Cookies.remove("roles");
-    window.location = "/login";
+    Cookies.remove("username");
+    Cookies.remove("email");
   };
 
   const toggleMenu = () => {
@@ -57,11 +59,11 @@ const Dropdown = () => {
   return (
     <div className="relative z-50" ref={dropdownRef}>
       <button
-        className="flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
+        className="flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md  focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
         onClick={toggleMenu}
       >
         <span className="mx-1 text-sm font-semibold ">
-        <FontAwesomeIcon icon={faUser} /> {Cookies.get("username")}
+        <FontAwesomeIcon icon={faUserTie} bounce/> {Cookies.get("username")}
         </span>
         <svg
           className="w-5 h-5 mx-1"
@@ -88,7 +90,7 @@ const Dropdown = () => {
         >
           <div className="mx-1">
             <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-            <FontAwesomeIcon icon={faUser} /> {Cookies.get("username")}
+            <FontAwesomeIcon icon={faUserTie} /> {Cookies.get("username")}
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {Cookies.get("email")}
@@ -109,7 +111,7 @@ const Dropdown = () => {
               onClick={handleMenuItemClick}
               className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              Subscribe
+              Subscribe <FontAwesomeIcon icon={faBell} shake/>
             </Link>
           )}
 
@@ -119,7 +121,7 @@ const Dropdown = () => {
             onClick={handleMenuItemClick}
             className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
-            Support
+            Support <FontAwesomeIcon icon={faHeadset} />
           </Link>
         )}
 

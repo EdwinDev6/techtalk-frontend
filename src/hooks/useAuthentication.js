@@ -18,13 +18,15 @@ const useAuthentication = () => {
         throw new Error("No roles or token received in response.");
       }
 
-      // Actualizar el token almacenado localmente
+      
       Cookies.set("token", token, { secure: true, httpOnly: true, sameSite: "strict" });
 
       if (roles.some((role) => role.name === "moderator")) {
         navigate("/admin");
-      } else {
-        navigate("/");
+      } else if (roles.some((role) => role.name === "admin")){
+        navigate("/users");
+      }else{
+        navigate("/")
       }
       toast("successful login, have fun!", {
         icon: "👏",

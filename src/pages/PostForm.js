@@ -34,10 +34,12 @@ export function PostForm() {
       }
     })();
   }, [params.id, getPost]);
+
   const [imagePreview, setImagePreview] = useState({
     src: "",
     alt: "original imagen",
   });
+
   return (
     <div className="flex items-center justify-center">
       <div className="bg-blue-950 p-10 shadow-md shadow-black mt-7 animate-fade-down animate-once animate-duration-500 animate-ease-linear">
@@ -84,6 +86,7 @@ export function PostForm() {
                 Title
               </label>
               <Field
+                id="title"
                 name="title"
                 placeholder="Title"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
@@ -93,6 +96,7 @@ export function PostForm() {
                 name="title"
                 className="text-red-400 text-sm"
               />
+
               <label
                 htmlFor="description"
                 className="text-sm block font-bold text-gray-400 "
@@ -100,6 +104,7 @@ export function PostForm() {
                 Description
               </label>
               <Field
+                id="description"
                 component="textarea"
                 name="description"
                 placeholder="Description"
@@ -119,6 +124,7 @@ export function PostForm() {
                 Categories
               </label>
               <Field
+                id="categories"
                 name="categories"
                 placeholder="Categories"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
@@ -128,6 +134,7 @@ export function PostForm() {
                 name="categories"
                 className="text-red-400 text-sm"
               />
+
               <label
                 htmlFor="source"
                 className="text-sm block font-bold text-gray-400"
@@ -135,6 +142,7 @@ export function PostForm() {
                 Source
               </label>
               <Field
+                id="source"
                 name="source"
                 placeholder="Source"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
@@ -144,6 +152,7 @@ export function PostForm() {
                 name="source"
                 className="text-red-400 text-sm"
               />
+
               <label
                 htmlFor="author"
                 className="text-sm block font-bold text-gray-400"
@@ -151,6 +160,7 @@ export function PostForm() {
                 Author
               </label>
               <Field
+                id="author"
                 name="author"
                 placeholder="Author"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
@@ -160,6 +170,7 @@ export function PostForm() {
                 name="author"
                 className="text-red-400 text-sm"
               />
+
               <label
                 htmlFor="image"
                 className="text-sm block font-bold text-gray-400"
@@ -168,6 +179,7 @@ export function PostForm() {
               </label>
               <input
                 type="file"
+                id="image"
                 name="image"
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
                 onChange={(e) => {
