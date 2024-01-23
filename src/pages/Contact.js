@@ -48,7 +48,7 @@ const ContactForm = () => {
 
       setFormValues({
         name: "",
-        email: savedEmail, // Restaurar el valor del email guardado
+        email: savedEmail,
         message: "",
       });
     }

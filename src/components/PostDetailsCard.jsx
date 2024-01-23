@@ -132,6 +132,7 @@ export function PostDetailsCard() {
             placeholder="Type your comment..."
             className="px-3 py-2 border shadow-sm border-gray-300 rounded-md w-full block placeholder:text-gray-400 placeholder-gray-500
             focus:outline-none focus:ring-1 bg-gray-50 focus:ring-blue-600 focus:border-blue-600 text-sm"
+            style={{ minHeight: "100px", maxHeight: "200px"}}
             required
           />
           <button

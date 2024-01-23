@@ -23,6 +23,7 @@ const Navbar = () => {
     isEmailPage,
     isConfirmPage,
     isForgotPage,
+    isResetPasswordPage
   } = useRouteVariables();
 
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-  if (isLoginPage || isSignupPage || isEmailPage || isForgotPage) {
+  if (isLoginPage || isSignupPage || isEmailPage || isForgotPage || isResetPasswordPage) {
     return null;
   }
 

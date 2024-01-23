@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 const ResetPassword = () => {
   const [token, setToken] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,6 +16,12 @@ const ResetPassword = () => {
   }, [location.pathname]);
 
   const handleResetPassword = async () => {
+    // Validar que las contraseñas coincidan
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:4000/api/auth/reset-password",
@@ -60,22 +67,11 @@ const ResetPassword = () => {
               </p>
             </div>
             <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-              <div className="mb-4">
-                <label
-                  className="block mb-2 text-sm font-bold text-gray-700"
-                  htmlFor="token"
-                >
-                  Token
-                </label>
-                <input
-                  className=" cursor-not-allowed w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-100"
-                  id="token"
-                  type="text"
-                  placeholder="Token"
-                  value={token}
-                  disabled
-                />
-              </div>
+              <input
+                type="hidden"
+                id="token"
+                value={token}
+              />
               <div className="mb-4">
                 <label
                   className="block mb-2 text-sm font-bold text-gray-700"
@@ -90,6 +86,22 @@ const ResetPassword = () => {
                   placeholder="Enter New Password..."
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block mb-2 text-sm font-bold text-gray-700"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password..."
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <div className="mb-6 text-center">

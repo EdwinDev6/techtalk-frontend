@@ -50,7 +50,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
     comment?.commentator?.trim() === Cookies.get("username")?.trim()
 
   return (
-    <div className="comentario mb-3">
+    <div className=" mflex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed my-2">
       <div className="comentario-info">
         <strong className="text-base font-semibold text-gray-900">
           {comment.commentator}
@@ -104,7 +104,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          className="text-sm text-gray-600 border p-1 mt-2"
+          className="text-sm text-gray-600 border p-1 mt-2 w-full"
         />
       ) : (
         <div className="text-sm text-gray-600">{comment.text}</div>
