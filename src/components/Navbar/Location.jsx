@@ -16,6 +16,7 @@ export const useRouteVariables = () => {
     hideHomeLink: location.pathname.startsWith("/posts/"),
     isEmailPage: location.pathname==="/email",
     isConfirmPage: location.pathname==="/confirm-unsubscribe",
-    isForgotPage: location.pathname ==="/forgot-password"
+    isForgotPage: location.pathname ==="/forgot-password",
+    isResetPasswordPage: location.pathname.startsWith("/reset-password/"),
   };
 };

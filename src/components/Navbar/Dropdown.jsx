@@ -4,7 +4,12 @@ import { useRouteVariables } from "./Location";
 import useAuth from "../../hooks/useAuth";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt,faUserTie, faBell, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faUserTie,
+  faBell,
+  faHeadset,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Dropdown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +68,7 @@ const Dropdown = () => {
         onClick={toggleMenu}
       >
         <span className="mx-1 text-sm font-semibold ">
-        <FontAwesomeIcon icon={faUserTie} bounce/> {Cookies.get("username")}
+          <FontAwesomeIcon icon={faUserTie} /> {Cookies.get("username")}
         </span>
         <svg
           className="w-5 h-5 mx-1"
@@ -90,7 +95,7 @@ const Dropdown = () => {
         >
           <div className="mx-1">
             <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-            <FontAwesomeIcon icon={faUserTie} /> {Cookies.get("username")}
+              <FontAwesomeIcon icon={faUserTie} /> {Cookies.get("username")}
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {Cookies.get("email")}
@@ -111,7 +116,7 @@ const Dropdown = () => {
               onClick={handleMenuItemClick}
               className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              Subscribe <FontAwesomeIcon icon={faBell} shake/>
+              Subscribe <FontAwesomeIcon icon={faBell} />
             </Link>
           )}
 
