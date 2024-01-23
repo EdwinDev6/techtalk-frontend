@@ -19,15 +19,15 @@ const ForgotPassword = () => {
       if (response.status === 200) {
         navigate("/email");
       } else if (response.status === 204) {
-        toast.error("Tu correo electrónico no está registrado con nosotros");
+        toast.error("Your email is not registered with us");
       } else {
         toast.error(
           response.data.message ||
-            "Error al enviar el correo de restablecimiento."
+            "Error sending reset email."
         );
       }
     } catch (error) {
-      toast.error("Error al enviar el correo de restablecimiento.");
+      toast.error("Error sending reset email.");
     }
   };
 

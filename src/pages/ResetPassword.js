@@ -16,7 +16,6 @@ const ResetPassword = () => {
   }, [location.pathname]);
 
   const handleResetPassword = async () => {
-    // Validar que las contraseñas coincidan
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -67,11 +66,7 @@ const ResetPassword = () => {
               </p>
             </div>
             <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-              <input
-                type="hidden"
-                id="token"
-                value={token}
-              />
+              <input type="hidden" id="token" value={token} />
               <div className="mb-4">
                 <label
                   className="block mb-2 text-sm font-bold text-gray-700"
