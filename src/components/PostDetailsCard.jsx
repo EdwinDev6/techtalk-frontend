@@ -14,7 +14,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostDetailsCard() {
   const { state } = useLocation();
-  const relativeDate = state?.post ? moment(state.post.createdAt).fromNow() : '';
+  const relativeDate = state?.post
+    ? moment(state.post.createdAt).fromNow()
+    : "";
   const [commentText, setCommentText] = useState("");
   const { getPost } = usePosts();
   const [postData, setPostData] = useState(state?.post || {});
@@ -132,7 +134,7 @@ export function PostDetailsCard() {
             placeholder="Type your comment..."
             className="px-3 py-2 border shadow-sm border-gray-300 rounded-md w-full block placeholder:text-gray-400 placeholder-gray-500
             focus:outline-none focus:ring-1 bg-gray-50 focus:ring-blue-600 focus:border-blue-600 text-sm"
-            style={{ minHeight: "100px", maxHeight: "200px"}}
+            style={{ minHeight: "100px", maxHeight: "200px" }}
             required
           />
           <button
