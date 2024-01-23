@@ -14,10 +14,10 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostDetailsCard() {
   const { state } = useLocation();
-  const relativeDate = moment(state.post.createdAt).fromNow();
+  const relativeDate = state?.post ? moment(state.post.createdAt).fromNow() : '';
   const [commentText, setCommentText] = useState("");
   const { getPost } = usePosts();
-  const [postData, setPostData] = useState(state.post);
+  const [postData, setPostData] = useState(state?.post || {});
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export function PostDetailsCard() {
     window.history.back();
   };
   return (
-    <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10">
+    <article className="container mx-auto max-w-2xl bg-white rounded shadow-lg  hover:shadow-2xl transform transition-all duration-500 m-10">
       <header className="flex items-center justify-between px-4">
         <div className="flex justify-between items-center py-4">
           <button
