@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
 import { usePosts } from "../context/postContext";
 import { getTokenFromCookie } from "../api/posts";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft,faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostDetailsCard() {
   const { state } = useLocation();
@@ -156,7 +156,7 @@ export function PostDetailsCard() {
         </form>
 
         <div className="text-base font-bold text-gray-700 mt-3 my-2">
-          {postData.comments.length} Comment(s)
+          {postData.comments.length} Comment(s) <FontAwesomeIcon icon={faComment} />
         </div>
 
         <Comments
