@@ -114,7 +114,9 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          className="text-sm text-gray-600 border p-1 mt-2 w-full"
+          className="px-3 py-2 border shadow-sm border-gray-300 rounded-md w-full block placeholder:text-gray-400 placeholder-gray-500
+          focus:outline-none focus:ring-1 bg-gray-50 focus:ring-blue-600 focus:border-blue-600 text-sm"
+          style={{ minHeight: "50px", maxHeight: "100px" }}
         />
       ) : (
         <div className="text-sm text-gray-600">{comment.text}</div>
