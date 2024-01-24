@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import logoImg from "../Images/postimg.jpg";
 import { ModeratorDropdown } from "./ModeratorDropdown";
+import { useState } from "react";
 
 export function insertMedia(filePath) {
   var extension = filePath.split(".").pop().toLowerCase();
@@ -37,6 +38,7 @@ export function insertMedia(filePath) {
 
 export function PostCard({ post }) {
   const relativeDate = moment(post.createdAt).fromNow();
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   return (
     <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
@@ -60,10 +62,21 @@ export function PostCard({ post }) {
           <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
 
           <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-            {post.description
-              ? `${post.description.substr(0, 330)}...Read More`
-              : "not description"}
+            {showFullDescription
+              ? post.description
+              : post.description
+              ? `${post.description.substr(0, 330)}...`
+              : "No description"}
           </ReactMarkdown>
+
+          {post.description && (
+            <button
+              className="text-blue-500 cursor-pointer"
+              onClick={() => setShowFullDescription(!showFullDescription)}
+            >
+              {showFullDescription ? "Read Less" : "Read More"}
+            </button>
+          )}
 
           <h4 className="text-gray-400 capitalize my-2">
             {" "}

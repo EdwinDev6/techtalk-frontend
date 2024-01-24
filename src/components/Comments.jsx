@@ -3,7 +3,13 @@ import moment from "moment";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faPenToSquare,
+  faXmark,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 export const Comment = ({ comment, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(comment.text);
@@ -47,7 +53,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
   };
 
   const canEditAndDelete =
-    comment?.commentator?.trim() === Cookies.get("username")?.trim()
+    comment?.commentator?.trim() === Cookies.get("username")?.trim();
 
   return (
     <div className=" mflex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed my-2">
@@ -64,34 +70,38 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                   <>
                     <button
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="mx-1 flex items-center justify-center bg-green-500  rounded-sm hover:rounded-3xl hover:bg-green-600 transition-all duration-300 text-white"
+                      style={{ width: "20px", height: "20px" }}
                       onClick={handleEditComment}
                     >
-                      Save
+                      <FontAwesomeIcon icon={faCheck} />
                     </button>
                     <button
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="flex items-center justify-center bg-red-500  rounded-sm hover:rounded-3xl hover:bg-red-600 transition-all duration-300 text-white"
+                      style={{ width: "20px", height: "20px" }}
                       onClick={() => setIsEditing(false)}
                     >
-                      Cancel
+                      <FontAwesomeIcon icon={faXmark} />
                     </button>
                   </>
                 ) : (
                   <>
                     <button
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="mx-1 flex items-center justify-center bg-blue-500  rounded-sm  hover:rounded-3xl hover:bg-blue-600 transition-all duration-300 text-white "
+                      style={{ width: "20px", height: "20px" }}
                       onClick={() => setIsEditing(true)}
                     >
-                      Edit
+                      <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
                     <button
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="flex items-center justify-center bg-red-500  rounded-sm hover:rounded-3xl hover:bg-red-600 transition-all duration-300 text-white"
+                      style={{ width: "20px", height: "20px" }}
                       onClick={handleDeleteComment}
                     >
-                      Delete
+                      <FontAwesomeIcon icon={faTrash} />
                     </button>
                   </>
                 )}
