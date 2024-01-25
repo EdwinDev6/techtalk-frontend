@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { baseUrl } from "../Config";
 const ResetPassword = () => {
   const [token, setToken] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -23,7 +23,7 @@ const ResetPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/auth/reset-password",
+        `${baseUrl}/auth/reset-password`,
         {
           token,
           newPassword,

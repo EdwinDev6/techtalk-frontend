@@ -10,8 +10,9 @@ import toast from "react-hot-toast";
 import { SocialShare } from "./SocialShare";
 import { usePosts } from "../context/postContext";
 import { getTokenFromCookie } from "../api/posts";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft,faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { baseUrl } from "../Config";
 export function PostDetailsCard() {
   const { state } = useLocation();
   const relativeDate = state?.post
@@ -28,7 +29,7 @@ export function PostDetailsCard() {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/posts/${postId}/comments`,
+        `${baseUrl}/posts/${postId}/comments`,
         { text: commentText },
         {
           headers: {
@@ -156,7 +157,7 @@ export function PostDetailsCard() {
         </form>
 
         <div className="text-base font-bold text-gray-700 mt-3 my-2">
-          {postData.comments.length} Comment(s)
+          {postData.comments.length} Comment(s) <FontAwesomeIcon icon={faComment} />
         </div>
 
         <Comments

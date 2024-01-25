@@ -3,8 +3,8 @@ import { toast } from "react-hot-toast";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
-const apiWeb = process.env.REACT_APP_API_CONTACT;
-const apiEmail =process.env.REACT_APP_EMAIL_KEY
+
+import { apiEmail,apiWeb } from "../Config";
 
 const ContactForm = () => {
   const savedEmail = Cookies.get("email");
@@ -68,11 +68,8 @@ const ContactForm = () => {
         </p>
 
         <form action={apiWeb} className="mt-10" onSubmit={handleSubmit}>
-          <input
-            type="hidden"
-            name="access_key"
-            value={apiEmail}
-          />
+          <input type="hidden" name="access_key" value={apiEmail} />
+
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="relative z-0">
               <input

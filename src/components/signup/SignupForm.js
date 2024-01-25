@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie'
+import { baseUrl } from "../../Config";
 const SignupForm = ({ onSuccess }) => {
   const initialState = {
     username: "",
@@ -17,7 +18,7 @@ const SignupForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:4000/api/auth/signup";
+      const url = `${baseUrl}/auth/signup`;
       const { data: res } = await axios.post(url, data);
       const roles = res?.roles;
       const token = res?.token;

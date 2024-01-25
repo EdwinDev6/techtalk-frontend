@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
+import { baseUrl } from "../Config";
 export const SubscriptionPage = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const SubscriptionPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/users/activate-subscription",
+        `${baseUrl}/users/activate-subscription`,
         {
           email: email,
         }
@@ -59,7 +59,7 @@ export const SubscriptionPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/users/email-unsubscribe",
+        `${baseUrl}/users/email-unsubscribe`,
         {
           email: email,
         }
