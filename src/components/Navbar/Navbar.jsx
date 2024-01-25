@@ -25,6 +25,7 @@ const Navbar = () => {
     isForgotPage,
     isResetPasswordPage,
     isEditPostPage
+
   } = useRouteVariables();
 
   const [open, setOpen] = useState(false);
