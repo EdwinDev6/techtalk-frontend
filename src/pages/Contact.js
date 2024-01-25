@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 const apiWeb = process.env.REACT_APP_API_CONTACT;
 const apiEmail =process.env.REACT_APP_EMAIL_KEY
+
 const ContactForm = () => {
   const savedEmail = Cookies.get("email");
 
@@ -38,6 +39,7 @@ const ContactForm = () => {
         body: JSON.stringify(Object.fromEntries(formData)),
       })
         .then(async (response) => {
+
           if (response.status === 200) {
             toast.success("Submitted successfully!");
           } else {
@@ -51,6 +53,7 @@ const ContactForm = () => {
         email: savedEmail,
         message: "",
       });
+
     }
   };
 
