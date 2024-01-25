@@ -1,31 +1,45 @@
 import axios from "axios";
-import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const useAuthentication = () => {
-  const { setAuth } = useAuth();
   const navigate = useNavigate();
   const LoginUrl = process.env.REACT_APP_API_LOGIN;
+
   const authenticate = async (data) => {
     try {
       const url = LoginUrl;
       const { data: res } = await axios.post(url, data);
       const roles = res?.roles;
       const token = res?.token;
-      setAuth({ roles, token });
 
-      if (roles === "admin") {
-        navigate("/");
-      } else {
-        navigate("/admin");
+      if (!roles || !token) {
+        throw new Error("No roles or token received in response.");
       }
+
+      
+      Cookies.set("token", token, { secure: true, httpOnly: true, sameSite: "strict" });
+
+      if (roles.some((role) => role.name === "moderator")) {
+        navigate("/admin");
+      } else if (roles.some((role) => role.name === "admin")){
+        navigate("/users");
+      }else{
+        navigate("/")
+      }
+      toast("successful login, have fun!", {
+        icon: "👏",
+      });
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        return error.response.data.message;
+      if (error.response) {
+        if (error.response.status === 401) {
+          toast.error("invalid credential");
+        } else if (error.response.status === 500) {
+          toast.error("internal server error");
+        } else if (error.response.status === 400) {
+          toast.error("user not found");
+        }
       }
     }
   };

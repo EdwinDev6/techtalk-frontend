@@ -1,7 +1,8 @@
 import backgroundImage from "../../Images/logoimg.jpg";
 import useLoginForm from "../../hooks/useLoginForm";
 import useAuthentication from "../../hooks/useAuthentication";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock,faEnvelope,faNewspaper, faKey } from "@fortawesome/free-solid-svg-icons";
 const Signin = () => {
   const { data, error, handleChange, setError } = useLoginForm();
   const { authenticate } = useAuthentication();
@@ -17,42 +18,36 @@ const Signin = () => {
   return (
     <div className="bg-black dark:bg-gray-900">
       <div className="flex justify-center h-screen">
-        <div
-          className="hidden bg-cover lg:block lg:w-2/3"
-          style={{ backgroundImage: `url('${backgroundImage}')` }}
-        >
+        <section className="hidden bg-cover lg:block lg:w-2/3" style={{ backgroundImage: `url('${backgroundImage}')` }}>
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-            <div>
-              <h2 className="text-4xl font-bold text-white">TechTalk News</h2>
+            <article>
+              <h1 className="text-4xl font-bold text-white">TechTalk News</h1>
               <p className="max-w-xl mt-3 text-gray-300">
                 Welcome to TechTalk, the go-to social network for technology and
                 news enthusiasts! Here, you can connect with a passionate
                 community that shares your interests and discover the latest
                 trends in the digital world.
               </p>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
-        <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+        <aside className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
-                TechTalk
-              </h2>
+            <header className="text-center">
+              <h1 className="text-4xl font-bold text-center text-gray-500 dark:text-white">
+                TechTalk <FontAwesomeIcon icon={faNewspaper} />
+              </h1>
               <p className="mt-3 text-gray-500 dark:text-gray-300">
                 Sign in to access your account
               </p>
-            </div>
+            </header>
 
             <div className="mt-8">
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                  >
-                    Email Address
+                  <label htmlFor="email" className="block mb-2 text-sm text-gray-300 dark:text-gray-200">
+                  <FontAwesomeIcon icon={faEnvelope} style={{color: "#1271ba",}} /> Email Address
                   </label>
                   <input
                     type="email"
@@ -68,17 +63,11 @@ const Signin = () => {
 
                 <div className="mt-6">
                   <div className="flex justify-between mb-2">
-                    <label
-                      htmlFor="password"
-                      className="text-sm text-gray-600 dark:text-gray-200"
-                    >
-                      Password
+                    <label htmlFor="password" className="text-sm text-gray-300 dark:text-gray-200">
+                    <FontAwesomeIcon icon={faLock} style={{color: "#1271ba",}} /> Password
                     </label>
-                    <a
-                      href="*"
-                      className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline"
-                    >
-                      Forgot password?
+                    <a href="forgot-password" className="text-sm text-gray-300 focus:text-blue-500 hover:text-blue-500 hover:underline">
+                    Forgot password <FontAwesomeIcon icon={faKey} style={{color: "#1271ba",}} /> ?
                     </a>
                   </div>
 
@@ -122,9 +111,10 @@ const Signin = () => {
               </p>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );
 };
+
 export default Signin;

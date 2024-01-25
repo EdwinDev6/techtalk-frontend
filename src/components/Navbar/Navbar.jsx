@@ -1,39 +1,52 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useRouteVariables } from "./Location";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link, useLocation } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-
+import {
+  faHouse,
+  faPlus,
+  faNewspaper,
+} from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "./Dropdown";
 const Navbar = () => {
-  const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
-  const isHomePage = location.pathname === "/";
-  const isFormPage = location.pathname === "/new";
-  const isAdminPage = location.pathname === "/admin";
-  const { setAuth, auth } = useAuth();
-
-  const handleLogout = () => {
-    setAuth({ roles: null, token: null });
-    window.location = "/login";
-  };
+  const {
+    isLoginPage,
+    isSignupPage,
+    hideHomeLink,
+    isAdminPage,
+    isDetailPage,
+    isFormPage,
+    userListPage,
+    isSubscribePage,
+    isHomePage,
+    isContactPage,
+    isEmailPage,
+    isConfirmPage,
+    isForgotPage,
+    isResetPasswordPage
+  } = useRouteVariables();
 
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => {
     setOpen(!open);
   };
+  if (isLoginPage || isSignupPage || isEmailPage || isForgotPage || isResetPasswordPage) {
+    return null;
+  }
 
   return (
-    <div className="antialiased bg-white dark-mode:bg-gray-900">
-      <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+    <header className="antialiased bg-white dark-mode:bg-gray-900">
+      <nav className="w-full  text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
         <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
           <div className="flex flex-row items-center justify-between p-4">
             <Link
-              to="/"
-              className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline "
+              to="#"
+              className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline pointer-events-none"
             >
-              TechTalk News
+              TechTalk News <FontAwesomeIcon icon={faNewspaper} />
             </Link>
+
             <button
               className="rounded-lg md:hidden focus:outline-none focus:shadow-outline "
               onClick={toggleMenu}
@@ -56,57 +69,53 @@ const Navbar = () => {
             </button>
           </div>
           <nav
-            className={`flex-col flex-grow ${
+            className={`flex-col z-50 flex-grow ${
               open ? "flex" : "hidden"
             } pb-4 md:pb-0 md:flex md:justify-end md:flex-row navbar-transition animate-flip-down duration-700`}
           >
-            <Link
-              to="/"
-              className=" px-4 py-2 mt-2 text-sm font-semibold  bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-            >
-              Home
-            </Link>
+            {!hideHomeLink &&
+              !isAdminPage &&
+              !isFormPage &&
+              !userListPage &&
+              !isDetailPage && (
+                <Link
+                  to="/"
+                  className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
+                >
+                  <FontAwesomeIcon icon={faHouse} /> Home
+                </Link>
+              )}
 
             {!isHomePage && isAdminPage && (
               <Link
                 to="/new"
                 className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
               >
-                Create Post
+                <FontAwesomeIcon icon={faPlus} /> Create Post
               </Link>
             )}
 
-            {!isHomePage && isFormPage && (
-              <Link
-                to="/admin"
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-              >
-                Admin Page
-              </Link>
-            )}
-            {isHomePage && (
-              <Link
-                to="/contact"
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
-              >
-                Contact
-              </Link>
-            )}
-            {!isLoginPage && (
-              <div className="relative" onClick={() => setOpen(false)}>
-                <button
-                  className="flex flex-row text-gray-900 bg-gray-200 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline  "
-                  onClick={handleLogout}
+            {(!isHomePage || userListPage) &&
+              !isAdminPage &&
+              !isContactPage &&
+              !isSubscribePage &&
+              !isDetailPage &&
+              !isEmailPage &&
+              !isConfirmPage &&
+              !userListPage && (
+                <Link
+                  to="/admin"
+                  className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline hover:underline"
                 >
-                  {auth.token ? "Logout" : "Login"}{" "}
-                  <FontAwesomeIcon icon={faSignOutAlt} />
-                </button>
-              </div>
-            )}
+                  <FontAwesomeIcon icon={faHouse} /> Home
+                </Link>
+              )}
+
+            <Dropdown />
           </nav>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

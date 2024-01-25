@@ -1,9 +1,17 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { faHeadset } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Cookies from "js-cookie";
 const apiWeb = process.env.REACT_APP_API_CONTACT;
+const apiEmail =process.env.REACT_APP_EMAIL_KEY
+
 const ContactForm = () => {
+  const savedEmail = Cookies.get("email");
+
   const [formValues, setFormValues] = useState({
     name: "",
-    email: "",
+    email: savedEmail,
     message: "",
   });
 
@@ -31,43 +39,39 @@ const ContactForm = () => {
         body: JSON.stringify(Object.fromEntries(formData)),
       })
         .then(async (response) => {
-          let json = await response.json();
+
           if (response.status === 200) {
-            console.log(json.message);
+            toast.success("Submitted successfully!");
           } else {
-            console.log(response);
+            toast.error("Something has gone wrong");
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
 
       setFormValues({
         name: "",
-        email: "",
+        email: savedEmail,
         message: "",
       });
-    } else {
+
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-start bg-white">
       <div className="mx-auto w-full max-w-lg">
-        <h1 className="text-4xl font-medium animate-bounce">Contact Us</h1>
-        <p className="mt-3 ">
+        <h1 className="text-4xl font-medium animate-bounce">
+          <FontAwesomeIcon icon={faHeadset} /> Contact Us
+        </h1>
+        <p className="mt-3">
           Email us at help@techtalk12.com or message us here:
         </p>
 
-        <form
-          action="https://api.web3forms.com/submit"
-          className="mt-10"
-          onSubmit={handleSubmit}
-        >
+        <form action={apiWeb} className="mt-10" onSubmit={handleSubmit}>
           <input
             type="hidden"
             name="access_key"
-            value="22ce114e-b91e-4bf5-b88e-d54b1a19a69c"
+            value={apiEmail}
           />
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="relative z-0">
@@ -92,6 +96,7 @@ const ContactForm = () => {
                 placeholder=" "
                 value={formValues.email}
                 onChange={handleChange}
+                readOnly
                 required
               />
               <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
@@ -115,7 +120,7 @@ const ContactForm = () => {
           </div>
           <button
             type="submit"
-            className="mt-5 rounded-md py-2 px-4 bg-transparent text-black font-semibold border border-black  hover:bg-black hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 "
+            className="mt-5 rounded-md py-2 px-4 bg-transparent text-black font-semibold border border-black hover:bg-black hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0"
             required
           >
             Send Message
