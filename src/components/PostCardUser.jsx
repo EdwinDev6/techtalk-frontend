@@ -1,15 +1,16 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import ReactMarkdown from "react-markdown";
 import { insertMedia } from "./PostCard";
 import logoImg from "../Images/postimg.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostCardUser({ post }) {
   const relativeDate = moment(post.createdAt).fromNow();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const token = Cookies.get("token");
 
@@ -49,6 +50,9 @@ export function PostCardUser({ post }) {
             {" "}
             Source: {post.source}
           </h4>
+          <div className="text-base font-bold text-gray-700 mt-3 my-2">
+          {post.comments.length} Comment(s) <FontAwesomeIcon icon={faComment} />
+        </div>
         </div>
       </article>
     </Link>
