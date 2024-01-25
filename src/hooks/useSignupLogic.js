@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
 import axios from "axios";
 import {  toast } from "react-hot-toast";
-
+import { baseUrl } from "../Config";
 const useSignupLogic = () => {
   const [data, setData] = useState({
     username: "",
@@ -16,7 +16,7 @@ const useSignupLogic = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const SignupUrl = process.env.REACT_APP_API_SIGNUP;
+  const SignupUrl = `${baseUrl}/auth/signup`;
   const from = location.state?.from?.pathname || "/login";
 
   const handleChange = ({ currentTarget: input }) => {

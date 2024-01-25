@@ -2,10 +2,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
-
+import { baseUrl } from "../Config";
 const useAuthentication = () => {
   const navigate = useNavigate();
-  const LoginUrl = process.env.REACT_APP_API_LOGIN;
+  const LoginUrl = `${baseUrl}/auth/signin`;
 
   const authenticate = async (data) => {
     try {

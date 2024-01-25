@@ -10,18 +10,16 @@ import {
   faXmark,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { baseUrl } from "../Config";
 export const Comment = ({ comment, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(comment.text);
 
   const handleDeleteComment = async () => {
     try {
-      await axios.delete(
-        `http://localhost:4000/api/posts/${comment._id}/comments/`,
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.delete(`${baseUrl}/posts/${comment._id}/comments/`, {
+        withCredentials: true,
+      });
 
       onDelete(comment._id);
 
@@ -34,7 +32,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
   const handleEditComment = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/posts/${comment._id}/comments/`,
+        `${baseUrl}/posts/${comment._id}/comments/`,
         { text: editedText },
         {
           withCredentials: true,

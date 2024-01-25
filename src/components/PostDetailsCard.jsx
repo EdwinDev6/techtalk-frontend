@@ -12,6 +12,7 @@ import { usePosts } from "../context/postContext";
 import { getTokenFromCookie } from "../api/posts";
 import { faArrowLeft,faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { baseUrl } from "../Config";
 export function PostDetailsCard() {
   const { state } = useLocation();
   const relativeDate = state?.post
@@ -28,7 +29,7 @@ export function PostDetailsCard() {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/posts/${postId}/comments`,
+        `${baseUrl}/posts/${postId}/comments`,
         { text: commentText },
         {
           headers: {

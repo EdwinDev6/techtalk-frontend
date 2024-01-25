@@ -3,8 +3,7 @@ import { toast } from "react-hot-toast";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
-const apiWeb = process.env.REACT_APP_API_CONTACT;
-const apiEmail = process.env.REACT_APP_EMAIL_KEY;
+import { apiEmail,apiWeb } from "../Config";
 const ContactForm = () => {
   const savedEmail = Cookies.get("email");
 
