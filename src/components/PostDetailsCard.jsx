@@ -29,7 +29,9 @@ export function PostDetailsCard() {
 
     try {
       const response = await axios.post(
+
         `${baseUrl}/posts/${postId}/comments`,
+
         { text: commentText },
         {
           headers: {
@@ -158,6 +160,7 @@ export function PostDetailsCard() {
 
         <div className="text-base font-bold text-gray-700 mt-3 my-2">
           {postData.comments.length} Comment(s) <FontAwesomeIcon icon={faComment} />
+
         </div>
 
         <Comments

@@ -1,3 +1,4 @@
+
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -37,8 +38,10 @@ export function insertMedia(filePath) {
 }
 
 export function PostCard({ post }) {
+
   const relativeDate = moment(post.createdAt).fromNow();
   const [showFullDescription, setShowFullDescription] = useState(false);
+
 
   return (
     <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
@@ -49,6 +52,7 @@ export function PostCard({ post }) {
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               {post.author}
             </h1>
+
             <p className="text-sm text-gray-800 ">{relativeDate}</p>
             <p className="text-blue-400 capitalize "> {post.categories}</p>
           </div>
@@ -60,6 +64,7 @@ export function PostCard({ post }) {
         {post.image && insertMedia(post.image.url)}
         <div className="p-6">
           <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
+
 
           <ReactMarkdown className="text-lg font font-thin text-black text-justify">
             {showFullDescription

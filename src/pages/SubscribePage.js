@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../Config";
+
 export const SubscriptionPage = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();

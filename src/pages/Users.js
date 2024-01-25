@@ -5,6 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { EditRolesDialog } from "../components/DialogManage";
 import toast from "react-hot-toast";
 import { baseUrl } from "../Config";
+
 dayjs.extend(relativeTime);
 
 function UserList() {
@@ -55,9 +56,11 @@ function UserList() {
   const handleUpdateRoles = async (newRoles) => {
     try {
       await axios.put(`${baseUrl}/users/update-role`, {
+
         userId: selectedUserId,
         roles: newRoles,
       });
+
 
       const updatedUsers = await axios.get(`${baseUrl}/users`);
       const mappedUsers = updatedUsers.data.map((user) => ({

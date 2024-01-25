@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function PostCardUser({ post }) {
   const relativeDate = moment(post.createdAt).fromNow();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const token = Cookies.get("token");
 
@@ -50,6 +50,7 @@ export function PostCardUser({ post }) {
             {" "}
             Source: {post.source}
           </h4>
+
           <div className="text-base font-bold text-gray-700 mt-3 my-2">
           {post.comments.length} Comment(s) <FontAwesomeIcon icon={faComment} />
         </div>

@@ -2,9 +2,16 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { baseUrl } from "../Config";
 
+
 export const getTokenFromCookie = () => {
   return Cookies.get("token") || "";
 };
+
+
+export const getTokenFromCookie = () => {
+  return Cookies.get("token") || ""; 
+};
+
 
 export const getPostsRequest = async () =>
   await axios.get(`${baseUrl}/posts`, {});
@@ -20,18 +27,22 @@ export const createPostRequest = async (post) => {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${getTokenFromCookie()}`,
+
     },
   });
 };
 
 export const deletePostRequest = async (id) =>
+
   await axios.delete(`${baseUrl}/posts/${id}`, {
     headers: {
       Authorization: `Bearer ${getTokenFromCookie()}`,
+
     },
   });
 
 export const getPostRequest = async (id) =>
+
   await axios.get(`${baseUrl}/posts/` + id);
 
 export const updatePostRequest = async (id, formData) => {
@@ -48,3 +59,4 @@ export const updatePostRequest = async (id, formData) => {
     throw error;
   }
 };
+

@@ -19,5 +19,6 @@ export const useRouteVariables = () => {
     isForgotPage: location.pathname ==="/forgot-password",
     isResetPasswordPage: location.pathname.startsWith("/reset-password/"),
     isEditPostPage: location.pathname.startsWith("/edit/")
+
   };
 };
