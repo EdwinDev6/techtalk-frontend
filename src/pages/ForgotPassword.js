@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+import { baseUrl } from "../Config";
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ const ForgotPassword = () => {
   const handleForgotPassword = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/auth/forgot-password",
+        `${baseUrl}/auth/forgot-password`,
         {
           email,
         }

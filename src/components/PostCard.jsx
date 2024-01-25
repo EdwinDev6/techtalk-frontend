@@ -1,9 +1,10 @@
-import toast from "react-hot-toast";
-import { usePosts } from "../context/postContext";
+
 import ReactMarkdown from "react-markdown";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import logoImg from "../Images/postimg.jpg";
+import { ModeratorDropdown } from "./ModeratorDropdown";
+import { useState } from "react";
 
 export function insertMedia(filePath) {
   var extension = filePath.split(".").pop().toLowerCase();
@@ -37,58 +38,10 @@ export function insertMedia(filePath) {
 }
 
 export function PostCard({ post }) {
-  const { deletePost } = usePosts();
-  const navigate = useNavigate();
+
   const relativeDate = moment(post.createdAt).fromNow();
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
-  const handleDelete = (id) => {
-    toast(
-      (t) => (
-        <div>
-          <p className="text-white">
-            <b> Do you want to Delete?</b> {post.title}
-          </p>
-          <div>
-            <button
-              className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-sm mx-2"
-              onClick={() => {
-                deletePost(id);
-                toast.dismiss(t.id);
-                toast.success("Post Deleted Successful");
-              }}
-            >
-              Delete
-            </button>
-
-            <button
-              className="bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2"
-              onClick={() => {
-                toast.dismiss(t.id);
-                toast(
-                  "Notification: Post deletion cancelled. Your post has been preserved and will not be deleted. Thank you for your understanding and collaboration! ",
-                  {
-                    duration: 6000,
-                    style: {
-                      borderRadius: "10px",
-                      background: "#333",
-                      color: "#fff",
-                    },
-                  }
-                );
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      ),
-      {
-        style: {
-          background: "#202020",
-        },
-      }
-    );
-  };
 
   return (
     <article className="container mx-auto max-w-sm bg-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transform transition-all duration-500 m-10  animate-fade-down animate-once animate-duration-[500ms] animate-ease-out">
@@ -99,32 +52,12 @@ export function PostCard({ post }) {
             <h1 className="text-xl font-bold text-gray-800 cursor-pointer">
               {post.author}
             </h1>
-            <p className="text-sm text-gray-800 ">
-              {relativeDate}
-            </p>
+
+            <p className="text-sm text-gray-800 ">{relativeDate}</p>
             <p className="text-blue-400 capitalize "> {post.categories}</p>
           </div>
         </div>
-        <div>
-          <button
-            className="text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow m-1"
-            onClick={() => navigate(`/edit/${post._id}`)}
-          >
-            <div className="absolute inset-0 w-0 bg-cyan-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span className="relative text-black group-hover:text-white">
-              Edit
-            </span>
-          </button>
-          <button
-            className=" text-sm px-2 py-1 rounded-sm group relative overflow-hidden  bg-white  shadow"
-            onClick={() => handleDelete(post._id)}
-          >
-            <div className="absolute inset-0 w-0 bg-rose-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span className="relative text-black group-hover:text-white">
-              Delete
-            </span>
-          </button>
-        </div>
+        <ModeratorDropdown postId={post._id} />
       </header>
 
       <Link to={`/post/${post._id}`} state={{ post }}>
@@ -132,11 +65,23 @@ export function PostCard({ post }) {
         <div className="p-6">
           <h2 className="text-xl text-gray-800 font-semibold">{post.title}</h2>
 
+
           <ReactMarkdown className="text-lg font font-thin text-black text-justify">
-            {post.description
-              ? `${post.description.substr(0, 330)}...Read More`
-              : "not description"}
+            {showFullDescription
+              ? post.description
+              : post.description
+              ? `${post.description.substr(0, 330)}...`
+              : "No description"}
           </ReactMarkdown>
+
+          {post.description && (
+            <button
+              className="text-blue-500 cursor-pointer"
+              onClick={() => setShowFullDescription(!showFullDescription)}
+            >
+              {showFullDescription ? "Read Less" : "Read More"}
+            </button>
+          )}
 
           <h4 className="text-gray-400 capitalize my-2">
             {" "}

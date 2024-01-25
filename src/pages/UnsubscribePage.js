@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { baseUrl } from "../Config";
+
 const UnsubscribeSuccessPage = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const email = params.get("email");
     
     axios
-      .post("http://localhost:4000/api/users/unsubscribe", { email })
+      .post(`${baseUrl}/users/unsubscribe`, { email })
+
       .then((response) => {})
       .catch((error) => {
         toast.error(error);
