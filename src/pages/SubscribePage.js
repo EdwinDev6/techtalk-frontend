@@ -122,7 +122,7 @@ export const SubscriptionPage = () => {
           <div className="flex flex-col mt-4 md:mt-6 md:flex-row md:space-x-4">
             <button
               onClick={handleUnsubscribe}
-              className="flex-1 h-auto rounded-full bg-white text-black py-3 px-6 hover:bg-red-500"
+              className="flex-1 h-auto rounded-full bg-slate-400 text-black py-3 px-6 hover:bg-red-500"
             >
               <span className="text-teal-900 font-semibold">Unsubscribe</span>
             </button>

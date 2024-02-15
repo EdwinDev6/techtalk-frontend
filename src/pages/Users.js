@@ -49,18 +49,15 @@ function UserList() {
 
   const handleEditRoles = (userId) => {
     setSelectedUserId(userId);
-
     setIsEditRolesDialogOpen(true);
   };
 
   const handleUpdateRoles = async (newRoles) => {
     try {
       await axios.put(`${baseUrl}/users/update-role`, {
-
         userId: selectedUserId,
         roles: newRoles,
       });
-
 
       const updatedUsers = await axios.get(`${baseUrl}/users`);
       const mappedUsers = updatedUsers.data.map((user) => ({
@@ -69,12 +66,11 @@ function UserList() {
       }));
 
       setUsers(mappedUsers);
-      toast.success("Update Rol Successful")
+      toast.success("Update Rol Successful");
     } catch (error) {
       toast.error("Error updating user roles:", error);
     } finally {
       setSelectedUserId(null);
-
       setIsEditRolesDialogOpen(false);
     }
   };
@@ -87,16 +83,16 @@ function UserList() {
           <table className="w-full border-collapse border border-gray-300">
             <thead>
               <tr className="bg-indigo-600 text-white">
-                <th className="py-2 px-4">Username</th>
-                <th className="py-2 px-4">Email</th>
-                <th className="py-2 px-4">Roles</th>
-                <th className="py-2 px-4">Date</th>
-                <th className="py-2 px-4">Edit</th>
+                <th className="py-2 px-4 text-left">Username</th>
+                <th className="py-2 px-4 text-left">Email</th>
+                <th className="py-2 px-4 text-left">Roles</th>
+                <th className="py-2 px-4 text-left">Date</th>
+                <th className="py-2 px-4 text-left">Edit</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, index) => (
-                <tr key={index} className="text-sm font-normal">
+                <tr key={index} className={index % 2 === 0 ? "bg-gray-200" : "bg-white"}>
                   <td className="py-2 px-4">{user.username}</td>
                   <td className="py-2 px-4">{user.email}</td>
                   <td className="py-2 px-4">

@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { baseUrl } from "../Config";
 
 export const getTokenFromCookie = () => {
-  return Cookies.get("token") || "";
+  return Cookies.get("token");
 };
 
 export const getPostsRequest = async () =>
@@ -34,17 +34,19 @@ export const deletePostRequest = async (id) =>
 export const getPostRequest = async (id) =>
   await axios.get(`${baseUrl}/posts/` + id);
 
-export const updatePostRequest = async (id, formData) => {
-  try {
-    const response = await axios.put(`${baseUrl}/posts/${id}`, formData, {
-      headers: {
-        Authorization: `Bearer ${getTokenFromCookie()}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+  export const updatePostRequest = async (id, formData) => {
+    try {
+      const token = getTokenFromCookie();
+      const response = await axios.put(`${baseUrl}/posts/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
