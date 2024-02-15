@@ -14,7 +14,7 @@ export function HomePage() {
   if (posts.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center">
-        <VscEmptyWindow className="w-48 h-48 text-white" />
+        <VscEmptyWindow className="w-48 h-48 text-white"/>
         <h1 className="text-white text-2xl">There are no posts</h1>
       </div>
     );
@@ -23,9 +23,9 @@ export function HomePage() {
  
 
   return (
-    <main className="flex flex-row flex-wrap">
+    <main className="flex flex-row flex-wrap ">
       {posts.map((post) => (
-        <article key={post._id} className="m-4">
+        <article key={post._id} className="m-4 ">
           <PostCard post={post} />
         </article>
       ))}

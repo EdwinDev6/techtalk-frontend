@@ -19,11 +19,9 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
 
   const handleDeleteComment = async () => {
     try {
-
       await axios.delete(`${baseUrl}/posts/${comment._id}/comments/`, {
         withCredentials: true,
       });
-
 
       onDelete(comment._id);
 
@@ -35,10 +33,13 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
 
   const handleEditComment = async () => {
     try {
+      if (editedText.trim() === "") {
+        toast.error("Comment text cannot be empty.");
+        return;
+      }
+
       const response = await axios.put(
-
         `${baseUrl}/posts/${comment._id}/comments/`,
-
         { text: editedText },
         {
           withCredentials: true,
@@ -57,9 +58,7 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
   };
 
   const canEditAndDelete =
-
     comment?.commentator?.trim() === Cookies.get("username")?.trim();
-
 
   return (
     <div className=" mflex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed my-2">
@@ -76,7 +75,6 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                   <>
                     <button
                       type="button"
-
                       className="mx-1 flex items-center justify-center bg-green-500  rounded-sm hover:rounded-3xl hover:bg-green-600 transition-all duration-300 text-white"
                       style={{ width: "20px", height: "20px" }}
                       onClick={handleEditComment}
@@ -90,14 +88,12 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                       onClick={() => setIsEditing(false)}
                     >
                       <FontAwesomeIcon icon={faXmark} />
-
                     </button>
                   </>
                 ) : (
                   <>
                     <button
                       type="button"
-
                       className="mx-1 flex items-center justify-center bg-blue-500  rounded-sm  hover:rounded-3xl hover:bg-blue-600 transition-all duration-300 text-white "
                       style={{ width: "20px", height: "20px" }}
                       onClick={() => setIsEditing(true)}
@@ -111,7 +107,6 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
                       onClick={handleDeleteComment}
                     >
                       <FontAwesomeIcon icon={faTrash} />
-
                     </button>
                   </>
                 )}
@@ -124,13 +119,9 @@ export const Comment = ({ comment, onDelete, onEdit }) => {
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-
-
           className="px-3 py-2 border shadow-sm border-gray-300 rounded-md w-full block placeholder:text-gray-400 placeholder-gray-500
           focus:outline-none focus:ring-1 bg-gray-50 focus:ring-blue-600 focus:border-blue-600 text-sm"
           style={{ minHeight: "50px", maxHeight: "100px" }}
-
-
         />
       ) : (
         <div className="text-sm text-gray-600">{comment.text}</div>
