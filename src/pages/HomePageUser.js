@@ -26,7 +26,7 @@ export function HomePageUser() {
     return (
         <main className="flex flex-row flex-wrap justify-center items-center">
           {posts.map((post) => (
-            <article key={post._id} className="m-4">
+            <article key={post._id}>
               <PostCardUser post={post} />
             </article>
           ))}
