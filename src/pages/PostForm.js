@@ -55,7 +55,7 @@ export function PostForm() {
             categories: Yup.string().transform((value, originalValue) => {
               return originalValue ? originalValue.toString() : value;
             }).required("Categories is Required"),
-            source: Yup.string(),
+            source: Yup.string().required("Source is Required"),
             author: Yup.string().required("Author is Required"),
           })}
           onSubmit={async (values, actions) => {
