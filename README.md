@@ -37,4 +37,4 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 # Authors
-@Edwin6666
+@EdwinDev6
