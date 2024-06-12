@@ -36,11 +36,11 @@ function UserList() {
 
   const mapRoleIdToRoleName = (roleId) => {
     switch (roleId) {
-      case "644888ac94e168f50383b2f0":
+      case "6666ffeb23d52b9c096f666d":
         return "user";
-      case "644888ac94e168f50383b2f1":
+      case "6666ffeb23d52b9c096f666e":
         return "moderator";
-      case "644888ac94e168f50383b2f2":
+      case "6666ffeb23d52b9c096f666f":
         return "admin";
       default:
         return "unknown";
