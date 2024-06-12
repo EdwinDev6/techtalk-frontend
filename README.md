@@ -4,10 +4,17 @@ The most relevant news of technological advances
 # Description
 Techtalk is a project made based on a blog or digital newspaper to publish news, which allows you to publish images and videos accompanied by their title and description, consists of a full stack web application using React, Express, Tailwind and Json Web Token Authentication.
 
-# Screenshot
-![Alt text](image.png)
-![Alt text](image-1.png)
-
+# Screenshots
+![alt text](/images/Login.png)
+![Alt text](/images/Signup.png)
+![Alt text](/images/ForgotPassword.png)
+![Alt text](/images/Carousel.png)
+![Alt text](/images/Account.png)
+![Alt text](/images/Post.png)
+![Alt text](/images/SharePost.png)
+![Alt text](/images/Comment.png)
+![Alt text](/images/Subscribe.png)
+![Alt text](/images/Contact.png)
 ## Instalation
 
 Add your environment variables according to your data, example:
